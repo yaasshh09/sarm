@@ -7,6 +7,7 @@ sites:
     change_type: human-driven (coastal reclamation, urban growth, mangrove planting)
     status: primary
     products: [GCOV]
+    stack: {track: 56, dir: A, frame: 14, bw: "40+5"}   # confirmed at gate 1
 
   - id: kosi
     name: Kosi River floodplain, Bihar
@@ -15,6 +16,7 @@ sites:
     change_type: natural (monsoon inundation and retreat)
     status: primary
     products: [GCOV]
+    stack: {track: 170, dir: A, frame: 15, bw: "40+5"}  # confirmed at gate 1
 
   # Center = USGS us6000t7zp, M7.5, 2026-06-24 22:05:04 UTC, 20 km W of Catia La Mar.
   # Second mainshock us6000t7zc, M7.2, 2026-06-24 22:04:31 UTC, at 10.3713 N 68.5564 W (outside this AOI).
@@ -26,6 +28,7 @@ sites:
     status: stretch
     event_date: 2026-06-24
     products: [GCOV, GUNW]
+    stack: {track: 126, dir: D, frame: 83, bw: "40+5"}  # GUNW 2026-06-22 to 07-04 spans the event
 
   - id: amazon-front
     name: Rondonia deforestation front
