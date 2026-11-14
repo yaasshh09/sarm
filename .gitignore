@@ -4,3 +4,4 @@ dist/
 __pycache__/
 .env
 *.h5
+.playwright-mcp/
