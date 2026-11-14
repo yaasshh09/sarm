@@ -27,6 +27,28 @@ export type Manifest = {
   layers: Layer[]
 }
 
+const R = 6378137
+
+/** [row, col] of the site grid pixel under a lng/lat, or null if outside. */
+export function lngLatToPixel(m: Manifest, lng: number, lat: number): [number, number] | null {
+  const [x0, y0, x1, y1] = m.bounds3857
+  const [rows, cols] = m.shape
+  const x = (R * lng * Math.PI) / 180
+  const y = R * Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360))
+  const r = Math.floor(((y1 - y) / (y1 - y0)) * rows)
+  const c = Math.floor(((x - x0) / (x1 - x0)) * cols)
+  return r >= 0 && r < rows && c >= 0 && c < cols ? [r, c] : null
+}
+
+/** lng/lat of a pixel corner (row, col may be fractional). */
+export function pixelToLngLat(m: Manifest, r: number, c: number): [number, number] {
+  const [x0, y0, x1, y1] = m.bounds3857
+  const [rows, cols] = m.shape
+  const x = x0 + (c / cols) * (x1 - x0)
+  const y = y1 - (r / rows) * (y1 - y0)
+  return [(x / R) * (180 / Math.PI), (2 * Math.atan(Math.exp(y / R)) - Math.PI / 2) * (180 / Math.PI)]
+}
+
 const BASE = `${import.meta.env.BASE_URL}data/`
 
 async function json<T>(url: string): Promise<T> {

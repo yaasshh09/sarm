@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { coefVariation, logRatio, rectPixels, regionSeries, toDb } from './change'
 import { renderDiverging, renderPolRGB } from './render'
 import { DIVERGING } from './colormaps'
+import { lngLatToPixel, pixelToLngLat, type Manifest } from './decode'
 
 // Inverse of the PLAN.md 4 quantizer, for building fixtures.
 const q = (db: number) => 1 + Math.round(((db + 35) / 40) * 254)
@@ -37,6 +38,22 @@ describe('change math', () => {
 
   it('rect pixels are inclusive and order independent', () => {
     expect(rectPixels(10, 1, 1, 0, 0)).toEqual([0, 1, 10, 11])
+  })
+})
+
+describe('geo', () => {
+  // Real Abu Dhabi grid from the baked manifest.
+  const m = {
+    bounds3857: [6042122.32, 2789115.28, 6080570.22, 2827563.18], shape: [1200, 1200],
+  } as unknown as Manifest
+
+  it('maps grid corners and round-trips pixels', () => {
+    const [lng, lat] = pixelToLngLat(m, 0, 0)
+    expect(lng).toBeCloseTo(54.277308, 5)
+    expect(lat).toBeCloseTo(24.607107, 5)
+    const [l2, a2] = pixelToLngLat(m, 600.5, 300.5)
+    expect(lngLatToPixel(m, l2, a2)).toEqual([600, 300])
+    expect(lngLatToPixel(m, 0, 0)).toBeNull()
   })
 })
 
