@@ -18,6 +18,8 @@ GRIDS = "/science/LSAR/GCOV/grids/frequencyA"
 RADAR_GRID = "/science/LSAR/GCOV/metadata/radarGrid"
 POLS = {"HHHH": "HH", "HVHV": "HV", "VVVV": "VV", "VHVH": "VH"}
 PAD_M = 200
+FLOOR_POW = 10 ** (-50 / 10)
+MIN_VALID_PCT = 90  # below this a date is flagged as partial coverage
 
 
 def granules(site):
@@ -76,7 +78,9 @@ def bake_one(site, grid, row):
         for term in (t for t in terms if t in POLS):
             pol = POLS[term]
             p = g[term][r0:r1, c0:c1].astype(np.float32)
-            p[~valid | ~(p > 0)] = np.nan  # also drops NaN fill
+            # Below -50 dB is far under the L-band noise floor: swath-edge fill (seen down to -122 dB at Kosi),
+            # not a measurement. The comparison also drops NaN fill.
+            p[~valid | ~(p > FLOOR_POW)] = np.nan
             db = 10 * np.log10(to_grid(p, src_t, f"EPSG:{epsg}", grid))
             fn = f"nisar/{row['date'].replace('-', '')}_{pol}.png"
             write_png(DATA / site["id"] / fn, quantize_db(db))
@@ -108,8 +112,14 @@ def bake_site(site):
 
 
 def apply_flags(site):
-    """Copy sites.yaml flags onto manifest layers and stats rows. Metadata only, no download."""
-    flags = site.get("flags", {})
+    """Copy sites.yaml flags, plus automatic partial-coverage flags, onto manifest layers and stats rows.
+    Metadata only, no download."""
+    flags = dict(site.get("flags", {}))
+    layers = json.loads((DATA / site["id"] / "manifest.json").read_text(encoding="utf-8"))["layers"]
+    for l in layers:
+        if l["sensor"] == "NISAR" and l["validPct"] < MIN_VALID_PCT and l["date"] not in flags:
+            flags[l["date"]] = (f"Partial coverage: only {l['validPct']}% of the AOI has valid data on this date "
+                                "(swath edge or partially focused samples).")
     for name in ("manifest.json", "stats.json"):
         p = DATA / site["id"] / name
         d = json.loads(p.read_text(encoding="utf-8"))
