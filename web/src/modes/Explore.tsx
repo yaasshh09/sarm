@@ -2,12 +2,17 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import * as maplibregl from 'maplibre-gl'
 import type { GeoJSONSource, ImageSource } from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
+// MapLibre v6 loads its worker from a sibling file next to its module, which Vite moves when bundling.
+// Emitting the self-contained worker as an asset and pointing MapLibre at it works in dev and in the build.
+import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url'
 import { lngLatToPixel, loadManifest, loadRaster, pixelToLngLat, type Layer, type Manifest } from '../map/decode'
 import { coefVariation, logRatio, rectPixels, regionSeries } from '../map/change'
 import { renderDiverging, renderGray, renderPolRGB, renderSequential, renderTemporalRGB, type Stretch } from '../map/render'
 import { DIVERGING, SEQUENTIAL, cssGradient } from '../map/colormaps'
 import { Chart } from '../ui/Chart'
 import { Timeline } from '../ui/Timeline'
+
+maplibregl.setWorkerUrl(workerUrl)
 
 const SITES = [
   { id: 'abu-dhabi', name: 'Abu Dhabi coast' },
