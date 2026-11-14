@@ -1,0 +1,36 @@
+# AOIs for Radar Waltz. center = [lat, lon], size_km = square side.
+sites:
+  - id: abu-dhabi
+    name: Abu Dhabi coast
+    center: [24.45, 54.45]
+    size_km: 35
+    change_type: human-driven (coastal reclamation, urban growth, mangrove planting)
+    status: primary
+    products: [GCOV]
+
+  - id: kosi
+    name: Kosi River floodplain, Bihar
+    center: [26.0, 86.9]
+    size_km: 40
+    change_type: natural (monsoon inundation and retreat)
+    status: primary
+    products: [GCOV]
+
+  # Center = USGS us6000t7zp, M7.5, 2026-06-24 22:05:04 UTC, 20 km W of Catia La Mar.
+  # Second mainshock us6000t7zc, M7.2, 2026-06-24 22:04:31 UTC, at 10.3713 N 68.5564 W (outside this AOI).
+  - id: venezuela-eq
+    name: Venezuela earthquakes, Jun 2026
+    center: [10.5955, -67.2205]
+    size_km: 30
+    change_type: deformation (InSAR)
+    status: stretch
+    event_date: 2026-06-24
+    products: [GCOV, GUNW]
+
+  - id: amazon-front
+    name: Rondonia deforestation front
+    center: [-9.5, -63.0]
+    size_km: 40
+    change_type: forest loss (HV drop)
+    status: backup
+    products: [GCOV]
