@@ -8,6 +8,9 @@ sites:
     status: primary
     products: [GCOV]
     stack: {track: 56, dir: A, frame: 14, bw: "40+5"}   # confirmed at gate 1
+    # Dates shown in the app but kept out of change statistics. Each needs a reason backed by numbers.
+    flags:
+      "2026-06-18": "Scene-wide HV haze: AOI median HV -14.2 dB vs about -21 dB on all other dates, HV floor -24 vs -26 dB. Likely a noise-floor or calibration artifact, not surface change."
 
   - id: kosi
     name: Kosi River floodplain, Bihar

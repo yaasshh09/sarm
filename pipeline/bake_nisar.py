@@ -104,11 +104,32 @@ def bake_site(site):
         print(log)
     update_manifest(site, grid, "NISAR", [l for ls, _, _ in results for l in ls])
     (DATA / site["id"] / "stats.json").write_text(json.dumps([s for _, s, _ in results], indent=1), encoding="utf-8")
+    apply_flags(site)
+
+
+def apply_flags(site):
+    """Copy sites.yaml flags onto manifest layers and stats rows. Metadata only, no download."""
+    flags = site.get("flags", {})
+    for name in ("manifest.json", "stats.json"):
+        p = DATA / site["id"] / name
+        d = json.loads(p.read_text(encoding="utf-8"))
+        for r in (d["layers"] if name == "manifest.json" else d):
+            if r.get("sensor", "NISAR") != "NISAR":
+                continue
+            r.pop("flag", None)
+            if r["date"] in flags:
+                r["flag"] = flags[r["date"]]
+        p.write_text(json.dumps(d, indent=1), encoding="utf-8")
+    print(f"{site['id']}: flagged {sorted(flags) or 'nothing'}")
 
 
 if __name__ == "__main__":
+    sites = {s["id"]: s for s in load_sites()}
+    if sys.argv[1] == "--flags":
+        for sid in sys.argv[2:]:
+            apply_flags(sites[sid])
+        sys.exit()
     if not os.environ.get("EARTHDATA_TOKEN"):
         sys.exit("set EARTHDATA_TOKEN")
-    sites = {s["id"]: s for s in load_sites()}
     for sid in sys.argv[1:]:
         bake_site(sites[sid])
