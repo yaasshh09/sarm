@@ -117,7 +117,7 @@ export default function Explore({ initialSite, initialView }: { initialSite?: st
     loadManifest(site).then((mf) => {
       const n = scenesOf(mf).length
       setM(mf); setIdx(n - 1); setBefore(0)
-    }).catch((e) => setError(`Could not load ${site}: ${e.message}`))
+    }).catch((e) => setError(`We couldn't load ${site}: ${e.message}`))
   }, [site])
 
   // Image sources follow the site grid.

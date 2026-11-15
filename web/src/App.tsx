@@ -16,7 +16,7 @@ class Boundary extends Component<{ children: ReactNode }, { error?: Error }> {
     return (
       <main className="crash">
         <h1>Something broke on this page</h1>
-        <p>I could not draw it: {this.state.error.message}</p>
+        <p>We couldn't draw it:{this.state.error.message}</p>
         <p><a href="#">Back to the globe</a> or <button className="link" onClick={() => location.reload()}>reload</button>.</p>
       </main>
     )

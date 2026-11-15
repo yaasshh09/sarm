@@ -11,7 +11,7 @@ import { foldCredits } from '../map/basemap'
 
 maplibregl.setWorkerUrl(workerUrl)
 
-// Raster tiles ignore screen density, so on sharp screens I ask for half-size tiles to get the next zoom level's detail.
+// Raster tiles ignore screen density, so on sharp screens we ask for half-size tiles to get the next zoom level's detail.
 const TILE = devicePixelRatio > 1 ? 128 : 256
 
 // NASA Blue Marble (500 m) for the whole Earth, then 10 m Sentinel-2 cloudless fades in as you fly down to a site.
@@ -102,7 +102,7 @@ export default function Home() {
       // Only the small manifests up front; each radar picture loads when its site is picked.
       for (const s of SITES) {
         loadManifest(s.id).then((m) => setInfo((o) => ({ ...o, [s.id]: infoOf(m) })))
-          .catch((e) => setError(`I could not load ${s.name}: ${e.message}`))
+          .catch((e) => setError(`We couldn't load ${s.name}: ${e.message}`))
       }
     })
     return () => map.remove()
@@ -127,7 +127,7 @@ export default function Home() {
       const img = new ImageData(cols, rows)
       renderPolRGB(a, b, img.data)
       ;(map.getSource(sel) as ImageSource | undefined)?.updateImage({ image: img })
-    }).catch((e) => setError(`I could not load the radar picture: ${e.message}`))
+    }).catch((e) => setError(`We couldn't load the radar picture: ${e.message}`))
   }, [sel, i0]) // eslint-disable-line react-hooks/exhaustive-deps -- radar only sets the starting visibility
 
   // Fly to the picked site. The map's own padding keeps it clear of the panel; fitBounds padding adds to that.
@@ -168,7 +168,7 @@ export default function Home() {
           <>
             <p className="kicker">NASA Space Apps 2026 · Dancing With SARs</p>
             <h1>Sarm</h1>
-            <p className="lede">I wanted to see what NISAR, the new NASA and ISRO radar satellite, sees when it looks at a planet that keeps changing. Spin the globe and pick a place.</p>
+            <p className="lede">We wanted to know what NISAR, the new NASA and ISRO radar satellite, makes of a planet that won't sit still. Spin the globe and pick a place.</p>
             <div className="picks">
               {SITES.map((x) => (
                 <button key={x.id} onClick={() => pick(x.id)}>
@@ -225,7 +225,7 @@ export default function Home() {
         )}
         {error && <p className="error">{error}</p>}
         <footer className="credits">
-          Radar data: NISAR (NASA and ISRO) via ASF DAAC, Sentinel-1 (ESA Copernicus) and Landsat (USGS and NASA) via Microsoft Planetary Computer. Globe: NASA Blue Marble via GIBS and Sentinel-2 cloudless by EOX. Built by me for NASA Space Apps 2026.
+          Radar data: NISAR (NASA and ISRO) via ASF DAAC, Sentinel-1 (ESA Copernicus) and Landsat (USGS and NASA) via Microsoft Planetary Computer. Globe: NASA Blue Marble via GIBS and Sentinel-2 cloudless by EOX. Our team built Sarm for NASA Space Apps 2026.
           <br /><a href="#terms">Terms</a> · <a href="#privacy">Privacy</a>
         </footer>
       </main>

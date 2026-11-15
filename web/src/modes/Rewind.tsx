@@ -108,7 +108,7 @@ export default function Rewind({ initialSite, initialView }: { initialSite?: str
       setM(mm)
       // Open on the oldest picture rather than an empty January 1985, so pressing play tells the story from the start.
       setT(Math.min(...mm.layers.map((l) => monthOf(l.date))))
-    }).catch((e) => setError(`Could not load ${site}: ${e.message}`))
+    }).catch((e) => setError(`We couldn't load ${site}: ${e.message}`))
   }, [site])
 
   useEffect(() => {
