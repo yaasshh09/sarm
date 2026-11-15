@@ -11,8 +11,8 @@ export const SITES = [
     id: 'kosi',
     name: 'Kosi River floodplain',
     place: 'Bihar, India',
-    center: [86.9, 26.0] as [number, number],
-    blurb: 'Farmland on the Kosi floodplain, where the monsoon sets the rhythm of the year.',
+    center: [86.55, 26.1] as [number, number],
+    blurb: 'A braided river that shifts its channels every monsoon, with farmland pressed up against its embankments.',
   },
 ]
 

@@ -194,7 +194,7 @@ Never mix tracks or directions in one time series (different look geometry chang
 | ID | Where | Change type | What to look for | Status |
 |---|---|---|---|---|
 | A `abu-dhabi` | Abu Dhabi islands, mangroves, desert edge (about 24.45 N, 54.45 E, 35 x 35 km) | Human-driven: coastal reclamation, urban growth, mangrove planting | Double-bounce (HH) from new buildings, HV from mangrove canopy, dark smooth sand vs rough surfaces. Rewind shows 40 years of coastline change | Primary, hometown |
-| B `kosi` | Kosi River floodplain, Bihar, India (about 26.0 N, 86.9 E, 40 x 40 km) | Natural: monsoon inundation and retreat, Jun to Oct | Open water goes dark, flooded vegetation goes bright in HH (double bounce). Optical is cloud-blind in monsoon, radar is not | Primary |
+| B `kosi` | Kosi River floodplain, Bihar, India (about 26.1 N, 86.55 E, 40 x 40 km, moved west from 86.9 E onto the river channel on 15 Nov) | Natural: monsoon inundation and retreat, Jun to Oct | Open water goes dark, flooded vegetation goes bright in HH (double bounce). Optical is cloud-blind in monsoon, radar is not | Primary |
 | C `venezuela-eq` | Area of the 24 Jun 2026 Venezuela earthquakes (look up USGS epicenters) | Deformation, InSAR | GUNW unwrapped phase, fringes. Needs a pre-event scene between 17 and 24 Jun on the same track, which is not guaranteed | Stretch S1 |
 | D backup | Amazon deforestation front or any glacier | Forest loss (HV drop) or ice motion | Use only if A or B fails the coverage rule | Backup |
 

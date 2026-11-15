@@ -9,7 +9,7 @@ sites:
     products: [GCOV]
     stack: {track: 56, dir: A, frame: 14, bw: "40+5"}   # confirmed at gate 1
     # Rewind radar: one S1 relative orbit, October (dry) each year. Orbit 130 A is the only one with a
-    # full-AOI October pass in every year 2015 to 2026 (survey 2026-11-15). The 2015 and 2016 passes are VV-only, so the dual-pol series starts in 2017.
+    # full-AOI October pass in every year 2015 to 2026 (survey 2026-11-15). The 2015 and 2016 passes are VV-only, which is fine since Rewind bakes VV alone.
     s1: {orbit: 130, dir: A, month: 10}
     # Rewind optical: Landsat winter composites (Nov to Mar, less dust haze than summer).
     optical: {months: [11, 12, 1, 2, 3]}
@@ -19,15 +19,16 @@ sites:
 
   - id: kosi
     name: Kosi River floodplain, Bihar
-    center: [26.0, 86.9]
+    # Moved 2026-11-15 from [26.0, 86.9], which sat on farmland 10 to 15 km east of the river. This box holds the braided channel corner to corner.
+    center: [26.10, 86.55]
     size_km: 40
     change_type: natural (monsoon inundation and retreat)
     status: primary
     products: [GCOV]
-    stack: {track: 170, dir: A, frame: 15, bw: "40+5"}  # confirmed at gate 1
-    # Rewind radar: peak monsoon (August) each year plus one dry-season month, all on orbit 12 A,
-    # which has a full-AOI pass in every August and March 2015 to 2026 (survey 2026-11-15). Dual-pol starts in 2017.
-    s1: {orbit: 12, dir: A, month: 8, extra: ["2026-03"]}
+    stack: {track: 98, dir: A, frame: 15, bw: "40+5"}  # 100% of the new box on all 12 dates; track 170 only covers 38%
+    # Rewind radar: peak monsoon (August) each year plus one dry-season month, all on orbit 85 A,
+    # the only orbit with a full-AOI pass in every August 2015 to 2026 and March 2026 over the moved box (survey 2026-11-15).
+    s1: {orbit: 85, dir: A, month: 8, extra: ["2026-03"]}
     # Rewind optical: dry-season composites, plus one raw peak-monsoon scene to show why radar matters.
     optical: {months: [2, 3, 4], monsoon: "2026-08"}  # Feb to Apr: after winter fog (Nov to Jan washes composites out), before the monsoon
 
