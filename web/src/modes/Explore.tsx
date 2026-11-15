@@ -29,15 +29,15 @@ type Scene = { date: string; HH?: Layer; HV?: Layer; flag?: string; tier?: strin
 type Box = [number, number, number, number] // r0, c0, r1, c1
 
 const POL_HINT: Record<Pol, string> = {
-  HH: 'HH sends and receives horizontally. Buildings and flooded trees light up through double bounce.',
-  HV: 'HV is cross-polarized. It lights up vegetation volume like tree canopies and crops.',
-  RGB: 'Red is HH, green is HV, blue is HH minus HV.',
+  HH: 'HH sends a horizontal wave and listens for a horizontal echo. Buildings and flooded trees glow because the pulse hits the ground, then the wall or trunk, and comes straight back (a "double bounce").',
+  HV: 'HV sends a horizontal wave and listens for a vertical one. Mostly leaves and branches twist the wave like that, so HV is the plant channel.',
+  RGB: 'Both channels at once. Red is HH, green is HV, blue is HH minus HV.',
 }
 const VIEW_HINT: Record<View, string> = {
-  single: 'NISAR L-band radar backscatter for one date. Brighter means more energy came back to the satellite.',
-  swipe: 'Left of the split is the "before" date, right is the selected date. Drag the white line on the map to compare.',
-  temporal: 'Red is the before date, cyan the selected date. Red areas got darker, cyan areas got brighter, gray is unchanged.',
-  change: 'Change in backscatter between the two dates. Red got darker, blue got brighter. Small changes are hidden.',
+  single: 'One NISAR pass. Brighter means more of the radar pulse bounced back to the satellite.',
+  swipe: 'The before date sits left of the line, the selected date right. Drag the white line on the map.',
+  temporal: 'Two dates layered as colors. Red spots got darker, cyan spots got brighter, gray stayed put.',
+  change: 'How much each spot brightened or darkened between the two dates. Red got darker, blue got brighter, tiny changes are hidden.',
 }
 
 function scenesOf(m: Manifest): Scene[] {
@@ -265,7 +265,7 @@ export default function Explore({ initialSite, initialView }: { initialSite?: st
             {SITES.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
           </select>
         </label>
-        <span className="sensor">NISAR L-band, γ0 backscatter (dB)</span>
+        <span className="sensor">NISAR L-band radar, brightness in decibels (dB)</span>
       </header>
 
       <div ref={mapDiv} className="map" />
@@ -275,7 +275,7 @@ export default function Explore({ initialSite, initialView }: { initialSite?: st
         {cur && (
           <p className="now-date">
             <strong>{cur.date}</strong> <span className={`tier ${cur.tier?.toLowerCase()}`}>{cur.tier}</span>
-            {cur.flag && <span className="flag-note">Flagged: {cur.flag}</span>}
+            {cur.flag && <span className="flag-note">Heads up: {cur.flag}</span>}
           </p>
         )}
 
@@ -292,16 +292,16 @@ export default function Explore({ initialSite, initialView }: { initialSite?: st
           <h2>Polarization</h2>
           <div className="seg" role="radiogroup">
             {(['HH', 'HV', 'RGB'] as Pol[]).map((p) => (
-              <button key={p} aria-pressed={pol === p} onClick={() => setPol(p)}>{p === 'RGB' ? 'Pol RGB' : p}</button>
+              <button key={p} aria-pressed={pol === p} onClick={() => setPol(p)}>{p === 'RGB' ? 'Color' : p}</button>
             ))}
           </div>
           <p className="hint">{POL_HINT[pol]}{pol === 'RGB' && ` ${SITES.find((x) => x.id === site)?.colors ?? ''}`}</p>
           {pol !== 'RGB' && view !== 'change' && (
-            <label className="row">Stretch {stretch[p1][0]} to {stretch[p1][1]} dB
+            <label className="row">Contrast {stretch[p1][0]} to {stretch[p1][1]} dB
               <input type="range" min={-35} max={-5} value={stretch[p1][0]}
-                onChange={(e) => setStretch({ ...stretch, [p1]: [+e.target.value, stretch[p1][1]] })} aria-label="Stretch low dB" />
+                onChange={(e) => setStretch({ ...stretch, [p1]: [+e.target.value, stretch[p1][1]] })} aria-label="Black point in dB" />
               <input type="range" min={-20} max={5} value={stretch[p1][1]}
-                onChange={(e) => setStretch({ ...stretch, [p1]: [stretch[p1][0], +e.target.value] })} aria-label="Stretch high dB" />
+                onChange={(e) => setStretch({ ...stretch, [p1]: [stretch[p1][0], +e.target.value] })} aria-label="White point in dB" />
             </label>
           )}
         </section>
@@ -311,7 +311,7 @@ export default function Explore({ initialSite, initialView }: { initialSite?: st
           <div className="seg">
             {(['single', 'swipe', 'temporal', 'change'] as View[]).map((v) => (
               <button key={v} aria-pressed={view === v} onClick={() => setView(v)}>
-                {{ single: 'One date', swipe: 'Swipe', temporal: 'Temporal RGB', change: 'Change map' }[v]}
+                {{ single: 'One date', swipe: 'Swipe', temporal: 'Color overlay', change: 'Change map' }[v]}
               </button>
             ))}
           </div>
@@ -320,10 +320,10 @@ export default function Explore({ initialSite, initialView }: { initialSite?: st
               <select value={before} onChange={(e) => setBefore(+e.target.value)}>
                 {sc.map((s, i) => <option key={s.date} value={i}>{s.date}{s.flag ? ' (flagged)' : ''}</option>)}
               </select>
-              <span className="muted"> vs selected {cur?.date}</span>
+              <span className="muted"> against {cur?.date}</span>
             </label>
           )}
-          {compare && pol === 'RGB' && view !== 'swipe' && <p className="hint">This view uses HH.</p>}
+          {compare && pol === 'RGB' && view !== 'swipe' && <p className="hint">This view uses HH only.</p>}
           {view === 'swipe' && (
             <label className="row">Split <input type="range" min={0} max={1} step={0.01} value={swipe} onChange={(e) => setSwipe(+e.target.value)} /></label>
           )}
@@ -354,26 +354,26 @@ export default function Explore({ initialSite, initialView }: { initialSite?: st
         </section>
 
         <section>
-          <label className="row"><input type="checkbox" checked={cvOn} onChange={(e) => setCvOn(e.target.checked)} /> Show most changed areas</label>
+          <label className="row"><input type="checkbox" checked={cvOn} onChange={(e) => setCvOn(e.target.checked)} /> Highlight the spots that changed most</label>
           {cvOn && (
             <>
               <div className="ramp" style={{ background: cssGradient(SEQUENTIAL) }} />
               <div className="ticks"><span>{cvThr}</span><span>2.0</span></div>
-              <label className="row">Threshold <input type="range" min={0.2} max={1.5} step={0.05} value={cvThr} onChange={(e) => setCvThr(+e.target.value)} /></label>
-              <p className="hint">How much each spot varied across all unflagged dates ({p1}, coefficient of variation of power). Use it to find where to click.</p>
+              <label className="row">Only show above <input type="range" min={0.2} max={1.5} step={0.05} value={cvThr} onChange={(e) => setCvThr(+e.target.value)} /></label>
+              <p className="hint">How much each spot's {p1} brightness jumped around across every unflagged date, measured as the coefficient of variation. Hot spots are good places to click.</p>
             </>
           )}
         </section>
 
         <section>
           <h2>Inspect</h2>
-          {!box && <p className="hint">Click the map to chart a spot over time. Shift-drag to chart a rectangle. The left and right arrow keys step through dates.</p>}
+          {!box && <p className="hint">Click the map to chart one spot over time, or shift-drag to chart a rectangle. The left and right arrow keys step through the dates.</p>}
           {box && series && (
             <>
-              <p className="muted">Area about {boxSizeM} m wide, mean of {(box[2] - box[0] + 1) * (box[3] - box[1] + 1)} pixels, averaged in power.</p>
+              <p className="muted">About {boxSizeM} m across. Each value averages {(box[2] - box[0] + 1) * (box[3] - box[1] + 1)} pixels as raw power, then converts to dB.</p>
               <Chart dates={sc.map((s) => s.date)} flagged={flagged} current={idx}
                 series={(['HH', 'HV'] as P[]).map((p) => ({ name: p, color: COLORS[p], values: series[p] }))} />
-              <p className="key"><span style={{ color: COLORS.HH }}>HH</span> <span style={{ color: COLORS.HV }}>HV</span> <span className="muted">hollow = flagged date</span></p>
+              <p className="key"><span style={{ color: COLORS.HH }}>HH</span> <span style={{ color: COLORS.HV }}>HV</span> <span className="muted">hollow dots are flagged dates</span></p>
               <table className="nums">
                 <thead><tr><th>Date</th><th>HH</th><th>HV</th></tr></thead>
                 <tbody>{sc.map((s, i) => (
@@ -388,19 +388,19 @@ export default function Explore({ initialSite, initialView }: { initialSite?: st
         </section>
 
         <section>
-          <button className="link" onClick={() => setDrawer(!drawer)} aria-expanded={drawer}>Data source and provenance</button>
+          <button className="link" onClick={() => setDrawer(!drawer)} aria-expanded={drawer}>Where this data comes from</button>
           {drawer && cur && (
             <div className="drawer">
               {(['HH', 'HV'] as P[]).map((p) => cur[p] && (
                 <dl key={p}>
                   <dt>{p}</dt>
                   <dd><a href={asfLink(cur[p]!.granule!)} target="_blank" rel="noreferrer">{cur[p]!.granule}</a></dd>
-                  <dd>Tier {cur[p]!.tier}, track {cur[p]!.track} {cur[p]!.direction === 'A' ? 'ascending' : 'descending'}, frame {cur[p]!.frame}, {cur[p]!.bandwidthMHz} MHz, incidence {cur[p]!.incidenceDeg} deg, {cur[p]!.validPct}% of the area valid</dd>
+                  <dd>{cur[p]!.tier} quality, track {cur[p]!.track} ({cur[p]!.direction === 'A' ? 'heading north' : 'heading south'}), frame {cur[p]!.frame}, {cur[p]!.bandwidthMHz} MHz bandwidth, looking down at {cur[p]!.incidenceDeg}°, data over {cur[p]!.validPct}% of the area</dd>
                 </dl>
               ))}
-              <p className="hint">NISAR L2 GCOV from ASF DAAC: terrain-corrected γ0 backscatter, resampled to about 30 m by averaging in power.
-                PROVISIONAL means calibrated and partially validated, VALIDATED means fully calibrated and validated.
-                Every date here comes from the same track, direction and frame, so the viewing geometry never changes.</p>
+              <p className="hint">NISAR L2 GCOV from the ASF DAAC. It's γ0 backscatter, corrected so hills and slopes don't skew the brightness, and we averaged it down to roughly 30 m pixels.
+                BETA data isn't calibrated yet. PROVISIONAL is calibrated and partly checked against the ground. VALIDATED is fully checked.
+                Every date comes from the same orbit track, direction and frame, so the satellite always looks from the same angle and any change you see happened on the ground.</p>
             </div>
           )}
         </section>
