@@ -79,6 +79,9 @@ a { color: #8cc8ff; }
 .side { font-size: 0.7rem; padding: 1px 5px; border-radius: 3px; background: var(--line); margin-right: 0.3rem; }
 .card { border: 1px solid var(--line); border-radius: 6px; padding: 0.6rem 0.7rem; }
 .card p { margin: 0.3rem 0; }
+.story { border-color: #f2a54166; background: #f2a5410d; margin-bottom: 0.8rem; }
+.story h2 { margin-top: 0; color: var(--accent); }
+.story .btn { margin-top: 0.3rem; }
 
 .rewind-time { padding-bottom: 0.6rem; }
 .lanes { flex: 1; display: flex; flex-direction: column; gap: 3px; }

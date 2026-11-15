@@ -78,6 +78,18 @@ export default function Explore({ initialSite }: { initialSite?: string }) {
   const flagged = useMemo(() => sc.map((s) => !!s.flag), [sc])
   const p1: P = pol === 'HV' ? 'HV' : 'HH' // change views use one polarization
   const cur = sc[idx]
+  const story = SITES.find((x) => x.id === site)?.story
+
+  /** Open the site's guided view: its polarization, and for change stories the before and after dates. */
+  const showStory = () => {
+    if (!story) return
+    if (story.pol) setPol(story.pol)
+    setView(story.view ?? 'single')
+    const at = (d?: string) => sc.findIndex((x) => x.date === d)
+    if (at(story.after) >= 0) setIdx(at(story.after))
+    if (at(story.before) >= 0) setBefore(at(story.before))
+    setPlaying(false)
+  }
 
   // Map, once.
   useEffect(() => {
@@ -245,6 +257,15 @@ export default function Explore({ initialSite }: { initialSite?: string }) {
             <strong>{cur.date}</strong> <span className={`tier ${cur.tier?.toLowerCase()}`}>{cur.tier}</span>
             {cur.flag && <span className="flag-note">Flagged: {cur.flag}</span>}
           </p>
+        )}
+
+        {story && (
+          <section className="card story">
+            <h2>Try this</h2>
+            <p>{story.text}</p>
+            {story.rewind ? <a className="btn" href={`#rewind/${site}`}>Open Rewind</a>
+              : <button className="btn" onClick={showStory}>Show me</button>}
+          </section>
         )}
 
         <section>

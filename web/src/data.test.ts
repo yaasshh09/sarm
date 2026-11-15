@@ -22,6 +22,11 @@ describe('baked data', () => {
       expect(dates('HV')).toEqual(dates('HH'))
     })
 
+    it(`${s.id} story points at real NISAR dates`, () => {
+      const dates = new Set(manifests[`../public/data/${s.id}/manifest.json`].layers.filter((l) => l.sensor === 'NISAR').map((l) => l.date))
+      for (const d of [s.story.before, s.story.after]) if (d) expect(dates.has(d), d).toBe(true)
+    })
+
     it(`${s.id} pin sits inside its data box`, () => {
       // the Kosi box once drifted off its pin; this catches sites.ts and sites.yaml disagreeing
       const c = manifests[`../public/data/${s.id}/manifest.json`].cornersLngLat
