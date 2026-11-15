@@ -13,7 +13,7 @@ import { Chart } from '../ui/Chart'
 import { Timeline } from '../ui/Timeline'
 
 import { SITES, rememberSite, siteOr } from '../sites'
-import { BASEMAP, crispLabels, labelsAbove } from '../map/basemap'
+import { BASEMAP, crispLabels, foldCredits, labelsAbove } from '../map/basemap'
 
 maplibregl.setWorkerUrl(workerUrl)
 
@@ -81,10 +81,10 @@ export default function Explore({ initialSite }: { initialSite?: string }) {
 
   // Map, once.
   useEffect(() => {
-    const map = new maplibregl.Map({ container: mapDiv.current!, style: BASEMAP, center: [54.45, 24.45], zoom: 9, boxZoom: false })
+    const map = new maplibregl.Map({ container: mapDiv.current!, style: BASEMAP, center: [54.45, 24.45], zoom: 9, attributionControl: { compact: true }, boxZoom: false })
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left')
     map.addControl(new maplibregl.ScaleControl(), 'bottom-left')
-    map.on('load', () => { crispLabels(map); setReady(true) })
+    map.on('load', () => { crispLabels(map); foldCredits(map); setReady(true) })
     mapRef.current = map
     return () => map.remove()
   }, [])

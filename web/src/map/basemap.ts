@@ -14,6 +14,11 @@ export function crispLabels(map: Map) {
   }
 }
 
+/** Compact credits still open on load and only fold after the first drag; fold them now so they don't cover the data. */
+export function foldCredits(map: Map) {
+  map.getContainer().querySelector('.maplibregl-compact-show')?.classList.remove('maplibregl-compact-show')
+}
+
 /** Layer id to insert data under so roads and borders stay beneath it and only labels sit on top. */
 export function labelsAbove(map: Map): string | undefined {
   const ls = map.getStyle().layers

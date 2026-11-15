@@ -7,6 +7,7 @@ import { loadManifest, loadRaster, type Layer, type Manifest } from '../map/deco
 import { renderPolRGB } from '../map/render'
 import { monthLabel, monthOf } from '../map/timeline'
 import { SITES } from '../sites'
+import { foldCredits } from '../map/basemap'
 
 maplibregl.setWorkerUrl(workerUrl)
 
@@ -93,7 +94,7 @@ export default function Home() {
     }
 
     map.on('load', async () => {
-      spin()
+      spin(); foldCredits(map)
       for (const s of SITES) {
         try {
           const i = infoOf(await loadManifest(s.id))
