@@ -9,7 +9,7 @@ import { renderGray, type Stretch } from '../map/render'
 import { toDb } from '../map/change'
 
 import { SITES, rememberSite, siteOr } from '../sites'
-import { BASEMAP, labelsAbove } from '../map/basemap'
+import { BASEMAP, crispLabels, labelsAbove } from '../map/basemap'
 
 maplibregl.setWorkerUrl(workerUrl)
 
@@ -84,14 +84,18 @@ export default function Rewind({ initialSite }: { initialSite?: string }) {
     const map = new maplibregl.Map({ container: mapDiv.current!, style: BASEMAP, center: [54.45, 24.45], zoom: 9 })
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left')
     map.addControl(new maplibregl.ScaleControl(), 'bottom-left')
-    map.on('load', () => setReady(true))
+    map.on('load', () => { crispLabels(map); setReady(true) })
     mapRef.current = map
     return () => map.remove()
   }, [])
 
   useEffect(() => {
     setM(undefined); setError(undefined); setPlaying(false); setCvl(undefined)
-    loadManifest(site).then(setM).catch((e) => setError(`Could not load ${site}: ${e.message}`))
+    loadManifest(site).then((mm) => {
+      setM(mm)
+      // Open on the oldest picture rather than an empty January 1985, so pressing play tells the story from the start.
+      setT(Math.min(...mm.layers.map((l) => monthOf(l.date))))
+    }).catch((e) => setError(`Could not load ${site}: ${e.message}`))
   }, [site])
 
   useEffect(() => {
