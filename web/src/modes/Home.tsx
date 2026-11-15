@@ -191,8 +191,8 @@ export default function Home() {
               <>
                 <dl className="facts">
                   <dt>NISAR L-band</dt><dd>{i.nisar.length} passes, {span(i.nisar, month)}</dd>
-                  <dt>Sentinel-1 C-band</dt><dd>{years(i.s1)} years, {span(i.s1, (d) => d.slice(0, 4))}</dd>
-                  <dt>Landsat photos</dt><dd>{i.landsat.length} snapshots, {span(i.landsat)}</dd>
+                  {i.s1.length > 0 && <><dt>Sentinel-1 C-band</dt><dd>{years(i.s1)} years, {span(i.s1, (d) => d.slice(0, 4))}</dd></>}
+                  {i.landsat.length > 0 && <><dt>Landsat photos</dt><dd>{i.landsat.length} snapshots, {span(i.landsat)}</dd></>}
                 </dl>
                 <div className="go">
                   <a className="btn" href={`#explore/${s.id}`}>Explore the NISAR data</a>
