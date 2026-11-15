@@ -44,12 +44,14 @@ function medianDb(v: Uint8Array): number {
   return NaN
 }
 
-export default function Rewind({ initialSite }: { initialSite?: string }) {
+const VIEWS: View[] = ['auto', 'split', 'then', 'cvl']
+
+export default function Rewind({ initialSite, initialView }: { initialSite?: string; initialView?: string }) {
   const [site, setSite] = useState(() => siteOr(initialSite))
   const [m, setM] = useState<Manifest>()
   const [error, setError] = useState<string>()
   const [t, setT] = useState(T0)
-  const [view, setView] = useState<View>('auto')
+  const [view, setView] = useState<View>(() => VIEWS.find((v) => v === initialView) ?? 'auto')
   const [swipe, setSwipe] = useState(0.5)
   const [playing, setPlaying] = useState(false)
   const [ready, setReady] = useState(false)
@@ -187,7 +189,7 @@ export default function Rewind({ initialSite }: { initialSite?: string }) {
         <section>
           <h2>View</h2>
           <div className="seg">
-            {(['auto', 'split', 'then', 'cvl'] as View[]).map((v) => (
+            {VIEWS.map((v) => (
               <button key={v} aria-pressed={view === v} onClick={() => setView(v)}>
                 {{ auto: 'Best available', split: 'Optical vs radar', then: 'Then vs now', cvl: 'C-band vs L-band' }[v]}
               </button>

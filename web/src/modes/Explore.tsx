@@ -263,7 +263,7 @@ export default function Explore({ initialSite }: { initialSite?: string }) {
           <section className="card story">
             <h2>Try this</h2>
             <p>{story.text}</p>
-            {story.rewind ? <a className="btn" href={`#rewind/${site}`}>Open Rewind</a>
+            {story.rewind ? <a className="btn" href={`#rewind/${site}/then`}>Open Rewind</a>
               : <button className="btn" onClick={showStory}>Show me</button>}
           </section>
         )}
