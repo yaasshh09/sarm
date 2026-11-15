@@ -202,7 +202,7 @@ export default function Rewind({ initialSite, initialView }: { initialSite?: str
             ))}
           </div>
           <p className="hint">{{
-            auto: 'Scrub the timeline. Each moment shows the newest layer at or before it, radar first when there is one.',
+            auto: 'Scrub the timeline, or step with the left and right arrow keys. Each moment shows the newest layer at or before it, radar first when there is one.',
             split: 'Optical on the left, radar on the right, both the newest at or before the selected time. Drag the split to compare.',
             then: 'The photo at the selected time on the left, the newest photo on the right. Scrub back and drag the split to see what changed.',
             cvl: 'The newest Sentinel-1 month next to the closest NISAR date. Same place, two radar wavelengths.',

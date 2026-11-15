@@ -350,7 +350,7 @@ export default function Explore({ initialSite }: { initialSite?: string }) {
 
         <section>
           <h2>Inspect</h2>
-          {!box && <p className="hint">Click the map to chart a spot over time. Shift-drag to chart a rectangle.</p>}
+          {!box && <p className="hint">Click the map to chart a spot over time. Shift-drag to chart a rectangle. The left and right arrow keys step through dates.</p>}
           {box && series && (
             <>
               <p className="muted">Area about {boxSizeM} m wide, mean of {(box[2] - box[0] + 1) * (box[3] - box[1] + 1)} pixels, averaged in power.</p>
