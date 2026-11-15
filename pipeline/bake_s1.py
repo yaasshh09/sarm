@@ -36,7 +36,9 @@ def passes(cat, aoi, cfg, period):
     by = collections.defaultdict(list)
     for it in items:
         p = it.properties
-        if p["sat:relative_orbit"] == cfg["orbit"] and p["sat:orbit_state"][0].upper() == cfg["dir"]:
+        # dual-pol only: some passes are VV-only and have no vh asset
+        if p["sat:relative_orbit"] == cfg["orbit"] and p["sat:orbit_state"][0].upper() == cfg["dir"] \
+                and {"vv", "vh"} <= set(it.assets):
             by[str(it.datetime.date())].append(it)
     full = {}
     for d, its in sorted(by.items()):
