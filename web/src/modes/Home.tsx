@@ -188,7 +188,7 @@ export default function Home() {
 
             <h2>Three ways in</h2>
             <ul className="how">
-              <li><b>Globe.</b> You are here. Fly to a site and see the newest NISAR pass draped over the Earth.</li>
+              <li><b>Globe.</b> You are here. Fly to a site, or take the tour, and see the newest NISAR pass draped over the Earth.</li>
               <li><b>Explore.</b> Scrub through every NISAR pass over a site, compare two dates and map what changed.</li>
               <li><b>Rewind.</b> Line NISAR up with more than ten years of Sentinel-1 radar and up to forty years of Landsat photos, or put an old photo next to today's.</li>
             </ul>

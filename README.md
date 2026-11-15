@@ -4,7 +4,7 @@ NASA Space Apps 2026, challenge **Dancing With SARs**. An open-source web app fo
 
 Live: https://yaasshh09.github.io/sarm/
 
-- **Globe**: a spinning NASA Blue Marble Earth. Fly down to a site and see the newest NISAR pass draped over it.
+- **Globe**: a spinning NASA Blue Marble Earth. Fly down to a site, or take a guided tour of all five, and see the newest NISAR pass draped over it.
 - **Explore**: real NISAR GCOV backscatter over each site, with swipe, change maps, pixel time series and a guided "Try this" for every site.
 - **Rewind**: Sentinel-1 C-band (2015+) and Landsat optical (1985+) for longer context, always labelled as other sensors, plus a then-vs-now photo comparison. Links like `#rewind/lake-mead/then` open straight into it.
 
