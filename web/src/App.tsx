@@ -1,6 +1,7 @@
 import { Component, useEffect, useState, type ReactNode } from 'react'
 import Explore from './modes/Explore'
 import Home from './modes/Home'
+import Legal from './modes/Legal'
 import Rewind from './modes/Rewind'
 
 // Hash routing keeps GitHub Pages happy (no server rewrites): #explore/kosi[/story], #rewind/abu-dhabi[/then], anything else is the globe.
@@ -30,6 +31,9 @@ export default function App() {
     return () => removeEventListener('hashchange', on)
   }, [])
   const [mode, site, view] = r.split('/')
-  const page = mode === 'explore' ? <Explore key={r} initialSite={site} initialView={view} /> : mode === 'rewind' ? <Rewind key={r} initialSite={site} initialView={view} /> : <Home />
+  const page = mode === 'explore' ? <Explore key={r} initialSite={site} initialView={view} />
+    : mode === 'rewind' ? <Rewind key={r} initialSite={site} initialView={view} />
+    : mode === 'terms' || mode === 'privacy' ? <Legal page={mode} />
+    : <Home />
   return <Boundary key={r}>{page}</Boundary>
 }

@@ -226,6 +226,7 @@ export default function Home() {
         {error && <p className="error">{error}</p>}
         <footer className="credits">
           Radar data: NISAR (NASA and ISRO) via ASF DAAC, Sentinel-1 (ESA Copernicus) and Landsat (USGS and NASA) via Microsoft Planetary Computer. Globe: NASA Blue Marble via GIBS and Sentinel-2 cloudless by EOX. Built by me for NASA Space Apps 2026.
+          <br /><a href="#terms">Terms</a> · <a href="#privacy">Privacy</a>
         </footer>
       </main>
     </div>
