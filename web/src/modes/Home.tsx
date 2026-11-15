@@ -189,13 +189,13 @@ export default function Home() {
                 </dl>
                 <div className="go">
                   <a className="btn" href={`#explore/${s.id}`}>Explore the NISAR data</a>
-                  <a className="btn ghost" href={`#rewind/${s.id}`}>Rewind 40 years</a>
+                  <a className="btn ghost" href={`#rewind/${s.id}`}>{i.landsat.length ? `Rewind ${new Date().getFullYear() - +i.landsat[0].slice(0, 4)} years` : "Rewind"}</a>
                 </div>
                 {i.shown && (
                   <div className="card">
                     <label className="row"><input type="checkbox" checked={radar} onChange={(e) => setRadar(e.target.checked)} /> Show the NISAR picture on the globe</label>
                     <p className="muted">That square is NISAR L-band from {i.shown.date} ({i.shown.tier?.toLowerCase()} data), colored by polarization: red HH, green HV, blue HH minus HV.</p>
-                    <p className="muted">The strongest echoes come out yellow and pink, mostly buildings. Green leans toward plants, and the darkest patches are smooth sand and calm water. Untick the box to compare it with the Sentinel-2 photo underneath.</p>
+                    <p className="muted">{s.colors} Untick the box to compare it with the Sentinel-2 photo underneath.</p>
                   </div>
                 )}
               </>
