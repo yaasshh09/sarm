@@ -144,4 +144,6 @@ a { color: #8cc8ff; }
   .panel { border-left: 0; border-top: 1px solid var(--line); }
   .lane-name { width: 4.5rem; }
   .lane-name .band { display: none; }
+  .tick span { display: none; }
+  .tick.on span, .tick.before span { display: block; }
 }
