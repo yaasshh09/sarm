@@ -15,6 +15,7 @@ import { Timeline } from '../ui/Timeline'
 import { SITES, centerOf, rememberSite, siteOr } from '../sites'
 import { BASEMAP, crispLabels, foldCredits, labelsAbove } from '../map/basemap'
 import { useArrowSteps } from '../ui/keys'
+import { useSplitHandle } from '../ui/split'
 
 maplibregl.setWorkerUrl(workerUrl)
 
@@ -34,7 +35,7 @@ const POL_HINT: Record<Pol, string> = {
 }
 const VIEW_HINT: Record<View, string> = {
   single: 'NISAR L-band radar backscatter for one date. Brighter means more energy came back to the satellite.',
-  swipe: 'Left of the split is the "before" date, right is the selected date. Drag the slider to compare.',
+  swipe: 'Left of the split is the "before" date, right is the selected date. Drag the white line on the map to compare.',
   temporal: 'Red is the before date, cyan the selected date. Red areas got darker, cyan areas got brighter, gray is unchanged.',
   change: 'Change in backscatter between the two dates. Red got darker, blue got brighter. Small changes are hidden.',
 }
@@ -226,6 +227,7 @@ export default function Explore({ initialSite }: { initialSite?: string }) {
     return () => { stale = true }
   }, [m, box, sc])
 
+  useSplitHandle(mapRef, m?.cornersLngLat, ready && view === 'swipe', swipe, setSwipe)
   useArrowSteps((d) => { setPlaying(false); setIdx((i) => Math.min(sc.length - 1, Math.max(0, i + d))) })
 
   // Play through dates.

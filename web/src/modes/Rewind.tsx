@@ -11,6 +11,7 @@ import { toDb } from '../map/change'
 import { SITES, centerOf, rememberSite, siteOr } from '../sites'
 import { BASEMAP, crispLabels, foldCredits, labelsAbove } from '../map/basemap'
 import { useArrowSteps } from '../ui/keys'
+import { useSplitHandle } from '../ui/split'
 
 maplibregl.setWorkerUrl(workerUrl)
 
@@ -152,6 +153,7 @@ export default function Rewind({ initialSite, initialView }: { initialSite?: str
       .then(([a, b]) => setCvl({ s1: medianDb(a), nisar: medianDb(b) })).catch((e) => setError(e.message))
   }, [m, s1Last, nisarNear])
 
+  useSplitHandle(mapRef, m?.cornersLngLat, ready && view !== 'auto' && !!left, swipe, setSwipe)
   useArrowSteps((d) => {
     setPlaying(false)
     setT((cur) => (d > 0 ? stops.find((x) => x > cur) : stops.findLast((x) => x < cur)) ?? cur)
@@ -203,8 +205,8 @@ export default function Rewind({ initialSite, initialView }: { initialSite?: str
           </div>
           <p className="hint">{{
             auto: 'Scrub the timeline, or step with the left and right arrow keys. Each moment shows the newest layer at or before it, radar first when there is one.',
-            split: 'Optical on the left, radar on the right, both the newest at or before the selected time. Drag the split to compare.',
-            then: 'The photo at the selected time on the left, the newest photo on the right. Scrub back and drag the split to see what changed.',
+            split: 'Optical on the left, radar on the right, both the newest at or before the selected time. Drag the white line on the map to compare.',
+            then: 'The photo at the selected time on the left, the newest photo on the right. Scrub back and drag the white line on the map to see what changed.',
             cvl: 'The newest Sentinel-1 month next to the closest NISAR date. Same place, two radar wavelengths.',
           }[view]}</p>
           {view !== 'auto' && (

@@ -5,7 +5,7 @@ export function useArrowSteps(step: (dir: -1 | 1) => void) {
   useEffect(() => {
     const on = (e: KeyboardEvent) => {
       if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return
-      if ((e.target as HTMLElement).closest('input, select, textarea, .maplibregl-canvas')) return
+      if ((e.target as HTMLElement).closest('input, select, textarea, [role=slider], .maplibregl-canvas')) return
       e.preventDefault()
       step(e.key === 'ArrowLeft' ? -1 : 1)
     }
