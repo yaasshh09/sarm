@@ -67,6 +67,7 @@ export default function Home() {
   const [info, setInfo] = useState<Record<string, Info>>({})
   const [sel, setSel] = useState<string>()
   const [radar, setRadar] = useState(true)
+  const [tour, setTour] = useState(false)
   const [error, setError] = useState<string>()
 
   useEffect(() => {
@@ -92,7 +93,7 @@ export default function Home() {
       el.className = crowded ? 'pin west' : 'pin'
       el.innerHTML = `<i></i><span>${s.name}</span>`
       el.setAttribute('aria-label', `${s.name}, ${s.place}`)
-      el.addEventListener('click', (e) => { e.stopPropagation(); setSel(s.id) })
+      el.addEventListener('click', (e) => { e.stopPropagation(); setTour(false); setSel(s.id) })
       new maplibregl.Marker({ element: el }).setLngLat(s.center).addTo(map)
     }
 
@@ -142,9 +143,19 @@ export default function Home() {
   }, [sel]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const back = () => {
+    setTour(false)
     setSel(undefined)
     mapRef.current?.flyTo({ ...HOME, padding: clear(panel.current!, 0), pitch: 0, bearing: 0, duration: 3000 })
   }
+  const pick = (id: string) => { setTour(false); setSel(id) }
+
+  // The tour visits every site in turn: about 4 s of flight and 6 s to read, then home again after the last one.
+  const at = SITES.findIndex((x) => x.id === sel)
+  useEffect(() => {
+    if (!tour) return
+    const t = setTimeout(() => (at < SITES.length - 1 ? setSel(SITES[at + 1].id) : back()), 10000)
+    return () => clearTimeout(t)
+  }, [tour, sel]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const s = SITES.find((x) => x.id === sel)
   const i = sel ? info[sel] : undefined
@@ -160,11 +171,12 @@ export default function Home() {
             <p className="lede">I wanted to see what NISAR, the new NASA and ISRO radar satellite, sees when it looks at a planet that keeps changing. Spin the globe and pick a place.</p>
             <div className="picks">
               {SITES.map((x) => (
-                <button key={x.id} onClick={() => setSel(x.id)}>
+                <button key={x.id} onClick={() => pick(x.id)}>
                   <b>{x.name}</b><small>{x.place}</small>
                 </button>
               ))}
             </div>
+            <button className="btn tour" onClick={() => { setTour(true); setSel(SITES[0].id) }}>Take the tour</button>
 
             <h2>How radar sees</h2>
             <ul className="how">
@@ -184,6 +196,7 @@ export default function Home() {
         ) : (
           <>
             <button className="link back" onClick={back}>← Back to the whole Earth</button>
+            {tour && <p className="tour-note">Tour, stop {at + 1} of {SITES.length} <button className="link" onClick={() => setTour(false)}>Stop the tour</button></p>}
             <p className="kicker">{s.place}</p>
             <h1 className="site-title">{s.name}</h1>
             <p className="lede">{s.blurb}</p>
