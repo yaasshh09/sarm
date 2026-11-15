@@ -127,9 +127,10 @@ a { color: #8cc8ff; }
 .facts dd { margin: 0; }
 .back { margin-bottom: 0.8rem; }
 .credits { margin-top: 1.5rem; padding-top: 0.8rem; border-top: 1px solid #ffffff1a; font-size: 0.75rem; color: var(--muted); }
-.pin { background: none; border: 0; padding: 0; display: flex; align-items: center; gap: 6px; color: #fff; }
-.pin i { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 #f2a541aa; animation: ping 2s infinite; }
-.pin span { font-size: 0.8rem; text-shadow: 0 1px 3px #000, 0 0 8px #000; white-space: nowrap; }
+.pin { background: none; border: 0; padding: 0; color: #fff; }
+.pin i { display: block; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 #f2a541aa; animation: ping 2s infinite; }
+.pin span { position: absolute; top: 50%; left: 20px; transform: translateY(-50%); font-size: 0.8rem; text-shadow: 0 1px 3px #000, 0 0 8px #000; white-space: nowrap; }
+.pin.west span { left: auto; right: 20px; }
 .pin:hover span, .pin:focus-visible span { text-decoration: underline; }
 @keyframes ping { 70% { box-shadow: 0 0 0 12px #f2a54100; } 100% { box-shadow: 0 0 0 0 #f2a54100; } }
 @media (prefers-reduced-motion: reduce) { .pin i { animation: none; } }

@@ -86,7 +86,8 @@ export default function Home() {
 
     for (const s of SITES) {
       const el = document.createElement('button')
-      el.className = 'pin'
+      // Labels go right of the pin, except the western sites, whose labels would run into their eastern neighbours on the whole-Earth view.
+      el.className = s.center[0] < Math.max(...SITES.map((x) => x.center[0])) ? 'pin west' : 'pin'
       el.innerHTML = `<i></i><span>${s.name}</span>`
       el.setAttribute('aria-label', `${s.name}, ${s.place}`)
       el.addEventListener('click', (e) => { e.stopPropagation(); setSel(s.id) })
