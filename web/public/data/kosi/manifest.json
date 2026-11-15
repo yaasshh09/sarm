@@ -731,6 +731,191 @@
    ],
    "nDates": 3,
    "validPct": 100.0
+  },
+  {
+   "sensor": "Landsat",
+   "date": "1990",
+   "file": "optical/1990.jpg",
+   "platforms": [
+    "landsat-5"
+   ],
+   "scenes": [
+    "LT05_L2SP_139042_19911108_02_T1",
+    "LT05_L2SP_140042_19910320_02_T1",
+    "LT05_L2SP_139042_19910209_02_T1",
+    "LT05_L2SP_140042_19910131_02_T1",
+    "LT05_L2SP_140042_19910115_02_T1",
+    "LT05_L2SP_139042_19901223_02_T1",
+    "LT05_L2SP_139042_19900121_02_T1",
+    "LT05_L2SP_140042_19891211_02_T1"
+   ],
+   "validPct": 100.0,
+   "stretchMax": 0.1,
+   "window": "1989/1991"
+  },
+  {
+   "sensor": "Landsat",
+   "date": "1995",
+   "file": "optical/1995.jpg",
+   "platforms": [
+    "landsat-5"
+   ],
+   "scenes": [
+    "LT05_L2SP_140042_19961230_02_T1",
+    "LT05_L2SP_139042_19961223_02_T1",
+    "LT05_L2SP_140042_19961214_02_T1",
+    "LT05_L2SP_140042_19961112_02_T2",
+    "LT05_L2SP_139042_19961105_02_T1",
+    "LT05_L2SP_139042_19960223_02_T1",
+    "LT05_L2SP_140042_19950331_02_T1",
+    "LT05_L2SP_139042_19950220_02_T1"
+   ],
+   "validPct": 100.0,
+   "stretchMax": 0.1,
+   "window": "1994/1996"
+  },
+  {
+   "sensor": "Landsat",
+   "date": "2000",
+   "file": "optical/2000.jpg",
+   "platforms": [
+    "landsat-5"
+   ],
+   "scenes": [
+    "LT05_L2SP_139042_20010324_02_T1",
+    "LT05_L2SP_140042_20010126_02_T1",
+    "LT05_L2SP_139042_20010119_02_T1",
+    "LT05_L2SP_140042_20010110_02_T1",
+    "LT05_L2SP_139042_20001218_02_T1",
+    "LT05_L2SP_140042_20001209_02_T1",
+    "LT05_L2SP_139042_20001202_02_T1",
+    "LT05_L2SP_140042_20001123_02_T1"
+   ],
+   "validPct": 100.0,
+   "stretchMax": 0.1,
+   "window": "1999/2001"
+  },
+  {
+   "sensor": "Landsat",
+   "date": "2005",
+   "file": "optical/2005.jpg",
+   "platforms": [
+    "landsat-5"
+   ],
+   "scenes": [
+    "LT05_L2SP_140042_20061226_02_T1",
+    "LT05_L2SP_139042_20061219_02_T1",
+    "LT05_L2SP_139042_20061203_02_T1",
+    "LT05_L2SP_139042_20061117_02_T1",
+    "LT05_L2SP_139042_20060306_02_T1",
+    "LT05_L2SP_139042_20051114_02_T1",
+    "LT05_L2SP_140042_20051105_02_T1",
+    "LT05_L2SP_140042_20050326_02_T1"
+   ],
+   "validPct": 100.0,
+   "stretchMax": 0.1,
+   "window": "2004/2006"
+  },
+  {
+   "sensor": "Landsat",
+   "date": "2010",
+   "file": "optical/2010.jpg",
+   "platforms": [
+    "landsat-5"
+   ],
+   "scenes": [
+    "LT05_L2SP_140042_20110207_02_T1",
+    "LT05_L2SP_140042_20101221_02_T1",
+    "LT05_L2SP_139042_20101214_02_T1",
+    "LT05_L2SP_140042_20101103_02_T1",
+    "LT05_L2SP_140042_20100204_02_T1",
+    "LT05_L2SP_140042_20091202_02_T1",
+    "LT05_L2SP_139042_20091125_02_T1",
+    "LT05_L2SP_139042_20091109_02_T1"
+   ],
+   "validPct": 100.0,
+   "stretchMax": 0.1,
+   "window": "2009/2011"
+  },
+  {
+   "sensor": "Landsat",
+   "date": "2015",
+   "file": "optical/2015.jpg",
+   "platforms": [
+    "landsat-8"
+   ],
+   "scenes": [
+    "LC08_L2SP_140042_20151219_02_T1",
+    "LC08_L2SP_140042_20161221_02_T1",
+    "LC08_L2SP_140042_20141130_02_T1",
+    "LC08_L2SP_140042_20161103_02_T1",
+    "LC08_L2SP_140042_20150322_02_T1",
+    "LC08_L2SP_140042_20150306_02_T1",
+    "LC08_L2SP_140042_20160205_02_T1",
+    "LC08_L2SP_139042_20141123_02_T1"
+   ],
+   "validPct": 100.0,
+   "stretchMax": 0.1,
+   "window": "2014/2016"
+  },
+  {
+   "sensor": "Landsat",
+   "date": "2020",
+   "file": "optical/2020.jpg",
+   "platforms": [
+    "landsat-8"
+   ],
+   "scenes": [
+    "LC08_L2SP_139042_20190121_02_T1",
+    "LC08_L2SP_139042_20201123_02_T1",
+    "LC08_L2SP_140042_20191128_02_T1",
+    "LC08_L2SP_140042_20190301_02_T1",
+    "LC08_L2SP_139042_20190310_02_T1",
+    "LC08_L2SP_140042_20200319_02_T1",
+    "LC08_L2SP_140042_20210322_02_T1",
+    "LC08_L2SP_139042_20210211_02_T1"
+   ],
+   "validPct": 100.0,
+   "stretchMax": 0.1,
+   "window": "2019/2021"
+  },
+  {
+   "sensor": "Landsat",
+   "date": "2025",
+   "file": "optical/2025.jpg",
+   "platforms": [
+    "landsat-8",
+    "landsat-9"
+   ],
+   "scenes": [
+    "LC09_L2SP_140042_20260123_02_T1",
+    "LC08_L2SP_139042_20260124_02_T1",
+    "LC09_L2SP_139042_20240228_02_T1",
+    "LC09_L2SP_139042_20260305_02_T1",
+    "LC09_L2SP_139042_20260217_02_T1",
+    "LC08_L2SP_140042_20260115_02_T1",
+    "LC09_L2SP_139042_20260116_02_T1",
+    "LC08_L2SP_140042_20260216_02_T1"
+   ],
+   "validPct": 100.0,
+   "stretchMax": 0.1,
+   "window": "2024/2026"
+  },
+  {
+   "sensor": "Landsat",
+   "date": "2026-08-11",
+   "file": "optical/monsoon-202608.jpg",
+   "platforms": [
+    "landsat-8"
+   ],
+   "scenes": [
+    "LC08_L2SP_140042_20260811_02_T1"
+   ],
+   "validPct": 100.0,
+   "stretchMax": 0.1,
+   "raw": true,
+   "cloudCoverPct": 19.71,
+   "note": "Single raw scene, clouds included (20% scene cloud cover, least cloudy of the month)"
   }
  ]
 }
