@@ -9,7 +9,7 @@ import { renderGray, type Stretch } from '../map/render'
 import { toDb } from '../map/change'
 
 import { SITES, rememberSite, siteOr } from '../sites'
-import { BASEMAP, crispLabels, labelsAbove } from '../map/basemap'
+import { BASEMAP, crispLabels, foldCredits, labelsAbove } from '../map/basemap'
 
 maplibregl.setWorkerUrl(workerUrl)
 
@@ -17,9 +17,9 @@ const T0 = monthOf('1985-01')
 const T1 = monthOf('2026-11')
 const CO_POL: Stretch = [-25, 0] // same stretch for S1 VV and NISAR HH so the two radars compare fairly
 const LANES = [
-  { sensor: 'Landsat', label: 'Landsat optical' },
-  { sensor: 'S1', label: 'Sentinel-1 C-band' },
-  { sensor: 'NISAR', label: 'NISAR L-band' },
+  { sensor: 'Landsat', label: 'Landsat', band: ' optical' },
+  { sensor: 'S1', label: 'Sentinel-1', band: ' C-band' },
+  { sensor: 'NISAR', label: 'NISAR', band: ' L-band' },
 ] as const
 
 type View = 'auto' | 'split' | 'cvl'
@@ -81,10 +81,10 @@ export default function Rewind({ initialSite }: { initialSite?: string }) {
   else right = radarAt(t) ?? opticalAt(t)
 
   useEffect(() => {
-    const map = new maplibregl.Map({ container: mapDiv.current!, style: BASEMAP, center: [54.45, 24.45], zoom: 9 })
+    const map = new maplibregl.Map({ container: mapDiv.current!, style: BASEMAP, center: [54.45, 24.45], zoom: 9, attributionControl: { compact: true } })
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left')
     map.addControl(new maplibregl.ScaleControl(), 'bottom-left')
-    map.on('load', () => { crispLabels(map); setReady(true) })
+    map.on('load', () => { crispLabels(map); foldCredits(map); setReady(true) })
     mapRef.current = map
     return () => map.remove()
   }, [])
@@ -227,9 +227,9 @@ export default function Rewind({ initialSite }: { initialSite?: string }) {
       <footer className="time rewind-time">
         <button className="play" onClick={() => setPlaying(!playing)} aria-label={playing ? 'Pause' : 'Play'}>{playing ? '❚❚' : '▶'}</button>
         <div className="lanes">
-          {LANES.map(({ sensor, label }) => (
+          {LANES.map(({ sensor, label, band }) => (
             <div className="lane" key={sensor}>
-              <span className="lane-name">{label}</span>
+              <span className="lane-name">{label}<span className="band">{band}</span></span>
               <div className="lane-track">
                 {(sensor === 'Landsat' ? [...lanes.Landsat, ...lanes.raw] : lanes[sensor]).map((l) => (
                   <button key={l.file} className={`mark ${sensor}${l === left || l === right ? ' on' : ''}`} style={{ left: pct(monthOf(l.date)) }}

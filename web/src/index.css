@@ -142,5 +142,6 @@ a { color: #8cc8ff; }
   .bar { flex-wrap: wrap; gap: 0.6rem; }
   .sensor { margin-left: 0; flex-basis: 100%; }
   .panel { border-left: 0; border-top: 1px solid var(--line); }
-  .lane-name { width: 5.5rem; }
+  .lane-name { width: 4.5rem; }
+  .lane-name .band { display: none; }
 }
