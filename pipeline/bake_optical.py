@@ -111,8 +111,8 @@ def bake_site(site):
         comps[y] = (items, composite(items, grid))
         print(f"  {y}: {len(items)} scenes {sorted({i.properties['platform'] for i in items})}, "
               f"valid {100 * np.isfinite(comps[y][1]).all(0).mean():5.1f}%", flush=True)
-    # One fixed stretch per site so brightness is comparable across years: 99th percentile of the latest composite.
-    hi = float(np.nanpercentile(comps[max(comps)][1], 99))
+    # One fixed stretch per site so brightness is comparable across years: 99th percentile of all years pooled.
+    hi = float(np.nanpercentile(np.stack([c for _, c in comps.values()]), 99))
     for old in (DATA / site["id"] / "optical").glob("*.jpg"):  # generated output only
         old.unlink()
     layers = []

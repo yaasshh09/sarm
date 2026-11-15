@@ -9,7 +9,7 @@ sites:
     products: [GCOV]
     stack: {track: 56, dir: A, frame: 14, bw: "40+5"}   # confirmed at gate 1
     # Rewind radar: one S1 relative orbit, October (dry) each year. Orbit 130 A is the only one with a
-    # full-AOI October pass in every year 2015 to 2026 (survey 2026-11-15).
+    # full-AOI October pass in every year 2015 to 2026 (survey 2026-11-15). The 2015 and 2016 passes are VV-only, so the dual-pol series starts in 2017.
     s1: {orbit: 130, dir: A, month: 10}
     # Rewind optical: Landsat winter composites (Nov to Mar, less dust haze than summer).
     optical: {months: [11, 12, 1, 2, 3]}
@@ -26,10 +26,10 @@ sites:
     products: [GCOV]
     stack: {track: 170, dir: A, frame: 15, bw: "40+5"}  # confirmed at gate 1
     # Rewind radar: peak monsoon (August) each year plus one dry-season month, all on orbit 12 A,
-    # which has a full-AOI pass in every August and March 2015 to 2026 (survey 2026-11-15).
+    # which has a full-AOI pass in every August and March 2015 to 2026 (survey 2026-11-15). Dual-pol starts in 2017.
     s1: {orbit: 12, dir: A, month: 8, extra: ["2026-03"]}
     # Rewind optical: dry-season composites, plus one raw peak-monsoon scene to show why radar matters.
-    optical: {months: [11, 12, 1, 2, 3], monsoon: "2026-08"}
+    optical: {months: [2, 3, 4], monsoon: "2026-08"}  # Feb to Apr: after winter fog (Nov to Jan washes composites out), before the monsoon
 
   # Center = USGS us6000t7zp, M7.5, 2026-06-24 22:05:04 UTC, 20 km W of Catia La Mar.
   # Second mainshock us6000t7zc, M7.2, 2026-06-24 22:04:31 UTC, at 10.3713 N 68.5564 W (outside this AOI).
