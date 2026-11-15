@@ -21,6 +21,8 @@ MAX_SCENES = 8
 MIN_GOOD = 3        # fewer non-L7 scenes than this and Landsat 7 joins in
 MAX_CLOUD = 20
 GAMMA = 0.6
+MIN_VALID = 0.6     # a composite covering less of the box than this is skipped
+MAX_FALLBACK = 0.25 # ...and so is one where more than this share of it never had a cloud-free look
 # QA_PIXEL bits: 0 fill, 1 dilated cloud, 2 cirrus, 3 cloud, 4 cloud shadow
 QA_BAD = 0b11111
 
@@ -62,6 +64,7 @@ def read_scene(item, grid):
 
 
 def composite(items, grid, mask_clouds=True):
+    """Median RGB of the scenes, and where no scene had a clear look (those pixels fall back to the unmasked median)."""
     with ThreadPoolExecutor(4) as ex:
         scenes = list(ex.map(lambda i: read_scene(i, grid), items))
     raw = np.stack([s[0] for s in scenes])
@@ -69,15 +72,15 @@ def composite(items, grid, mask_clouds=True):
         warnings.simplefilter("ignore", RuntimeWarning)  # all-NaN pixels
         med = np.nanmedian(raw, 0)
         if not mask_clouds:
-            return med
+            return med, np.zeros(med.shape[1:], bool)
         masked = raw.copy()
         for k, (_, cloud) in enumerate(scenes):
             masked[k][:, cloud] = np.nan
         clear = np.nanmedian(masked, 0)
     # TM's shadow flag hits dark mangrove in every scene; where no clear sample is left, use the unmasked median
-    hole = np.isnan(clear).any(0)
+    hole = np.isnan(clear).any(0) & np.isfinite(med).all(0)
     clear[:, hole] = med[:, hole]
-    return clear
+    return clear, hole
 
 
 def to_jpeg(path, rgb, hi):
@@ -108,15 +111,23 @@ def bake_site(site):
         if not items:  # rule 2: report the hole, never borrow another year
             print(f"{site['id']}: no Landsat scenes for {y}, skipping")
             continue
-        comps[y] = (items, composite(items, grid))
+        rgb, hole = composite(items, grid)
+        valid = np.isfinite(rgb).all(0)
+        fallback = hole.sum() / max(valid.sum(), 1)
         print(f"  {y}: {len(items)} scenes {sorted({i.properties['platform'] for i in items})}, "
-              f"valid {100 * np.isfinite(comps[y][1]).all(0).mean():5.1f}%", flush=True)
-    # One fixed stretch per site so brightness is comparable across years: 99th percentile of all years pooled.
-    hi = float(np.nanpercentile(np.stack([c for _, c in comps.values()]), 99))
+              f"valid {100 * valid.mean():5.1f}%, no clear look {100 * fallback:4.1f}%", flush=True)
+        # A half-empty or mostly cloudy picture says nothing about the ground: report the hole instead (rule 2).
+        if valid.mean() < MIN_VALID or fallback > MAX_FALLBACK:
+            print(f"{site['id']}: {y} too empty or cloudy, skipping")
+            continue
+        comps[y] = (items, rgb, hole)
+    # One fixed stretch per site so brightness is comparable across years: 99th percentile of all years pooled,
+    # from pixels that had a clear look, so clouds the fallback let back in can't darken every year.
+    hi = float(np.nanpercentile(np.concatenate([c[:, ~h].ravel() for _, c, h in comps.values()]), 99))
     for old in (DATA / site["id"] / "optical").glob("*.jpg"):  # generated output only
         old.unlink()
     layers = []
-    for y, (items, rgb) in comps.items():
+    for y, (items, rgb, _) in comps.items():
         fn = f"optical/{y}.jpg"
         to_jpeg(DATA / site["id"] / fn, rgb, hi)
         layers.append(layer(str(y), fn, items, rgb, hi, window=f"{y - 1}/{y + 1}",
@@ -128,7 +139,7 @@ def bake_site(site):
                  if i.properties["platform"] in ("landsat-8", "landsat-9")]
         items = sorted(items, key=lambda i: i.properties["eo:cloud_cover"])[:1]
         if items:
-            rgb = composite(items, grid, mask_clouds=False)
+            rgb, _ = composite(items, grid, mask_clouds=False)
             fn = f"optical/monsoon-{mo.replace('-', '')}.jpg"
             to_jpeg(DATA / site["id"] / fn, rgb, hi)
             cc = items[0].properties["eo:cloud_cover"]
