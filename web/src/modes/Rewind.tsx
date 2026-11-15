@@ -149,7 +149,7 @@ export default function Rewind({ initialSite }: { initialSite?: string }) {
   return (
     <div className="explore">
       <header className="bar">
-        <h1>Radar Waltz <span>Rewind</span></h1>
+        <h1>Sarm <span>Rewind</span></h1>
         <nav><a href="#">Globe</a> · <a href={`#explore/${site}`}>Explore</a> · <a href={`#rewind/${site}`} aria-current="page">Rewind</a></nav>
         <label>Site{' '}
           <select value={site} onChange={(e) => { setSite(e.target.value); rememberSite('rewind', e.target.value) }}>

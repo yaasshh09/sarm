@@ -226,7 +226,7 @@ export default function Explore({ initialSite }: { initialSite?: string }) {
   return (
     <div className="explore">
       <header className="bar">
-        <h1>Radar Waltz <span>Explore</span></h1>
+        <h1>Sarm <span>Explore</span></h1>
         <nav><a href="#">Globe</a> · <a href={`#explore/${site}`} aria-current="page">Explore</a> · <a href={`#rewind/${site}`}>Rewind</a></nav>
         <label>Site{' '}
           <select value={site} onChange={(e) => { setSite(e.target.value); rememberSite('explore', e.target.value) }}>

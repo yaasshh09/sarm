@@ -1,4 +1,4 @@
-# AOIs for Radar Waltz. center = [lat, lon], size_km = square side.
+# AOIs for Sarm. center = [lat, lon], size_km = square side.
 sites:
   - id: abu-dhabi
     name: Abu Dhabi coast

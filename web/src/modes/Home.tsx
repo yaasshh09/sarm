@@ -136,7 +136,7 @@ export default function Home() {
         {!s ? (
           <>
             <p className="kicker">NASA Space Apps 2026 · Dancing With SARs</p>
-            <h1>Radar <span>Waltz</span></h1>
+            <h1>Sarm</h1>
             <p className="lede">I wanted to see what NISAR, the new NASA and ISRO radar satellite, sees when it looks at a planet that keeps changing. Spin the globe and pick a place.</p>
             <div className="picks">
               {SITES.map((x) => (

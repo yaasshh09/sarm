@@ -1,7 +1,7 @@
-# Radar Waltz: implementation plan (Claude Code handoff)
+# Sarm: implementation plan (Claude Code handoff)
 
 NASA Space Apps 2026, challenge: **Dancing With SARs**.
-Working title "Radar Waltz". Rename freely.
+Name: Sarm.
 
 This file is the single source of truth for the build. Read all of it before writing code.
 Sections 1 to 3 are context, 4 to 8 are the spec, 9 is the schedule, 10 to 12 are rules and prompts.
