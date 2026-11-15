@@ -197,6 +197,11 @@ Never mix tracks or directions in one time series (different look geometry chang
 | B `kosi` | Kosi River floodplain, Bihar, India (about 26.1 N, 86.55 E, 40 x 40 km, moved west from 86.9 E onto the river channel on 15 Nov) | Natural: monsoon inundation and retreat, Jun to Oct | Open water goes dark, flooded vegetation goes bright in HH (double bounce). Optical is cloud-blind in monsoon, radar is not | Primary |
 | C `venezuela-eq` | Area of the 24 Jun 2026 Venezuela earthquakes (look up USGS epicenters) | Deformation, InSAR | GUNW unwrapped phase, fringes. Needs a pre-event scene between 17 and 24 Jun on the same track, which is not guaranteed | Stretch S1 |
 | D backup | Amazon deforestation front or any glacier | Forest loss (HV drop) or ice motion | Use only if A or B fails the coverage rule | Backup |
+| E `rondonia` | Rondônia forest edge, Brazil (about 9.5 S, 63.0 W, 40 x 40 km). Added 15 Nov | Forest loss | HV bright over standing forest, weaker over pasture; Landsat 1985 to 2025 shows the clearing spread | Added |
+| F `lake-mead` | Lake Mead, Nevada and Arizona (about 36.15 N, 114.65 W, 40 x 40 km). Added 15 Nov | Reservoir drawdown | Dark smooth water against bright canyon walls; Landsat shows the shoreline pull back | Added |
+| G `kilauea` | Kīlauea, Hawaiʻi (about 19.40 N, 155.05 W, 50 x 50 km). Added 15 Nov | Lava flows | Lava purple against yellow-green forest in polarization color; Landsat 2015 vs 2020 shows the 2018 flow | Added |
+
+A glacier (Jakobshavn) was tried on 15 Nov and dropped: NISAR only images it in a 77 MHz mode without the HH+HV pair, and Planetary Computer has no Sentinel-1 RTC there.
 
 Do not assume an event happened. For site B, the pipeline output decides what the story says (see rules, section 10).
 
