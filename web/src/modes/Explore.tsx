@@ -229,6 +229,7 @@ export default function Explore() {
     <div className="explore">
       <header className="bar">
         <h1>Radar Waltz <span>Explore</span></h1>
+        <nav><a href="#explore" aria-current="page">Explore</a> · <a href="#rewind">Rewind</a></nav>
         <label>Site{' '}
           <select value={site} onChange={(e) => setSite(e.target.value)}>
             {SITES.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
