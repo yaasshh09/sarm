@@ -96,7 +96,7 @@ a { color: #8cc8ff; }
 
 /* Globe landing page */
 .home { position: fixed; inset: 0; background: radial-gradient(ellipse at 70% 40%, #0d1830 0%, #05070d 60%, #000 100%); }
-.globe { position: absolute; inset: 0; }
+.home .globe { position: absolute; inset: 0; } /* beats .maplibregl-map { position: relative } */
 .intro {
   position: absolute; top: 1rem; left: 1rem; bottom: 1rem; width: min(26rem, calc(100% - 2rem)); overflow-y: auto;
   padding: 1.4rem 1.5rem; border-radius: 14px; border: 1px solid #ffffff1f;

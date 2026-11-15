@@ -36,7 +36,15 @@ function infoOf(m: Manifest): Info {
 const span = (d: string[], f = (x: string) => x) => (d.length ? `${f(d[0])} to ${f(d.at(-1)!)}` : 'none')
 const month = (d: string) => monthLabel(monthOf(d))
 const years = (d: string[]) => new Set(d.map((x) => x.slice(0, 4))).size
-const HOME = { center: [40, 18] as [number, number], zoom: innerWidth < 700 ? 0.6 : 1.5 }
+const HOME = { center: [40, 18] as [number, number], zoom: innerWidth < 700 ? 0.6 : 1.9 }
+
+/** Map padding that keeps the subject out from under the text panel (beside it on desktop, above it on phones). */
+function clear(panel: HTMLElement, m: number) {
+  const p = panel.getBoundingClientRect()
+  return p.width < innerWidth * 0.6
+    ? { left: p.right + m, right: m, top: m, bottom: m }
+    : { left: m, right: m, top: m, bottom: innerHeight - p.top + m }
+}
 
 export default function Home() {
   const mapDiv = useRef<HTMLDivElement>(null)
@@ -52,6 +60,7 @@ export default function Home() {
     const map = new maplibregl.Map({ container: mapDiv.current!, style: EARTH, ...HOME, attributionControl: { compact: true } })
     map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'top-right')
     mapRef.current = map
+    map.setPadding(clear(panel.current!, 0))
 
     // Spin slowly until the first touch, like a desk globe.
     const spin = () => {
@@ -100,24 +109,21 @@ export default function Home() {
     for (const s of SITES) if (map?.getLayer(s.id)) map.setLayoutProperty(s.id, 'visibility', radar ? 'visible' : 'none')
   }, [radar, info])
 
-  // Fly to the picked site, keeping it clear of the text panel.
+  // Fly to the picked site. The map's own padding keeps it clear of the panel; fitBounds padding adds to that.
   useEffect(() => {
     const map = mapRef.current
     const s = SITES.find((x) => x.id === sel)
     if (!map || !s) return
     spinning.current = false
-    const p = panel.current!.getBoundingClientRect()
-    const pad = p.width < innerWidth * 0.6
-      ? { left: p.right + 30, right: 60, top: 60, bottom: 60 }
-      : { left: 30, right: 30, top: 60, bottom: innerHeight - p.top + 30 }
+    map.setPadding(clear(panel.current!, 0)) // the panel changes height between views on phones
     const c = info[s.id]?.m.cornersLngLat
     const [w, so, e, n] = c ? [c[0][0], c[2][1], c[1][0], c[0][1]] : [s.center[0] - 0.2, s.center[1] - 0.2, s.center[0] + 0.2, s.center[1] + 0.2]
-    map.fitBounds([[w, so], [e, n]], { padding: pad, duration: 4000, curve: 1.6, essential: true })
+    map.fitBounds([[w, so], [e, n]], { padding: 60, duration: 4000, curve: 1.6, essential: true })
   }, [sel]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const back = () => {
     setSel(undefined)
-    mapRef.current?.flyTo({ ...HOME, pitch: 0, bearing: 0, duration: 3000 })
+    mapRef.current?.flyTo({ ...HOME, padding: clear(panel.current!, 0), pitch: 0, bearing: 0, duration: 3000 })
   }
 
   const s = SITES.find((x) => x.id === sel)
@@ -176,7 +182,7 @@ export default function Home() {
                   <div className="card">
                     <label className="row"><input type="checkbox" checked={radar} onChange={(e) => setRadar(e.target.checked)} /> Show the NISAR picture on the globe</label>
                     <p className="muted">That square is NISAR L-band from {i.shown.date} ({i.shown.tier?.toLowerCase()} data), colored by polarization: red HH, green HV, blue HH minus HV.</p>
-                    <p className="muted">Pink to white reads as buildings, green as plants, black as calm water. Untick the box to compare it with the Blue Marble photo underneath.</p>
+                    <p className="muted">The strongest echoes come out yellow and pink, mostly buildings. Green leans toward plants, and the darkest patches are smooth sand and calm water. Untick the box to compare it with the Blue Marble photo underneath.</p>
                   </div>
                 )}
               </>
