@@ -237,6 +237,13 @@ export default function Explore({ initialSite }: { initialSite?: string }) {
     return () => clearInterval(t)
   }, [playing, sc.length])
 
+  // While playing, fetch the next date ahead of time so the first loop does not stutter.
+  useEffect(() => {
+    if (!playing || !m || !sc.length) return
+    const nx = sc[(idx + 1) % sc.length]
+    for (const l of pol === 'RGB' ? [nx.HH, nx.HV] : [nx[p1]]) if (l) loadRaster(m.id, l.file).catch(() => {}) // a miss just loads on demand
+  }, [playing, idx, m, sc, pol, p1])
+
   const boxSizeM = box && m ? Math.round(((box[3] - box[1] + 1) * (m.bounds3857[2] - m.bounds3857[0])) / m.shape[1] * Math.cos(((m.cornersLngLat[0][1] + m.cornersLngLat[3][1]) / 2) * Math.PI / 180)) : 0
   const compare = view !== 'single'
 
