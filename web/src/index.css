@@ -148,3 +148,6 @@ a { color: #8cc8ff; }
   .tick span { display: none; }
   .tick.on span, .tick.before span { display: block; }
 }
+.crash { max-width: 34rem; margin: 18vh auto; padding: 0 1.5rem; }
+.crash h1 { font-size: 1.6rem; margin-bottom: 0.6rem; }
+.crash p { color: var(--muted); }
