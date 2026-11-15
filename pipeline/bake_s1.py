@@ -20,6 +20,9 @@ STAC = "https://planetarycomputer.microsoft.com/api/stac/v1"
 YEARS = range(2015, 2027)
 MAX_DATES = 4
 MIN_AOI = 0.9
+# Rewind only ever shows VV (co-pol, to compare with NISAR HH), so VH would be ~9 MB per site nobody sees.
+# Baking VV alone also lets the VV-only 2015 and 2016 passes in.
+POLS = ("VV",)
 
 
 def periods(cfg):
@@ -36,9 +39,9 @@ def passes(cat, aoi, cfg, period):
     by = collections.defaultdict(list)
     for it in items:
         p = it.properties
-        # dual-pol only: some passes are VV-only and have no vh asset
+        # every pol we bake must be there: some passes have no vh asset
         if p["sat:relative_orbit"] == cfg["orbit"] and p["sat:orbit_state"][0].upper() == cfg["dir"] \
-                and {"vv", "vh"} <= set(it.assets):
+                and {x.lower() for x in POLS} <= set(it.assets):
             by[str(it.datetime.date())].append(it)
     full = {}
     for d, its in sorted(by.items()):
@@ -68,7 +71,7 @@ def read_power(item, pol, grid):
 
 def bake_period(site, grid, cfg, period, dates):
     layers, log = [], []
-    for pol in ("VV", "VH"):
+    for pol in POLS:
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", RuntimeWarning)  # all-NaN pixels outside the swath
             # slices of one pass barely overlap, so a mean just stitches them

@@ -367,388 +367,6 @@
    "validPct": 100.0
   },
   {
-   "sensor": "S1",
-   "band": "C",
-   "date": "2017-10",
-   "pol": "VV",
-   "orbit": 130,
-   "direction": "A",
-   "product": "sentinel-1-rtc (Planetary Computer)",
-   "file": "s1/201710_VV.png",
-   "scenes": [
-    "S1A_IW_GRDH_1SDV_20171010T142416_20171010T142441_018752_01FA61_rtc",
-    "S1A_IW_GRDH_1SDV_20171010T142441_20171010T142506_018752_01FA61_rtc",
-    "S1A_IW_GRDH_1SDV_20171022T142416_20171022T142441_018927_01FFC4_rtc",
-    "S1A_IW_GRDH_1SDV_20171022T142441_20171022T142506_018927_01FFC4_rtc"
-   ],
-   "nDates": 2,
-   "validPct": 100.0
-  },
-  {
-   "sensor": "S1",
-   "band": "C",
-   "date": "2017-10",
-   "pol": "VH",
-   "orbit": 130,
-   "direction": "A",
-   "product": "sentinel-1-rtc (Planetary Computer)",
-   "file": "s1/201710_VH.png",
-   "scenes": [
-    "S1A_IW_GRDH_1SDV_20171010T142416_20171010T142441_018752_01FA61_rtc",
-    "S1A_IW_GRDH_1SDV_20171010T142441_20171010T142506_018752_01FA61_rtc",
-    "S1A_IW_GRDH_1SDV_20171022T142416_20171022T142441_018927_01FFC4_rtc",
-    "S1A_IW_GRDH_1SDV_20171022T142441_20171022T142506_018927_01FFC4_rtc"
-   ],
-   "nDates": 2,
-   "validPct": 100.0
-  },
-  {
-   "sensor": "S1",
-   "band": "C",
-   "date": "2018-10",
-   "pol": "VV",
-   "orbit": 130,
-   "direction": "A",
-   "product": "sentinel-1-rtc (Planetary Computer)",
-   "file": "s1/201810_VV.png",
-   "scenes": [
-    "S1A_IW_GRDH_1SDV_20181005T142422_20181005T142447_024002_029F53_rtc",
-    "S1A_IW_GRDH_1SDV_20181005T142447_20181005T142512_024002_029F53_rtc",
-    "S1A_IW_GRDH_1SDV_20181017T142423_20181017T142448_024177_02A50B_rtc",
-    "S1A_IW_GRDH_1SDV_20181017T142448_20181017T142513_024177_02A50B_rtc",
-    "S1A_IW_GRDH_1SDV_20181029T142422_20181029T142447_024352_02AAAA_rtc",
-    "S1A_IW_GRDH_1SDV_20181029T142447_20181029T142512_024352_02AAAA_rtc"
-   ],
-   "nDates": 3,
-   "validPct": 100.0
-  },
-  {
-   "sensor": "S1",
-   "band": "C",
-   "date": "2018-10",
-   "pol": "VH",
-   "orbit": 130,
-   "direction": "A",
-   "product": "sentinel-1-rtc (Planetary Computer)",
-   "file": "s1/201810_VH.png",
-   "scenes": [
-    "S1A_IW_GRDH_1SDV_20181005T142422_20181005T142447_024002_029F53_rtc",
-    "S1A_IW_GRDH_1SDV_20181005T142447_20181005T142512_024002_029F53_rtc",
-    "S1A_IW_GRDH_1SDV_20181017T142423_20181017T142448_024177_02A50B_rtc",
-    "S1A_IW_GRDH_1SDV_20181017T142448_20181017T142513_024177_02A50B_rtc",
-    "S1A_IW_GRDH_1SDV_20181029T142422_20181029T142447_024352_02AAAA_rtc",
-    "S1A_IW_GRDH_1SDV_20181029T142447_20181029T142512_024352_02AAAA_rtc"
-   ],
-   "nDates": 3,
-   "validPct": 100.0
-  },
-  {
-   "sensor": "S1",
-   "band": "C",
-   "date": "2019-10",
-   "pol": "VV",
-   "orbit": 130,
-   "direction": "A",
-   "product": "sentinel-1-rtc (Planetary Computer)",
-   "file": "s1/201910_VV.png",
-   "scenes": [
-    "S1A_IW_GRDH_1SDV_20191012T142429_20191012T142454_029427_0358DC_rtc",
-    "S1A_IW_GRDH_1SDV_20191012T142454_20191012T142519_029427_0358DC_rtc",
-    "S1A_IW_GRDH_1SDV_20191024T142429_20191024T142454_029602_035EDE_rtc",
-    "S1A_IW_GRDH_1SDV_20191024T142454_20191024T142519_029602_035EDE_rtc"
-   ],
-   "nDates": 2,
-   "validPct": 100.0
-  },
-  {
-   "sensor": "S1",
-   "band": "C",
-   "date": "2019-10",
-   "pol": "VH",
-   "orbit": 130,
-   "direction": "A",
-   "product": "sentinel-1-rtc (Planetary Computer)",
-   "file": "s1/201910_VH.png",
-   "scenes": [
-    "S1A_IW_GRDH_1SDV_20191012T142429_20191012T142454_029427_0358DC_rtc",
-    "S1A_IW_GRDH_1SDV_20191012T142454_20191012T142519_029427_0358DC_rtc",
-    "S1A_IW_GRDH_1SDV_20191024T142429_20191024T142454_029602_035EDE_rtc",
-    "S1A_IW_GRDH_1SDV_20191024T142454_20191024T142519_029602_035EDE_rtc"
-   ],
-   "nDates": 2,
-   "validPct": 100.0
-  },
-  {
-   "sensor": "S1",
-   "band": "C",
-   "date": "2020-10",
-   "pol": "VV",
-   "orbit": 130,
-   "direction": "A",
-   "product": "sentinel-1-rtc (Planetary Computer)",
-   "file": "s1/202010_VV.png",
-   "scenes": [
-    "S1A_IW_GRDH_1SDV_20201006T142435_20201006T142500_034677_040A05_rtc",
-    "S1A_IW_GRDH_1SDV_20201006T142500_20201006T142525_034677_040A05_rtc",
-    "S1A_IW_GRDH_1SDV_20201018T142435_20201018T142500_034852_04102A_rtc",
-    "S1A_IW_GRDH_1SDV_20201018T142500_20201018T142525_034852_04102A_rtc",
-    "S1A_IW_GRDH_1SDV_20201030T142435_20201030T142500_035027_041614_rtc",
-    "S1A_IW_GRDH_1SDV_20201030T142500_20201030T142525_035027_041614_rtc"
-   ],
-   "nDates": 3,
-   "validPct": 100.0
-  },
-  {
-   "sensor": "S1",
-   "band": "C",
-   "date": "2020-10",
-   "pol": "VH",
-   "orbit": 130,
-   "direction": "A",
-   "product": "sentinel-1-rtc (Planetary Computer)",
-   "file": "s1/202010_VH.png",
-   "scenes": [
-    "S1A_IW_GRDH_1SDV_20201006T142435_20201006T142500_034677_040A05_rtc",
-    "S1A_IW_GRDH_1SDV_20201006T142500_20201006T142525_034677_040A05_rtc",
-    "S1A_IW_GRDH_1SDV_20201018T142435_20201018T142500_034852_04102A_rtc",
-    "S1A_IW_GRDH_1SDV_20201018T142500_20201018T142525_034852_04102A_rtc",
-    "S1A_IW_GRDH_1SDV_20201030T142435_20201030T142500_035027_041614_rtc",
-    "S1A_IW_GRDH_1SDV_20201030T142500_20201030T142525_035027_041614_rtc"
-   ],
-   "nDates": 3,
-   "validPct": 100.0
-  },
-  {
-   "sensor": "S1",
-   "band": "C",
-   "date": "2021-10",
-   "pol": "VV",
-   "orbit": 130,
-   "direction": "A",
-   "product": "sentinel-1-rtc (Planetary Computer)",
-   "file": "s1/202110_VV.png",
-   "scenes": [
-    "S1A_IW_GRDH_1SDV_20211001T142441_20211001T142506_039927_04B994_rtc",
-    "S1A_IW_GRDH_1SDV_20211001T142506_20211001T142531_039927_04B994_rtc",
-    "S1A_IW_GRDH_1SDV_20211013T142441_20211013T142506_040102_04BFA9_rtc",
-    "S1A_IW_GRDH_1SDV_20211013T142506_20211013T142531_040102_04BFA9_rtc",
-    "S1A_IW_GRDH_1SDV_20211025T142441_20211025T142506_040277_04C5BE_rtc",
-    "S1A_IW_GRDH_1SDV_20211025T142506_20211025T142531_040277_04C5BE_rtc",
-    "S1B_IW_GRDH_1SDV_20211007T142415_20211007T142440_029031_0376D4_rtc"
-   ],
-   "nDates": 4,
-   "validPct": 100.0
-  },
-  {
-   "sensor": "S1",
-   "band": "C",
-   "date": "2021-10",
-   "pol": "VH",
-   "orbit": 130,
-   "direction": "A",
-   "product": "sentinel-1-rtc (Planetary Computer)",
-   "file": "s1/202110_VH.png",
-   "scenes": [
-    "S1A_IW_GRDH_1SDV_20211001T142441_20211001T142506_039927_04B994_rtc",
-    "S1A_IW_GRDH_1SDV_20211001T142506_20211001T142531_039927_04B994_rtc",
-    "S1A_IW_GRDH_1SDV_20211013T142441_20211013T142506_040102_04BFA9_rtc",
-    "S1A_IW_GRDH_1SDV_20211013T142506_20211013T142531_040102_04BFA9_rtc",
-    "S1A_IW_GRDH_1SDV_20211025T142441_20211025T142506_040277_04C5BE_rtc",
-    "S1A_IW_GRDH_1SDV_20211025T142506_20211025T142531_040277_04C5BE_rtc",
-    "S1B_IW_GRDH_1SDV_20211007T142415_20211007T142440_029031_0376D4_rtc"
-   ],
-   "nDates": 4,
-   "validPct": 100.0
-  },
-  {
-   "sensor": "S1",
-   "band": "C",
-   "date": "2022-10",
-   "pol": "VV",
-   "orbit": 130,
-   "direction": "A",
-   "product": "sentinel-1-rtc (Planetary Computer)",
-   "file": "s1/202210_VV.png",
-   "scenes": [
-    "S1A_IW_GRDH_1SDV_20221008T142447_20221008T142512_045352_056C2B_rtc",
-    "S1A_IW_GRDH_1SDV_20221008T142512_20221008T142537_045352_056C2B_rtc"
-   ],
-   "nDates": 1,
-   "validPct": 100.0
-  },
-  {
-   "sensor": "S1",
-   "band": "C",
-   "date": "2022-10",
-   "pol": "VH",
-   "orbit": 130,
-   "direction": "A",
-   "product": "sentinel-1-rtc (Planetary Computer)",
-   "file": "s1/202210_VH.png",
-   "scenes": [
-    "S1A_IW_GRDH_1SDV_20221008T142447_20221008T142512_045352_056C2B_rtc",
-    "S1A_IW_GRDH_1SDV_20221008T142512_20221008T142537_045352_056C2B_rtc"
-   ],
-   "nDates": 1,
-   "validPct": 100.0
-  },
-  {
-   "sensor": "S1",
-   "band": "C",
-   "date": "2023-10",
-   "pol": "VV",
-   "orbit": 130,
-   "direction": "A",
-   "product": "sentinel-1-rtc (Planetary Computer)",
-   "file": "s1/202310_VV.png",
-   "scenes": [
-    "S1A_IW_GRDH_1SDV_20231003T142452_20231003T142517_050602_061891_rtc",
-    "S1A_IW_GRDH_1SDV_20231003T142517_20231003T142542_050602_061891_rtc",
-    "S1A_IW_GRDH_1SDV_20231015T142452_20231015T142517_050777_061E94_rtc",
-    "S1A_IW_GRDH_1SDV_20231015T142517_20231015T142542_050777_061E94_rtc",
-    "S1A_IW_GRDH_1SDV_20231027T142452_20231027T142517_050952_062480_rtc",
-    "S1A_IW_GRDH_1SDV_20231027T142517_20231027T142542_050952_062480_rtc"
-   ],
-   "nDates": 3,
-   "validPct": 100.0
-  },
-  {
-   "sensor": "S1",
-   "band": "C",
-   "date": "2023-10",
-   "pol": "VH",
-   "orbit": 130,
-   "direction": "A",
-   "product": "sentinel-1-rtc (Planetary Computer)",
-   "file": "s1/202310_VH.png",
-   "scenes": [
-    "S1A_IW_GRDH_1SDV_20231003T142452_20231003T142517_050602_061891_rtc",
-    "S1A_IW_GRDH_1SDV_20231003T142517_20231003T142542_050602_061891_rtc",
-    "S1A_IW_GRDH_1SDV_20231015T142452_20231015T142517_050777_061E94_rtc",
-    "S1A_IW_GRDH_1SDV_20231015T142517_20231015T142542_050777_061E94_rtc",
-    "S1A_IW_GRDH_1SDV_20231027T142452_20231027T142517_050952_062480_rtc",
-    "S1A_IW_GRDH_1SDV_20231027T142517_20231027T142542_050952_062480_rtc"
-   ],
-   "nDates": 3,
-   "validPct": 100.0
-  },
-  {
-   "sensor": "S1",
-   "band": "C",
-   "date": "2024-10",
-   "pol": "VV",
-   "orbit": 130,
-   "direction": "A",
-   "product": "sentinel-1-rtc (Planetary Computer)",
-   "file": "s1/202410_VV.png",
-   "scenes": [
-    "S1A_IW_GRDH_1SDV_20241009T142449_20241009T142514_056027_06DA56_rtc",
-    "S1A_IW_GRDH_1SDV_20241009T142514_20241009T142539_056027_06DA56_rtc",
-    "S1A_IW_GRDH_1SDV_20241021T142448_20241021T142513_056202_06E148_rtc",
-    "S1A_IW_GRDH_1SDV_20241021T142513_20241021T142538_056202_06E148_rtc"
-   ],
-   "nDates": 2,
-   "validPct": 100.0
-  },
-  {
-   "sensor": "S1",
-   "band": "C",
-   "date": "2024-10",
-   "pol": "VH",
-   "orbit": 130,
-   "direction": "A",
-   "product": "sentinel-1-rtc (Planetary Computer)",
-   "file": "s1/202410_VH.png",
-   "scenes": [
-    "S1A_IW_GRDH_1SDV_20241009T142449_20241009T142514_056027_06DA56_rtc",
-    "S1A_IW_GRDH_1SDV_20241009T142514_20241009T142539_056027_06DA56_rtc",
-    "S1A_IW_GRDH_1SDV_20241021T142448_20241021T142513_056202_06E148_rtc",
-    "S1A_IW_GRDH_1SDV_20241021T142513_20241021T142538_056202_06E148_rtc"
-   ],
-   "nDates": 2,
-   "validPct": 100.0
-  },
-  {
-   "sensor": "S1",
-   "band": "C",
-   "date": "2025-10",
-   "pol": "VV",
-   "orbit": 130,
-   "direction": "A",
-   "product": "sentinel-1-rtc (Planetary Computer)",
-   "file": "s1/202510_VV.png",
-   "scenes": [
-    "S1A_IW_GRDH_1SDV_20251004T142438_20251004T142503_061277_07A4D4_rtc",
-    "S1A_IW_GRDH_1SDV_20251004T142503_20251004T142528_061277_07A4D4_rtc",
-    "S1A_IW_GRDH_1SDV_20251016T142439_20251016T142504_061452_07ABDD_rtc",
-    "S1A_IW_GRDH_1SDV_20251016T142504_20251016T142529_061452_07ABDD_rtc",
-    "S1C_IW_GRDH_1SDV_20251010T142350_20251010T142419_004501_008E93_rtc",
-    "S1C_IW_GRDH_1SDV_20251022T142350_20251022T142419_004676_0093DB_rtc"
-   ],
-   "nDates": 4,
-   "validPct": 100.0
-  },
-  {
-   "sensor": "S1",
-   "band": "C",
-   "date": "2025-10",
-   "pol": "VH",
-   "orbit": 130,
-   "direction": "A",
-   "product": "sentinel-1-rtc (Planetary Computer)",
-   "file": "s1/202510_VH.png",
-   "scenes": [
-    "S1A_IW_GRDH_1SDV_20251004T142438_20251004T142503_061277_07A4D4_rtc",
-    "S1A_IW_GRDH_1SDV_20251004T142503_20251004T142528_061277_07A4D4_rtc",
-    "S1A_IW_GRDH_1SDV_20251016T142439_20251016T142504_061452_07ABDD_rtc",
-    "S1A_IW_GRDH_1SDV_20251016T142504_20251016T142529_061452_07ABDD_rtc",
-    "S1C_IW_GRDH_1SDV_20251010T142350_20251010T142419_004501_008E93_rtc",
-    "S1C_IW_GRDH_1SDV_20251022T142350_20251022T142419_004676_0093DB_rtc"
-   ],
-   "nDates": 4,
-   "validPct": 100.0
-  },
-  {
-   "sensor": "S1",
-   "band": "C",
-   "date": "2026-10",
-   "pol": "VV",
-   "orbit": 130,
-   "direction": "A",
-   "product": "sentinel-1-rtc (Planetary Computer)",
-   "file": "s1/202610_VV.png",
-   "scenes": [
-    "S1C_IW_GRDH_1SDV_20261012T142352_20261012T142422_009853_013A36_rtc",
-    "S1C_IW_GRDH_1SDV_20261024T142351_20261024T142421_010028_014031_rtc",
-    "S1D_IW_GRDH_1SDV_20261006T142351_20261006T142416_004896_00936C_rtc",
-    "S1D_IW_GRDH_1SDV_20261006T142416_20261006T142441_004896_00936C_rtc",
-    "S1D_IW_GRDH_1SDV_20261018T142351_20261018T142416_005071_009981_rtc",
-    "S1D_IW_GRDH_1SDV_20261018T142416_20261018T142441_005071_009981_rtc"
-   ],
-   "nDates": 4,
-   "validPct": 100.0
-  },
-  {
-   "sensor": "S1",
-   "band": "C",
-   "date": "2026-10",
-   "pol": "VH",
-   "orbit": 130,
-   "direction": "A",
-   "product": "sentinel-1-rtc (Planetary Computer)",
-   "file": "s1/202610_VH.png",
-   "scenes": [
-    "S1C_IW_GRDH_1SDV_20261012T142352_20261012T142422_009853_013A36_rtc",
-    "S1C_IW_GRDH_1SDV_20261024T142351_20261024T142421_010028_014031_rtc",
-    "S1D_IW_GRDH_1SDV_20261006T142351_20261006T142416_004896_00936C_rtc",
-    "S1D_IW_GRDH_1SDV_20261006T142416_20261006T142441_004896_00936C_rtc",
-    "S1D_IW_GRDH_1SDV_20261018T142351_20261018T142416_005071_009981_rtc",
-    "S1D_IW_GRDH_1SDV_20261018T142416_20261018T142441_005071_009981_rtc"
-   ],
-   "nDates": 4,
-   "validPct": 100.0
-  },
-  {
    "sensor": "Landsat",
    "date": "1985",
    "file": "optical/1985.jpg",
@@ -943,6 +561,228 @@
    "validPct": 100.0,
    "stretchMax": 0.408,
    "window": "2024/2026"
+  },
+  {
+   "sensor": "S1",
+   "band": "C",
+   "date": "2015-10",
+   "pol": "VV",
+   "orbit": 130,
+   "direction": "A",
+   "product": "sentinel-1-rtc (Planetary Computer)",
+   "file": "s1/201510_VV.png",
+   "scenes": [
+    "S1A_IW_GRDH_1SSV_20151009T142421_20151009T142450_008077_00B519_rtc"
+   ],
+   "nDates": 1,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "S1",
+   "band": "C",
+   "date": "2016-10",
+   "pol": "VV",
+   "orbit": 130,
+   "direction": "A",
+   "product": "sentinel-1-rtc (Planetary Computer)",
+   "file": "s1/201610_VV.png",
+   "scenes": [
+    "S1A_IW_GRDH_1SSV_20161003T142422_20161003T142451_013327_0153F5_rtc",
+    "S1A_IW_GRDH_1SSV_20161027T142422_20161027T142451_013677_015EEC_rtc"
+   ],
+   "nDates": 2,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "S1",
+   "band": "C",
+   "date": "2017-10",
+   "pol": "VV",
+   "orbit": 130,
+   "direction": "A",
+   "product": "sentinel-1-rtc (Planetary Computer)",
+   "file": "s1/201710_VV.png",
+   "scenes": [
+    "S1A_IW_GRDH_1SDV_20171010T142416_20171010T142441_018752_01FA61_rtc",
+    "S1A_IW_GRDH_1SDV_20171010T142441_20171010T142506_018752_01FA61_rtc",
+    "S1A_IW_GRDH_1SDV_20171022T142416_20171022T142441_018927_01FFC4_rtc",
+    "S1A_IW_GRDH_1SDV_20171022T142441_20171022T142506_018927_01FFC4_rtc"
+   ],
+   "nDates": 2,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "S1",
+   "band": "C",
+   "date": "2018-10",
+   "pol": "VV",
+   "orbit": 130,
+   "direction": "A",
+   "product": "sentinel-1-rtc (Planetary Computer)",
+   "file": "s1/201810_VV.png",
+   "scenes": [
+    "S1A_IW_GRDH_1SDV_20181005T142422_20181005T142447_024002_029F53_rtc",
+    "S1A_IW_GRDH_1SDV_20181005T142447_20181005T142512_024002_029F53_rtc",
+    "S1A_IW_GRDH_1SDV_20181017T142423_20181017T142448_024177_02A50B_rtc",
+    "S1A_IW_GRDH_1SDV_20181017T142448_20181017T142513_024177_02A50B_rtc",
+    "S1A_IW_GRDH_1SDV_20181029T142422_20181029T142447_024352_02AAAA_rtc",
+    "S1A_IW_GRDH_1SDV_20181029T142447_20181029T142512_024352_02AAAA_rtc"
+   ],
+   "nDates": 3,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "S1",
+   "band": "C",
+   "date": "2019-10",
+   "pol": "VV",
+   "orbit": 130,
+   "direction": "A",
+   "product": "sentinel-1-rtc (Planetary Computer)",
+   "file": "s1/201910_VV.png",
+   "scenes": [
+    "S1A_IW_GRDH_1SDV_20191012T142429_20191012T142454_029427_0358DC_rtc",
+    "S1A_IW_GRDH_1SDV_20191012T142454_20191012T142519_029427_0358DC_rtc",
+    "S1A_IW_GRDH_1SDV_20191024T142429_20191024T142454_029602_035EDE_rtc",
+    "S1A_IW_GRDH_1SDV_20191024T142454_20191024T142519_029602_035EDE_rtc"
+   ],
+   "nDates": 2,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "S1",
+   "band": "C",
+   "date": "2020-10",
+   "pol": "VV",
+   "orbit": 130,
+   "direction": "A",
+   "product": "sentinel-1-rtc (Planetary Computer)",
+   "file": "s1/202010_VV.png",
+   "scenes": [
+    "S1A_IW_GRDH_1SDV_20201006T142435_20201006T142500_034677_040A05_rtc",
+    "S1A_IW_GRDH_1SDV_20201006T142500_20201006T142525_034677_040A05_rtc",
+    "S1A_IW_GRDH_1SDV_20201018T142435_20201018T142500_034852_04102A_rtc",
+    "S1A_IW_GRDH_1SDV_20201018T142500_20201018T142525_034852_04102A_rtc",
+    "S1A_IW_GRDH_1SDV_20201030T142435_20201030T142500_035027_041614_rtc",
+    "S1A_IW_GRDH_1SDV_20201030T142500_20201030T142525_035027_041614_rtc"
+   ],
+   "nDates": 3,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "S1",
+   "band": "C",
+   "date": "2021-10",
+   "pol": "VV",
+   "orbit": 130,
+   "direction": "A",
+   "product": "sentinel-1-rtc (Planetary Computer)",
+   "file": "s1/202110_VV.png",
+   "scenes": [
+    "S1A_IW_GRDH_1SDV_20211001T142441_20211001T142506_039927_04B994_rtc",
+    "S1A_IW_GRDH_1SDV_20211001T142506_20211001T142531_039927_04B994_rtc",
+    "S1A_IW_GRDH_1SDV_20211013T142441_20211013T142506_040102_04BFA9_rtc",
+    "S1A_IW_GRDH_1SDV_20211013T142506_20211013T142531_040102_04BFA9_rtc",
+    "S1A_IW_GRDH_1SDV_20211025T142441_20211025T142506_040277_04C5BE_rtc",
+    "S1A_IW_GRDH_1SDV_20211025T142506_20211025T142531_040277_04C5BE_rtc",
+    "S1B_IW_GRDH_1SDV_20211007T142415_20211007T142440_029031_0376D4_rtc"
+   ],
+   "nDates": 4,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "S1",
+   "band": "C",
+   "date": "2022-10",
+   "pol": "VV",
+   "orbit": 130,
+   "direction": "A",
+   "product": "sentinel-1-rtc (Planetary Computer)",
+   "file": "s1/202210_VV.png",
+   "scenes": [
+    "S1A_IW_GRDH_1SDV_20221008T142447_20221008T142512_045352_056C2B_rtc",
+    "S1A_IW_GRDH_1SDV_20221008T142512_20221008T142537_045352_056C2B_rtc"
+   ],
+   "nDates": 1,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "S1",
+   "band": "C",
+   "date": "2023-10",
+   "pol": "VV",
+   "orbit": 130,
+   "direction": "A",
+   "product": "sentinel-1-rtc (Planetary Computer)",
+   "file": "s1/202310_VV.png",
+   "scenes": [
+    "S1A_IW_GRDH_1SDV_20231003T142452_20231003T142517_050602_061891_rtc",
+    "S1A_IW_GRDH_1SDV_20231003T142517_20231003T142542_050602_061891_rtc",
+    "S1A_IW_GRDH_1SDV_20231015T142452_20231015T142517_050777_061E94_rtc",
+    "S1A_IW_GRDH_1SDV_20231015T142517_20231015T142542_050777_061E94_rtc",
+    "S1A_IW_GRDH_1SDV_20231027T142452_20231027T142517_050952_062480_rtc",
+    "S1A_IW_GRDH_1SDV_20231027T142517_20231027T142542_050952_062480_rtc"
+   ],
+   "nDates": 3,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "S1",
+   "band": "C",
+   "date": "2024-10",
+   "pol": "VV",
+   "orbit": 130,
+   "direction": "A",
+   "product": "sentinel-1-rtc (Planetary Computer)",
+   "file": "s1/202410_VV.png",
+   "scenes": [
+    "S1A_IW_GRDH_1SDV_20241009T142449_20241009T142514_056027_06DA56_rtc",
+    "S1A_IW_GRDH_1SDV_20241009T142514_20241009T142539_056027_06DA56_rtc",
+    "S1A_IW_GRDH_1SDV_20241021T142448_20241021T142513_056202_06E148_rtc",
+    "S1A_IW_GRDH_1SDV_20241021T142513_20241021T142538_056202_06E148_rtc"
+   ],
+   "nDates": 2,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "S1",
+   "band": "C",
+   "date": "2025-10",
+   "pol": "VV",
+   "orbit": 130,
+   "direction": "A",
+   "product": "sentinel-1-rtc (Planetary Computer)",
+   "file": "s1/202510_VV.png",
+   "scenes": [
+    "S1A_IW_GRDH_1SDV_20251004T142438_20251004T142503_061277_07A4D4_rtc",
+    "S1A_IW_GRDH_1SDV_20251004T142503_20251004T142528_061277_07A4D4_rtc",
+    "S1A_IW_GRDH_1SDV_20251016T142439_20251016T142504_061452_07ABDD_rtc",
+    "S1A_IW_GRDH_1SDV_20251016T142504_20251016T142529_061452_07ABDD_rtc",
+    "S1C_IW_GRDH_1SDV_20251010T142350_20251010T142419_004501_008E93_rtc",
+    "S1C_IW_GRDH_1SDV_20251022T142350_20251022T142419_004676_0093DB_rtc"
+   ],
+   "nDates": 4,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "S1",
+   "band": "C",
+   "date": "2026-10",
+   "pol": "VV",
+   "orbit": 130,
+   "direction": "A",
+   "product": "sentinel-1-rtc (Planetary Computer)",
+   "file": "s1/202610_VV.png",
+   "scenes": [
+    "S1C_IW_GRDH_1SDV_20261012T142352_20261012T142422_009853_013A36_rtc",
+    "S1C_IW_GRDH_1SDV_20261024T142351_20261024T142421_010028_014031_rtc",
+    "S1D_IW_GRDH_1SDV_20261006T142351_20261006T142416_004896_00936C_rtc",
+    "S1D_IW_GRDH_1SDV_20261006T142416_20261006T142441_004896_00936C_rtc",
+    "S1D_IW_GRDH_1SDV_20261018T142351_20261018T142416_005071_009981_rtc",
+    "S1D_IW_GRDH_1SDV_20261018T142416_20261018T142441_005071_009981_rtc"
+   ],
+   "nDates": 4,
+   "validPct": 100.0
   }
  ]
 }
