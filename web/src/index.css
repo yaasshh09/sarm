@@ -108,7 +108,7 @@ a { color: #8cc8ff; }
 .intro h2 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 1.4rem 0 0.4rem; }
 .kicker { margin: 0; color: var(--accent); font-size: 0.8rem; letter-spacing: 0.04em; }
 .lede { font-size: 1.05rem; color: #d5dae0; margin: 0 0 1rem; }
-.picks { display: grid; gap: 0.5rem; }
+.picks { display: grid; grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); gap: 0.5rem; }
 .picks button, .btn {
   display: block; text-align: left; padding: 0.7rem 0.9rem; border-radius: 10px; text-decoration: none;
   background: var(--accent); color: #111; border: 1px solid var(--accent); font-weight: 600;
