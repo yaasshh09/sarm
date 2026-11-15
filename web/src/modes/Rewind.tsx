@@ -147,11 +147,12 @@ export default function Rewind({ initialSite, initialView }: { initialSite?: str
     return () => { stale = true }
   }, [m, ready, left?.file, right?.file, view, swipe]) // eslint-disable-line react-hooks/exhaustive-deps
 
+  // The area medians for the two-radar card, only once someone opens that view.
   useEffect(() => {
-    if (!m || !s1Last || !nisarNear) return
+    if (view !== 'cvl' || !m || !s1Last || !nisarNear || cvl) return
     Promise.all([loadRaster(m.id, s1Last.file), loadRaster(m.id, nisarNear.file)])
       .then(([a, b]) => setCvl({ s1: medianDb(a), nisar: medianDb(b) })).catch((e) => setError(e.message))
-  }, [m, s1Last, nisarNear])
+  }, [view, m, s1Last, nisarNear, cvl])
 
   useSplitHandle(mapRef, m?.cornersLngLat, ready && view !== 'auto' && !!left, swipe, setSwipe)
   useArrowSteps((d) => {
@@ -165,6 +166,14 @@ export default function Rewind({ initialSite, initialView }: { initialSite?: str
     const id = setInterval(() => setT((cur) => stops.find((s) => s > cur) ?? stops[0]), 700)
     return () => clearInterval(id)
   }, [playing, stops])
+
+  // While playing, fetch what the next stop will show, so the first run through does not stutter.
+  useEffect(() => {
+    if (!playing || !m) return
+    const nx = stops.find((s) => s > t) ?? stops[0]
+    const want = view === 'auto' ? [radarAt(nx) ?? opticalAt(nx)] : [radarAt(nx), opticalAt(nx)]
+    for (const l of want) if (l) (l.sensor === 'Landsat' ? loadRGBA(m.id, l.file) : loadRaster(m.id, l.file)).catch(() => {}) // a miss just loads on demand
+  }, [playing, t]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const pct = (tt: number) => `${((tt - T0) / (T1 - T0)) * 100}%`
   const notes = [view !== 'auto' ? left : undefined, right].map((l) => l?.note).filter((n): n is string => !!n)
