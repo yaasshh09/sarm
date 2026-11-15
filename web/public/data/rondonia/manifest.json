@@ -1,0 +1,668 @@
+{
+ "id": "rondonia",
+ "name": "Rondonia deforestation front",
+ "bounds3857": [
+  -7033406.02,
+  -1082692.41,
+  -6992849.82,
+  -1042136.21
+ ],
+ "cornersLngLat": [
+  [
+   -63.182161,
+   -9.32029
+  ],
+  [
+   -62.817839,
+   -9.32029
+  ],
+  [
+   -62.817839,
+   -9.679616
+  ],
+  [
+   -63.182161,
+   -9.679616
+  ]
+ ],
+ "shape": [
+  1200,
+  1200
+ ],
+ "db": {
+  "min": -35.0,
+  "max": 5.0
+ },
+ "layers": [
+  {
+   "sensor": "NISAR",
+   "band": "L",
+   "date": "2026-06-25",
+   "pol": "HH",
+   "tier": "PROVISIONAL",
+   "track": 161,
+   "frame": 173,
+   "direction": "A",
+   "bandwidthMHz": "20+5",
+   "file": "nisar/20260625_HH.png",
+   "granule": "NISAR_L2_PR_GCOV_023_161_A_173_2005_DHDH_A_20260625T100121_20260625T100155_P05023_N_F_J_001",
+   "incidenceDeg": 36.3,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "NISAR",
+   "band": "L",
+   "date": "2026-06-25",
+   "pol": "HV",
+   "tier": "PROVISIONAL",
+   "track": 161,
+   "frame": 173,
+   "direction": "A",
+   "bandwidthMHz": "20+5",
+   "file": "nisar/20260625_HV.png",
+   "granule": "NISAR_L2_PR_GCOV_023_161_A_173_2005_DHDH_A_20260625T100121_20260625T100155_P05023_N_F_J_001",
+   "incidenceDeg": 36.3,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "NISAR",
+   "band": "L",
+   "date": "2026-07-07",
+   "pol": "HH",
+   "tier": "PROVISIONAL",
+   "track": 161,
+   "frame": 173,
+   "direction": "A",
+   "bandwidthMHz": "20+5",
+   "file": "nisar/20260707_HH.png",
+   "granule": "NISAR_L2_PR_GCOV_024_161_A_173_2005_DHDH_A_20260707T100120_20260707T100155_P05023_N_F_J_001",
+   "incidenceDeg": 36.3,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "NISAR",
+   "band": "L",
+   "date": "2026-07-07",
+   "pol": "HV",
+   "tier": "PROVISIONAL",
+   "track": 161,
+   "frame": 173,
+   "direction": "A",
+   "bandwidthMHz": "20+5",
+   "file": "nisar/20260707_HV.png",
+   "granule": "NISAR_L2_PR_GCOV_024_161_A_173_2005_DHDH_A_20260707T100120_20260707T100155_P05023_N_F_J_001",
+   "incidenceDeg": 36.3,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "NISAR",
+   "band": "L",
+   "date": "2026-07-19",
+   "pol": "HH",
+   "tier": "PROVISIONAL",
+   "track": 161,
+   "frame": 173,
+   "direction": "A",
+   "bandwidthMHz": "20+5",
+   "file": "nisar/20260719_HH.png",
+   "granule": "NISAR_L2_PR_GCOV_025_161_A_173_2005_DHDH_A_20260719T100120_20260719T100156_P05023_N_F_J_001",
+   "incidenceDeg": 36.3,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "NISAR",
+   "band": "L",
+   "date": "2026-07-19",
+   "pol": "HV",
+   "tier": "PROVISIONAL",
+   "track": 161,
+   "frame": 173,
+   "direction": "A",
+   "bandwidthMHz": "20+5",
+   "file": "nisar/20260719_HV.png",
+   "granule": "NISAR_L2_PR_GCOV_025_161_A_173_2005_DHDH_A_20260719T100120_20260719T100156_P05023_N_F_J_001",
+   "incidenceDeg": 36.3,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "NISAR",
+   "band": "L",
+   "date": "2026-08-24",
+   "pol": "HH",
+   "tier": "PROVISIONAL",
+   "track": 161,
+   "frame": 173,
+   "direction": "A",
+   "bandwidthMHz": "20+5",
+   "file": "nisar/20260824_HH.png",
+   "granule": "NISAR_L2_PR_GCOV_028_161_A_173_2005_DHDH_A_20260824T100118_20260824T100152_P05023_N_F_J_001",
+   "incidenceDeg": 36.3,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "NISAR",
+   "band": "L",
+   "date": "2026-08-24",
+   "pol": "HV",
+   "tier": "PROVISIONAL",
+   "track": 161,
+   "frame": 173,
+   "direction": "A",
+   "bandwidthMHz": "20+5",
+   "file": "nisar/20260824_HV.png",
+   "granule": "NISAR_L2_PR_GCOV_028_161_A_173_2005_DHDH_A_20260824T100118_20260824T100152_P05023_N_F_J_001",
+   "incidenceDeg": 36.3,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "NISAR",
+   "band": "L",
+   "date": "2026-09-05",
+   "pol": "HH",
+   "tier": "PROVISIONAL",
+   "track": 161,
+   "frame": 173,
+   "direction": "A",
+   "bandwidthMHz": "20+5",
+   "file": "nisar/20260905_HH.png",
+   "granule": "NISAR_L2_PR_GCOV_029_161_A_173_2005_DHDH_A_20260905T100117_20260905T100152_P05023_N_F_J_002",
+   "incidenceDeg": 36.3,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "NISAR",
+   "band": "L",
+   "date": "2026-09-05",
+   "pol": "HV",
+   "tier": "PROVISIONAL",
+   "track": 161,
+   "frame": 173,
+   "direction": "A",
+   "bandwidthMHz": "20+5",
+   "file": "nisar/20260905_HV.png",
+   "granule": "NISAR_L2_PR_GCOV_029_161_A_173_2005_DHDH_A_20260905T100117_20260905T100152_P05023_N_F_J_002",
+   "incidenceDeg": 36.3,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "NISAR",
+   "band": "L",
+   "date": "2026-09-17",
+   "pol": "HH",
+   "tier": "PROVISIONAL",
+   "track": 161,
+   "frame": 173,
+   "direction": "A",
+   "bandwidthMHz": "20+5",
+   "file": "nisar/20260917_HH.png",
+   "granule": "NISAR_L2_PR_GCOV_030_161_A_173_2005_DHDH_A_20260917T100117_20260917T100152_P05023_N_F_J_001",
+   "incidenceDeg": 36.3,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "NISAR",
+   "band": "L",
+   "date": "2026-09-17",
+   "pol": "HV",
+   "tier": "PROVISIONAL",
+   "track": 161,
+   "frame": 173,
+   "direction": "A",
+   "bandwidthMHz": "20+5",
+   "file": "nisar/20260917_HV.png",
+   "granule": "NISAR_L2_PR_GCOV_030_161_A_173_2005_DHDH_A_20260917T100117_20260917T100152_P05023_N_F_J_001",
+   "incidenceDeg": 36.3,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "NISAR",
+   "band": "L",
+   "date": "2026-09-29",
+   "pol": "HH",
+   "tier": "PROVISIONAL",
+   "track": 161,
+   "frame": 173,
+   "direction": "A",
+   "bandwidthMHz": "20+5",
+   "file": "nisar/20260929_HH.png",
+   "granule": "NISAR_L2_PR_GCOV_031_161_A_173_2005_DHDH_A_20260929T100117_20260929T100152_P05023_N_F_J_001",
+   "incidenceDeg": 36.3,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "NISAR",
+   "band": "L",
+   "date": "2026-09-29",
+   "pol": "HV",
+   "tier": "PROVISIONAL",
+   "track": 161,
+   "frame": 173,
+   "direction": "A",
+   "bandwidthMHz": "20+5",
+   "file": "nisar/20260929_HV.png",
+   "granule": "NISAR_L2_PR_GCOV_031_161_A_173_2005_DHDH_A_20260929T100117_20260929T100152_P05023_N_F_J_001",
+   "incidenceDeg": 36.3,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "NISAR",
+   "band": "L",
+   "date": "2026-10-11",
+   "pol": "HH",
+   "tier": "PROVISIONAL",
+   "track": 161,
+   "frame": 173,
+   "direction": "A",
+   "bandwidthMHz": "20+5",
+   "file": "nisar/20261011_HH.png",
+   "granule": "NISAR_L2_PR_GCOV_032_161_A_173_2005_DHDH_A_20261011T100117_20261011T100152_P05023_N_F_J_001",
+   "incidenceDeg": 36.3,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "NISAR",
+   "band": "L",
+   "date": "2026-10-11",
+   "pol": "HV",
+   "tier": "PROVISIONAL",
+   "track": 161,
+   "frame": 173,
+   "direction": "A",
+   "bandwidthMHz": "20+5",
+   "file": "nisar/20261011_HV.png",
+   "granule": "NISAR_L2_PR_GCOV_032_161_A_173_2005_DHDH_A_20261011T100117_20261011T100152_P05023_N_F_J_001",
+   "incidenceDeg": 36.3,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "NISAR",
+   "band": "L",
+   "date": "2026-10-23",
+   "pol": "HH",
+   "tier": "VALIDATED",
+   "track": 161,
+   "frame": 173,
+   "direction": "A",
+   "bandwidthMHz": "20+5",
+   "file": "nisar/20261023_HH.png",
+   "granule": "NISAR_L2_PR_GCOV_033_161_A_173_2005_DHDH_A_20261023T100117_20261023T100152_P05036_N_F_J_001",
+   "incidenceDeg": 36.3,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "NISAR",
+   "band": "L",
+   "date": "2026-10-23",
+   "pol": "HV",
+   "tier": "VALIDATED",
+   "track": 161,
+   "frame": 173,
+   "direction": "A",
+   "bandwidthMHz": "20+5",
+   "file": "nisar/20261023_HV.png",
+   "granule": "NISAR_L2_PR_GCOV_033_161_A_173_2005_DHDH_A_20261023T100117_20261023T100152_P05036_N_F_J_001",
+   "incidenceDeg": 36.3,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "S1",
+   "band": "C",
+   "date": "2017-07",
+   "pol": "VV",
+   "orbit": 83,
+   "direction": "D",
+   "product": "sentinel-1-rtc (Planetary Computer)",
+   "file": "s1/201707_VV.png",
+   "scenes": [
+    "S1A_IW_GRDH_1SDV_20170703T094903_20170703T094928_017305_01CE43_rtc",
+    "S1A_IW_GRDH_1SDV_20170715T094904_20170715T094929_017480_01D38A_rtc",
+    "S1A_IW_GRDH_1SDV_20170727T094905_20170727T094930_017655_01D8E2_rtc"
+   ],
+   "nDates": 3,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "S1",
+   "band": "C",
+   "date": "2018-07",
+   "pol": "VV",
+   "orbit": 83,
+   "direction": "D",
+   "product": "sentinel-1-rtc (Planetary Computer)",
+   "file": "s1/201807_VV.png",
+   "scenes": [
+    "S1A_IW_GRDH_1SDV_20180710T094910_20180710T094935_022730_0276A0_rtc",
+    "S1A_IW_GRDH_1SDV_20180722T094911_20180722T094936_022905_027C0D_rtc"
+   ],
+   "nDates": 2,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "S1",
+   "band": "C",
+   "date": "2019-07",
+   "pol": "VV",
+   "orbit": 83,
+   "direction": "D",
+   "product": "sentinel-1-rtc (Planetary Computer)",
+   "file": "s1/201907_VV.png",
+   "scenes": [
+    "S1A_IW_GRDH_1SDV_20190705T094916_20190705T094941_027980_0328D2_rtc",
+    "S1A_IW_GRDH_1SDV_20190717T094917_20190717T094942_028155_032E20_rtc",
+    "S1B_IW_GRDH_1SDV_20190711T094839_20190711T094904_017084_020251_rtc",
+    "S1B_IW_GRDH_1SDV_20190723T094840_20190723T094905_017259_020769_rtc"
+   ],
+   "nDates": 4,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "S1",
+   "band": "C",
+   "date": "2020-07",
+   "pol": "VV",
+   "orbit": 83,
+   "direction": "D",
+   "product": "sentinel-1-rtc (Planetary Computer)",
+   "file": "s1/202007_VV.png",
+   "scenes": [
+    "S1A_IW_GRDH_1SDV_20200711T094923_20200711T094948_033405_03DEDF_rtc",
+    "S1A_IW_GRDH_1SDV_20200723T094924_20200723T094949_033580_03E440_rtc",
+    "S1B_IW_GRDH_1SDV_20200705T094845_20200705T094910_022334_02A649_rtc",
+    "S1B_IW_GRDH_1SDV_20200717T094846_20200717T094911_022509_02AB96_rtc"
+   ],
+   "nDates": 4,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "S1",
+   "band": "C",
+   "date": "2021-07",
+   "pol": "VV",
+   "orbit": 83,
+   "direction": "D",
+   "product": "sentinel-1-rtc (Planetary Computer)",
+   "file": "s1/202107_VV.png",
+   "scenes": [
+    "S1A_IW_GRDH_1SDV_20210706T094929_20210706T094954_038655_048FBB_rtc",
+    "S1A_IW_GRDH_1SDV_20210718T094929_20210718T094954_038830_0494F9_rtc",
+    "S1B_IW_GRDH_1SDV_20210712T094851_20210712T094916_027759_03501E_rtc",
+    "S1B_IW_GRDH_1SDV_20210724T094852_20210724T094917_027934_03554E_rtc"
+   ],
+   "nDates": 4,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "S1",
+   "band": "C",
+   "date": "2022-07",
+   "pol": "VV",
+   "orbit": 83,
+   "direction": "D",
+   "product": "sentinel-1-rtc (Planetary Computer)",
+   "file": "s1/202207_VV.png",
+   "scenes": [
+    "S1A_IW_GRDH_1SDV_20220701T094934_20220701T094959_043905_053DC7_rtc",
+    "S1A_IW_GRDH_1SDV_20220713T094935_20220713T095000_044080_0542FF_rtc",
+    "S1A_IW_GRDH_1SDV_20220725T094936_20220725T095001_044255_054837_rtc"
+   ],
+   "nDates": 3,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "S1",
+   "band": "C",
+   "date": "2023-07",
+   "pol": "VV",
+   "orbit": 83,
+   "direction": "D",
+   "product": "sentinel-1-rtc (Planetary Computer)",
+   "file": "s1/202307_VV.png",
+   "scenes": [
+    "S1A_IW_GRDH_1SDV_20230708T094940_20230708T095005_049330_05EE9A_rtc",
+    "S1A_IW_GRDH_1SDV_20230720T094940_20230720T095005_049505_05F3ED_rtc"
+   ],
+   "nDates": 2,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "S1",
+   "band": "C",
+   "date": "2024-07",
+   "pol": "VV",
+   "orbit": 83,
+   "direction": "D",
+   "product": "sentinel-1-rtc (Planetary Computer)",
+   "file": "s1/202407_VV.png",
+   "scenes": [
+    "S1A_IW_GRDH_1SDV_20240702T094949_20240702T095014_054580_06A4B7_rtc",
+    "S1A_IW_GRDH_1SDV_20240726T094948_20240726T095013_054930_06B0E1_rtc"
+   ],
+   "nDates": 2,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "S1",
+   "band": "C",
+   "date": "2025-07",
+   "pol": "VV",
+   "orbit": 83,
+   "direction": "D",
+   "product": "sentinel-1-rtc (Planetary Computer)",
+   "file": "s1/202507_VV.png",
+   "scenes": [
+    "S1A_IW_GRDH_1SDV_20250709T094940_20250709T095005_060005_rtc",
+    "S1A_IW_GRDH_1SDV_20250721T094940_20250721T095005_060180_rtc",
+    "S1C_IW_GRDH_1SDV_20250703T094831_20250703T094856_003054_rtc",
+    "S1C_IW_GRDH_1SDV_20250727T094832_20250727T094857_003404_rtc"
+   ],
+   "nDates": 4,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "S1",
+   "band": "C",
+   "date": "2026-07",
+   "pol": "VV",
+   "orbit": 83,
+   "direction": "D",
+   "product": "sentinel-1-rtc (Planetary Computer)",
+   "file": "s1/202607_VV.png",
+   "scenes": [
+    "S1D_IW_GRDH_1SDV_20260711T094834_20260711T094859_003624_00674D_rtc",
+    "S1D_IW_GRDH_1SDV_20260723T094835_20260723T094900_003799_006D50_rtc"
+   ],
+   "nDates": 2,
+   "validPct": 100.0
+  },
+  {
+   "sensor": "Landsat",
+   "date": "1985",
+   "file": "optical/1985.jpg",
+   "platforms": [
+    "landsat-5"
+   ],
+   "scenes": [
+    "LT05_L2SP_231067_19860810_02_T1",
+    "LT05_L2SP_231066_19860810_02_T1",
+    "LT05_L2SP_232067_19860716_02_T1",
+    "LT05_L2SP_232066_19860716_02_T1",
+    "LT05_L2SP_232067_19850814_02_T1",
+    "LT05_L2SP_232066_19850814_02_T1",
+    "LT05_L2SP_231066_19850807_02_T1",
+    "LT05_L2SP_231066_19850722_02_T1"
+   ],
+   "validPct": 100.0,
+   "stretchMax": 0.14,
+   "window": "1984/1986"
+  },
+  {
+   "sensor": "Landsat",
+   "date": "1990",
+   "file": "optical/1990.jpg",
+   "platforms": [
+    "landsat-5"
+   ],
+   "scenes": [
+    "LT05_L2SP_232067_19910815_02_T1",
+    "LT05_L2SP_232066_19910815_02_T1",
+    "LT05_L2SP_231067_19910808_02_T1",
+    "LT05_L2SP_232066_19910730_02_T1",
+    "LT05_L2SP_231067_19910707_02_T1",
+    "LT05_L2SP_232067_19910628_02_T1",
+    "LT05_L2SP_232067_19910612_02_T1",
+    "LT05_L2SP_231067_19900720_02_T1"
+   ],
+   "validPct": 100.0,
+   "stretchMax": 0.14,
+   "window": "1989/1991"
+  },
+  {
+   "sensor": "Landsat",
+   "date": "1995",
+   "file": "optical/1995.jpg",
+   "platforms": [
+    "landsat-5"
+   ],
+   "scenes": [
+    "LT05_L2SP_231067_19960720_02_T1",
+    "LT05_L2SP_232067_19960711_02_T1",
+    "LT05_L2SP_231067_19960704_02_T1",
+    "LT05_L2SP_231066_19960704_02_T1",
+    "LT05_L2SP_232067_19960625_02_T1",
+    "LT05_L2SP_232066_19960625_02_T1",
+    "LT05_L2SP_231066_19960618_02_T1",
+    "LT05_L2SP_232067_19960609_02_T1"
+   ],
+   "validPct": 100.0,
+   "stretchMax": 0.14,
+   "window": "1994/1996"
+  },
+  {
+   "sensor": "Landsat",
+   "date": "2000",
+   "file": "optical/2000.jpg",
+   "platforms": [
+    "landsat-5"
+   ],
+   "scenes": [
+    "LT05_L2SP_232067_20010826_02_T1",
+    "LT05_L2SP_231067_20010819_02_T1",
+    "LT05_L2SP_231066_20010819_02_T1",
+    "LT05_L2SP_232067_20010810_02_T1",
+    "LT05_L2SP_232066_20010810_02_T1",
+    "LT05_L2SP_231067_20010803_02_T1",
+    "LT05_L2SP_231066_20010803_02_T1",
+    "LT05_L2SP_232067_20000823_02_T1"
+   ],
+   "validPct": 100.0,
+   "stretchMax": 0.14,
+   "window": "1999/2001"
+  },
+  {
+   "sensor": "Landsat",
+   "date": "2005",
+   "file": "optical/2005.jpg",
+   "platforms": [
+    "landsat-5"
+   ],
+   "scenes": [
+    "LT05_L2SP_232066_20060808_02_T1",
+    "LT05_L2SP_232067_20060723_02_T1",
+    "LT05_L2SP_232066_20060723_02_T1",
+    "LT05_L2SP_231067_20060716_02_T1",
+    "LT05_L2SP_231066_20060716_02_T1",
+    "LT05_L2SP_231067_20060630_02_T1",
+    "LT05_L2SP_231066_20060630_02_T1",
+    "LT05_L2SP_232067_20060621_02_T1"
+   ],
+   "validPct": 100.0,
+   "stretchMax": 0.14,
+   "window": "2004/2006"
+  },
+  {
+   "sensor": "Landsat",
+   "date": "2010",
+   "file": "optical/2010.jpg",
+   "platforms": [
+    "landsat-5"
+   ],
+   "scenes": [
+    "LT05_L2SP_232067_20110806_02_T1",
+    "LT05_L2SP_232066_20110806_02_T1",
+    "LT05_L2SP_231067_20110730_02_T1",
+    "LT05_L2SP_231066_20110730_02_T1",
+    "LT05_L2SP_232066_20110721_02_T1",
+    "LT05_L2SP_232067_20110705_02_T1",
+    "LT05_L2SP_232066_20110705_02_T1",
+    "LT05_L2SP_231066_20110612_02_T1"
+   ],
+   "validPct": 100.0,
+   "stretchMax": 0.14,
+   "window": "2009/2011"
+  },
+  {
+   "sensor": "Landsat",
+   "date": "2015",
+   "file": "optical/2015.jpg",
+   "platforms": [
+    "landsat-8"
+   ],
+   "scenes": [
+    "LC08_L2SP_231067_20160812_02_T1",
+    "LC08_L2SP_232067_20160803_02_T1",
+    "LC08_L2SP_232066_20160803_02_T1",
+    "LC08_L2SP_231067_20160727_02_T1",
+    "LC08_L2SP_232067_20160718_02_T1",
+    "LC08_L2SP_232066_20160718_02_T1",
+    "LC08_L2SP_231067_20160711_02_T1",
+    "LC08_L2SP_232066_20160702_02_T1"
+   ],
+   "validPct": 100.0,
+   "stretchMax": 0.14,
+   "window": "2014/2016"
+  },
+  {
+   "sensor": "Landsat",
+   "date": "2020",
+   "file": "optical/2020.jpg",
+   "platforms": [
+    "landsat-8"
+   ],
+   "scenes": [
+    "LC08_L2SP_231067_20210810_02_T1",
+    "LC08_L2SP_231067_20210725_02_T1",
+    "LC08_L2SP_232066_20210630_02_T1",
+    "LC08_L2SP_231067_20200807_02_T1",
+    "LC08_L2SP_232067_20200729_02_T1",
+    "LC08_L2SP_232066_20200729_02_T1",
+    "LC08_L2SP_231067_20200722_02_T1",
+    "LC08_L2SP_231066_20200620_02_T1"
+   ],
+   "validPct": 100.0,
+   "stretchMax": 0.14,
+   "window": "2019/2021"
+  },
+  {
+   "sensor": "Landsat",
+   "date": "2025",
+   "file": "optical/2025.jpg",
+   "platforms": [
+    "landsat-8",
+    "landsat-9"
+   ],
+   "scenes": [
+    "LC09_L2SP_232067_20260823_02_T1",
+    "LC09_L2SP_232066_20260823_02_T1",
+    "LC09_L2SP_231067_20260816_02_T1",
+    "LC08_L2SP_231066_20260723_02_T1",
+    "LC09_L2SP_232067_20260604_02_T1",
+    "LC09_L2SP_231067_20250813_02_T1",
+    "LC08_L2SP_232067_20250812_02_T1",
+    "LC08_L2SP_232066_20250812_02_T1"
+   ],
+   "validPct": 100.0,
+   "stretchMax": 0.14,
+   "window": "2024/2026"
+  }
+ ]
+}

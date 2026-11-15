@@ -8,7 +8,7 @@ Live: https://yaasshh09.github.io/sarm/
 - **Explore**: real NISAR GCOV backscatter over chosen sites, with change maps and pixel time series.
 - **Rewind**: Sentinel-1 C-band (2015+) and Landsat optical (1985+) for longer context, always labelled as other sensors.
 
-Data: NISAR L2 GCOV via ASF DAAC, Sentinel-1 RTC and Landsat C2 L2 via Microsoft Planetary Computer. Sites: Abu Dhabi coast and the Kosi River in Bihar. Full plan in [PLAN.md](PLAN.md). Coverage evidence in [pipeline/coverage_report.md](pipeline/coverage_report.md).
+Data: NISAR L2 GCOV via ASF DAAC, Sentinel-1 RTC and Landsat C2 L2 via Microsoft Planetary Computer. Sites: the Abu Dhabi coast (land reclamation), the Kosi River in Bihar (monsoon floods), the Rondônia forest edge in Brazil (deforestation), Lake Mead (drought) and Kīlauea in Hawaiʻi (lava flows). Full plan in [PLAN.md](PLAN.md). Coverage evidence in [pipeline/coverage_report.md](pipeline/coverage_report.md).
 
 ## Develop
 

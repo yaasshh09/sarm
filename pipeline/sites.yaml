@@ -44,10 +44,38 @@ sites:
     products: [GCOV, GUNW]
     stack: {track: 126, dir: D, frame: 83, bw: "40+5"}  # GUNW 2026-06-22 to 07-04 spans the event
 
-  - id: amazon-front
+  # Survey 2026-11-15 for the three sites below: NISAR stack and S1 orbit are the best full-AOI options found.
+  - id: rondonia
     name: Rondonia deforestation front
     center: [-9.5, -63.0]
     size_km: 40
     change_type: forest loss (HV drop)
-    status: backup
+    status: primary
     products: [GCOV]
+    stack: {track: 161, dir: A, frame: 173, bw: "20+5"}  # 9 of 9 usable, Jun 25 to Oct 23
+    # Dry season, when clearing and burning happen. Orbit 83 D is full-AOI every July 2017 to 2026 (none in 2015 or 2016).
+    s1: {orbit: 83, dir: D, month: 7}
+    optical: {months: [6, 7, 8]}  # dry season, fewest clouds
+
+  - id: lake-mead
+    name: Lake Mead
+    center: [36.15, -114.65]
+    size_km: 40
+    change_type: reservoir drawdown in the megadrought (Boulder City in the SW corner; Las Vegas is just west of the box)
+    status: primary
+    products: [GCOV]
+    stack: {track: 85, dir: D, frame: 70, bw: "40+5"}  # 11 of 11 usable, Jun 20 to Oct 30
+    s1: {orbit: 173, dir: D, month: 7}  # full-AOI every July 2015 to 2026
+    optical: {months: [6, 7, 8]}
+
+  # Box spans Halemaumau (summit eruptions since Dec 2024) to Kapoho (buried by the 2018 lower East Rift flows).
+  - id: kilauea
+    name: Kilauea volcano
+    center: [19.40, -155.05]
+    size_km: 50
+    change_type: lava flows (1983 to 2018 East Rift, 2018 Kapoho, summit episodes since 2024)
+    status: primary
+    products: [GCOV]
+    stack: {track: 72, dir: D, frame: 79, bw: "40+5"}  # 10 of 11 usable, Jun 19 to Nov 10
+    s1: {orbit: 87, dir: D, month: 7}  # full-AOI every July 2015 to 2026
+    optical: {months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}  # trade wind clouds all year, so take the clearest scenes from any month
