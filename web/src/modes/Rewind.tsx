@@ -9,10 +9,10 @@ import { renderGray, type Stretch } from '../map/render'
 import { toDb } from '../map/change'
 
 import { SITES, rememberSite, siteOr } from '../sites'
+import { BASEMAP, labelsAbove } from '../map/basemap'
 
 maplibregl.setWorkerUrl(workerUrl)
 
-const BASEMAP = 'https://tiles.openfreemap.org/styles/dark'
 const T0 = monthOf('1985-01')
 const T1 = monthOf('2026-11')
 const CO_POL: Stretch = [-25, 0] // same stretch for S1 VV and NISAR HH so the two radars compare fairly
@@ -102,7 +102,7 @@ export default function Rewind({ initialSite }: { initialSite?: string }) {
     else {
       map.addSource('rw', { type: 'image', coordinates: m.cornersLngLat } as maplibregl.ImageSourceSpecification)
       map.addLayer({ id: 'rw', type: 'raster', source: 'rw', paint: { 'raster-fade-duration': 0 } },
-        map.getStyle().layers.find((l) => l.type === 'symbol')?.id)
+        labelsAbove(map))
     }
     const [tl, , br] = m.cornersLngLat
     map.fitBounds([tl, br], { padding: 30, duration: 0 })

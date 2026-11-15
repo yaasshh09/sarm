@@ -13,10 +13,10 @@ import { Chart } from '../ui/Chart'
 import { Timeline } from '../ui/Timeline'
 
 import { SITES, rememberSite, siteOr } from '../sites'
+import { BASEMAP, labelsAbove } from '../map/basemap'
 
 maplibregl.setWorkerUrl(workerUrl)
 
-const BASEMAP = 'https://tiles.openfreemap.org/styles/dark'
 const STRETCH: Record<P, Stretch> = { HH: [-25, 0], HV: [-32, -8] }
 const COLORS: Record<P, string> = { HH: '#f2a541', HV: '#4fc3c8' }
 
@@ -29,7 +29,7 @@ type Box = [number, number, number, number] // r0, c0, r1, c1
 const POL_HINT: Record<Pol, string> = {
   HH: 'HH sends and receives horizontally. Buildings and flooded trees light up through double bounce.',
   HV: 'HV is cross-polarized. It lights up vegetation volume like mangrove canopy and crops.',
-  RGB: 'Red is HH, green is HV, blue is HH minus HV. Urban reads pink to white, vegetation green, smooth water black.',
+  RGB: 'Red is HH, green is HV, blue is HH minus HV. Buildings read yellow to pink, vegetation green, smooth sand and calm water near black.',
 }
 const VIEW_HINT: Record<View, string> = {
   single: 'NISAR L-band radar backscatter for one date. Brighter means more energy came back to the satellite.',
@@ -102,7 +102,7 @@ export default function Explore({ initialSite }: { initialSite?: string }) {
   useEffect(() => {
     const map = mapRef.current
     if (!map || !ready || !m) return
-    const firstSymbol = map.getStyle().layers.find((l) => l.type === 'symbol')?.id
+    const firstSymbol = labelsAbove(map)
     for (const id of ['radar', 'overlay']) {
       const src = map.getSource(id) as ImageSource | undefined
       if (src) src.setCoordinates(m.cornersLngLat)
