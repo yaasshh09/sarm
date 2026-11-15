@@ -48,6 +48,7 @@ function infoOf(m: Manifest): Info {
 const span = (d: string[], f = (x: string) => x) => (d.length ? `${f(d[0])} to ${f(d.at(-1)!)}` : 'none')
 const month = (d: string) => monthLabel(monthOf(d))
 const years = (d: string[]) => new Set(d.map((x) => x.slice(0, 4))).size
+const THIS_YEAR = new Date().getFullYear()
 const HOME = { center: [40, 18] as [number, number], zoom: innerWidth < 700 ? 0.6 : 1.9 }
 
 /** Map padding that keeps the subject out from under the text panel (beside it on desktop, above it on phones). */
@@ -95,24 +96,12 @@ export default function Home() {
       new maplibregl.Marker({ element: el }).setLngLat(s.center).addTo(map)
     }
 
-    map.on('load', async () => {
+    map.on('load', () => {
       spin(); foldCredits(map)
+      // Only the small manifests up front; each radar picture loads when its site is picked.
       for (const s of SITES) {
-        try {
-          const i = infoOf(await loadManifest(s.id))
-          setInfo((o) => ({ ...o, [s.id]: i }))
-          const hv = i.shown && i.m.layers.find((l) => l.sensor === 'NISAR' && l.pol === 'HV' && l.date === i.shown!.date)
-          if (!i.shown || !hv) continue
-          // Drape the newest clean NISAR pass on the globe as an HH/HV color picture.
-          const [rows, cols] = i.m.shape
-          const img = new ImageData(cols, rows)
-          renderPolRGB(await loadRaster(s.id, i.shown.file), await loadRaster(s.id, hv.file), img.data)
-          map.addSource(s.id, { type: 'image', coordinates: i.m.cornersLngLat } as maplibregl.ImageSourceSpecification)
-          map.addLayer({ id: s.id, type: 'raster', source: s.id, paint: { 'raster-fade-duration': 0 } })
-          ;(map.getSource(s.id) as ImageSource).updateImage({ image: img })
-        } catch (e) {
-          setError(`I could not load ${s.name}: ${(e as Error).message}`)
-        }
+        loadManifest(s.id).then((m) => setInfo((o) => ({ ...o, [s.id]: infoOf(m) })))
+          .catch((e) => setError(`I could not load ${s.name}: ${e.message}`))
       }
     })
     return () => map.remove()
@@ -122,6 +111,23 @@ export default function Home() {
     const map = mapRef.current
     for (const s of SITES) if (map?.getLayer(s.id)) map.setLayoutProperty(s.id, 'visibility', radar ? 'visible' : 'none')
   }, [radar, info])
+
+  // Drape the picked site's newest clean NISAR pass on the globe as an HH/HV color picture, once.
+  const i0 = sel ? info[sel] : undefined
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map || !sel || !i0?.shown || map.getSource(sel)) return
+    const hv = i0.m.layers.find((l) => l.sensor === 'NISAR' && l.pol === 'HV' && l.date === i0.shown!.date)
+    if (!hv) return
+    map.addSource(sel, { type: 'image', coordinates: i0.m.cornersLngLat } as maplibregl.ImageSourceSpecification)
+    map.addLayer({ id: sel, type: 'raster', source: sel, layout: { visibility: radar ? 'visible' : 'none' }, paint: { 'raster-fade-duration': 0 } })
+    const [rows, cols] = i0.m.shape
+    Promise.all([loadRaster(sel, i0.shown.file), loadRaster(sel, hv.file)]).then(([a, b]) => {
+      const img = new ImageData(cols, rows)
+      renderPolRGB(a, b, img.data)
+      ;(map.getSource(sel) as ImageSource | undefined)?.updateImage({ image: img })
+    }).catch((e) => setError(`I could not load the radar picture: ${e.message}`))
+  }, [sel, i0]) // eslint-disable-line react-hooks/exhaustive-deps -- radar only sets the starting visibility
 
   // Fly to the picked site. The map's own padding keeps it clear of the panel; fitBounds padding adds to that.
   useEffect(() => {
@@ -190,7 +196,7 @@ export default function Home() {
                 </dl>
                 <div className="go">
                   <a className="btn" href={`#explore/${s.id}`}>Explore the NISAR data</a>
-                  <a className="btn ghost" href={`#rewind/${s.id}`}>{i.landsat.length ? `Rewind ${new Date().getFullYear() - +i.landsat[0].slice(0, 4)} years` : "Rewind"}</a>
+                  <a className="btn ghost" href={`#rewind/${s.id}`}>{i.landsat.length ? `Rewind ${THIS_YEAR - +i.landsat[0].slice(0, 4)} years` : "Rewind"}</a>
                 </div>
                 {i.shown && (
                   <div className="card">
