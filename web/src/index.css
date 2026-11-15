@@ -131,6 +131,8 @@ a { color: #8cc8ff; }
 .pin i { display: block; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 #f2a541aa; animation: ping 2s infinite; }
 .pin span { position: absolute; top: 50%; left: 20px; transform: translateY(-50%); font-size: 0.8rem; text-shadow: 0 1px 3px #000, 0 0 8px #000; white-space: nowrap; }
 .pin.west span { left: auto; right: 20px; }
+/* pins on the far side of the globe: hidden, and not clickable through the Earth */
+.pin.maplibregl-marker-covered { visibility: hidden; }
 .pin:hover span, .pin:focus-visible span { text-decoration: underline; }
 @keyframes ping { 70% { box-shadow: 0 0 0 12px #f2a54100; } 100% { box-shadow: 0 0 0 0 #f2a54100; } }
 @media (prefers-reduced-motion: reduce) { .pin i { animation: none; } }
