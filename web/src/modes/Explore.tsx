@@ -12,7 +12,7 @@ import { DIVERGING, SEQUENTIAL, cssGradient } from '../map/colormaps'
 import { Chart } from '../ui/Chart'
 import { Timeline } from '../ui/Timeline'
 
-import { SITES, rememberSite, siteOr } from '../sites'
+import { SITES, centerOf, rememberSite, siteOr } from '../sites'
 import { BASEMAP, crispLabels, foldCredits, labelsAbove } from '../map/basemap'
 
 maplibregl.setWorkerUrl(workerUrl)
@@ -81,13 +81,13 @@ export default function Explore({ initialSite }: { initialSite?: string }) {
 
   // Map, once.
   useEffect(() => {
-    const map = new maplibregl.Map({ container: mapDiv.current!, style: BASEMAP, center: [54.45, 24.45], zoom: 9, attributionControl: { compact: true }, boxZoom: false })
+    const map = new maplibregl.Map({ container: mapDiv.current!, style: BASEMAP, center: centerOf(site), zoom: 9, attributionControl: { compact: true }, boxZoom: false })
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left')
     map.addControl(new maplibregl.ScaleControl(), 'bottom-left')
     map.on('load', () => { crispLabels(map); foldCredits(map); setReady(true) })
     mapRef.current = map
     return () => map.remove()
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps -- built once; the site only sets where it starts
 
   // Site manifest.
   useEffect(() => {

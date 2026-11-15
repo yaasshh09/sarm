@@ -8,7 +8,7 @@ import { latestAt, monthLabel, monthOf, nearest } from '../map/timeline'
 import { renderGray, type Stretch } from '../map/render'
 import { toDb } from '../map/change'
 
-import { SITES, rememberSite, siteOr } from '../sites'
+import { SITES, centerOf, rememberSite, siteOr } from '../sites'
 import { BASEMAP, crispLabels, foldCredits, labelsAbove } from '../map/basemap'
 
 maplibregl.setWorkerUrl(workerUrl)
@@ -89,13 +89,13 @@ export default function Rewind({ initialSite }: { initialSite?: string }) {
   else right = radarAt(t) ?? opticalAt(t)
 
   useEffect(() => {
-    const map = new maplibregl.Map({ container: mapDiv.current!, style: BASEMAP, center: [54.45, 24.45], zoom: 9, attributionControl: { compact: true } })
+    const map = new maplibregl.Map({ container: mapDiv.current!, style: BASEMAP, center: centerOf(site), zoom: 9, attributionControl: { compact: true } })
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left')
     map.addControl(new maplibregl.ScaleControl(), 'bottom-left')
     map.on('load', () => { crispLabels(map); foldCredits(map); setReady(true) })
     mapRef.current = map
     return () => map.remove()
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps -- built once; the site only sets where it starts
 
   useEffect(() => {
     setM(undefined); setError(undefined); setPlaying(false); setCvl(undefined)

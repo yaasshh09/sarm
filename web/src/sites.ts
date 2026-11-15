@@ -18,6 +18,9 @@ export const SITES = [
   },
 ]
 
+/** A site's center, for starting a map in the right place before its bounds load. */
+export const centerOf = (id: string) => SITES.find((s) => s.id === id)?.center ?? SITES[0].center
+
 export const siteOr = (id?: string) => (SITES.some((s) => s.id === id) ? id! : SITES[0].id)
 
 /** Keep the URL shareable when the site changes, without a page reload or a hashchange. */
