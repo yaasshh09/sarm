@@ -1,16 +1,20 @@
 # Sarm
 
-NASA Space Apps 2026, challenge **Dancing With SARs**. An open-source web app for tracking surface change with NISAR L-band radar.
+We built Sarm for NASA Space Apps 2026, for the **Dancing With SARs** challenge. It's an open-source web app that uses NISAR's L-band radar to watch the ground change.
 
 Live: https://yaasshh09.github.io/sarm/
 
 ![The Sarm globe with pins on the five places it watches](web/public/og.jpg)
 
-- **Globe**: a spinning NASA Blue Marble Earth. Fly down to a site, or take a guided tour of all five, and see the newest NISAR pass draped over it.
-- **Explore**: real NISAR GCOV backscatter over each site, with swipe, change maps, pixel time series and a guided "Try this" for every site. Links like `#explore/kosi/story` open straight into it.
-- **Rewind**: Sentinel-1 C-band (2015+) and Landsat optical (1985+) for longer context, always labelled as other sensors, plus a then-vs-now photo comparison. Links like `#rewind/lake-mead/then` open straight into it.
+There are three ways in:
 
-Data: NISAR L2 GCOV via ASF DAAC, Sentinel-1 RTC and Landsat C2 L2 via Microsoft Planetary Computer. Sites: the Abu Dhabi coast (land reclamation), the Kosi River in Bihar (monsoon floods), the Rondônia forest edge in Brazil (deforestation), Lake Mead (drought) and Kīlauea in Hawaiʻi (lava flows). Full plan in [PLAN.md](PLAN.md). Coverage evidence in [pipeline/coverage_report.md](pipeline/coverage_report.md).
+- **Globe**: a spinning NASA Blue Marble Earth. Fly down to a site, or take the tour of all five, and the newest NISAR pass is draped over it.
+- **Explore**: real NISAR GCOV backscatter over each site. You can swipe between dates, map what changed, chart any pixel over time, or hit "Try this" for a guided first look. Links like `#explore/kosi/story` open straight into that guided view.
+- **Rewind**: Sentinel-1 C-band (2015 on) and Landsat photos (1985 on) for the longer story. We always label them as other sensors. There's also a then-vs-now photo comparison, and links like `#rewind/lake-mead/then` open straight into it.
+
+We picked five places where the ground is clearly changing: the Abu Dhabi coast (land reclamation), the Kosi River in Bihar (monsoon floods), the Rondônia forest edge in Brazil (deforestation), Lake Mead (drought) and Kīlauea in Hawaiʻi (lava flows).
+
+The data is NISAR L2 GCOV from the ASF DAAC, plus Sentinel-1 RTC and Landsat Collection 2 Level-2 from Microsoft Planetary Computer. Our build plan is in [PLAN.md](PLAN.md), and the coverage checks behind the site choice are in [pipeline/coverage_report.md](pipeline/coverage_report.md).
 
 ## Develop
 
@@ -20,6 +24,6 @@ python -m venv pipeline/.venv && pipeline/.venv/Scripts/pip install -r pipeline/
 python pipeline/coverage.py
 ```
 
-Earthdata token goes in env var `EARTHDATA_TOKEN`. Never commit it.
+Put your Earthdata token in the `EARTHDATA_TOKEN` env var, and never commit it.
 
-License: MIT.
+License: MIT. See also our [terms](https://yaasshh09.github.io/sarm/#terms) and [privacy policy](https://yaasshh09.github.io/sarm/#privacy).
