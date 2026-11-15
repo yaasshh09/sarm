@@ -12,9 +12,9 @@ export function Timeline({ dates, flagged, idx, before, onPick }: Props) {
   const gapIn = Date.parse(GAP[1]) > t0 && Date.parse(GAP[0]) < t1
 
   return (
-    <div className="timeline" role="group" aria-label="Acquisition dates">
+    <div className="timeline" role="group" aria-label="NISAR pass dates">
       {gapIn && (
-        <div className="gap" style={{ left: pct(GAP[0]), width: `calc(${pct(GAP[1])} - ${pct(GAP[0])})` }} title="Permanent NISAR data gap, 27 Jul to 10 Aug 2026">
+        <div className="gap" style={{ left: pct(GAP[0]), width: `calc(${pct(GAP[1])} - ${pct(GAP[0])})` }} title="NISAR has no data from 27 Jul to 10 Aug 2026">
           <span>no data (mission gap)</span>
         </div>
       )}

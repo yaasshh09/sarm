@@ -30,10 +30,10 @@ const platform = (p: string) => p.replace('landsat-', 'Landsat ')
 
 /** Plain-language label for a layer, so another sensor is never mistaken for NISAR. */
 function describe(l: Layer): string {
-  if (l.sensor === 'NISAR') return `NISAR L-band (24 cm wavelength), ${l.pol}, ${l.date}, ${l.tier}`
-  if (l.sensor === 'S1') return `Sentinel-1 C-band (5.6 cm wavelength), ${l.pol}, ${monthLabel(monthOf(l.date))}, median of ${l.nDates} pass${l.nDates === 1 ? '' : 'es'}`
-  if (l.raw) return `Landsat true color, one raw scene ${l.date} (${l.platforms?.map(platform).join(', ')}), clouds included`
-  return `Landsat true color, ${l.date} composite (${l.platforms?.map(platform).join(', ')})`
+  if (l.sensor === 'NISAR') return `NISAR L-band radar (24 cm waves), ${l.pol}, ${l.date}, ${l.tier}`
+  if (l.sensor === 'S1') return `Sentinel-1 C-band radar (5.6 cm waves), ${l.pol}, ${monthLabel(monthOf(l.date))}, median of ${l.nDates} pass${l.nDates === 1 ? '' : 'es'}`
+  if (l.raw) return `Landsat photo, one raw scene from ${l.date} (${l.platforms?.map(platform).join(', ')}), clouds and all`
+  return `Landsat photo, ${l.date} composite (${l.platforms?.map(platform).join(', ')})`
 }
 
 /** Median dB of the valid pixels of a quantized raster, via its 256-bin histogram. */
@@ -188,7 +188,7 @@ export default function Rewind({ initialSite, initialView }: { initialSite?: str
             {SITES.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
           </select>
         </label>
-        <span className="sensor">1985 to 2026, three sensors on one timeline</span>
+        <span className="sensor">1985 to 2026, three satellites on one timeline</span>
       </header>
 
       <div ref={mapDiv} className="map" />
@@ -199,7 +199,7 @@ export default function Rewind({ initialSite, initialView }: { initialSite?: str
           <h2>Showing</h2>
           {view !== 'auto' && left && <p className="layer-label"><span className="side">Left</span> {describe(left)}</p>}
           {right ? <p className="layer-label">{view !== 'auto' && <span className="side">Right</span>} {describe(right)}</p>
-            : <p className="muted">No data yet at {monthLabel(t)}. Scrub forward.</p>}
+            : <p className="muted">Nothing here yet for {monthLabel(t)}. Drag the timeline forward.</p>}
           {notes.map((n) => <p key={n} className="hint">{n}</p>)}
         </section>
 
@@ -208,15 +208,15 @@ export default function Rewind({ initialSite, initialView }: { initialSite?: str
           <div className="seg">
             {VIEWS.map((v) => (
               <button key={v} aria-pressed={view === v} onClick={() => setView(v)}>
-                {{ auto: 'Best available', split: 'Optical vs radar', then: 'Then vs now', cvl: 'C-band vs L-band' }[v]}
+                {{ auto: 'Best available', split: 'Photo vs radar', then: 'Then vs now', cvl: 'C-band vs L-band' }[v]}
               </button>
             ))}
           </div>
           <p className="hint">{{
-            auto: 'Scrub the timeline, or step with the left and right arrow keys. Each moment shows the newest layer at or before it, radar first when there is one.',
-            split: 'Optical on the left, radar on the right, both the newest at or before the selected time. Drag the white line on the map to compare.',
-            then: 'The photo at the selected time on the left, the newest photo on the right. Scrub back and drag the white line on the map to see what changed.',
-            cvl: 'The newest Sentinel-1 month next to the closest NISAR date. Same place, two radar wavelengths.',
+            auto: 'Drag the timeline or tap the arrow keys. You get the newest picture at or before that moment, radar first if there is one.',
+            split: 'Photo on the left, radar on the right, each the newest at or before the selected time. Drag the white line on the map to compare.',
+            then: 'The photo from the selected time on the left, the newest one on the right. Go back in time, then drag the white line to see what changed.',
+            cvl: 'The newest Sentinel-1 month next to the closest NISAR date: one place, seen at two radar wavelengths.',
           }[view]}</p>
           {view !== 'auto' && (
             <label className="row">Split <input type="range" min={0} max={1} step={0.01} value={swipe} onChange={(e) => setSwipe(+e.target.value)} /></label>
@@ -227,31 +227,31 @@ export default function Rewind({ initialSite, initialView }: { initialSite?: str
           <section className="card">
             <h2>Same season, two radars</h2>
             <p>Sentinel-1 {monthLabel(monthOf(s1Last.date))} (C-band, VV) on the left, NISAR {nisarNear.date} (L-band, HH) on the right.</p>
-            {cvl && <p className="muted">Area median: Sentinel-1 {cvl.s1.toFixed(1)} dB, NISAR {cvl.nisar.toFixed(1)} dB.</p>}
-            <p className="hint">L-band waves (24 cm) are about four times longer than C-band (5.6 cm). They pass through leaves and dry sand
-              and bounce off trunks, ground and buried structure, while C-band mostly sees the top layer. The two sensors also differ in
-              polarization (VV vs HH), look angle and orbit, so read differences as a mix of all of these, not wavelength alone.</p>
+            {cvl && <p className="muted">Median brightness over the area: Sentinel-1 {cvl.s1.toFixed(1)} dB, NISAR {cvl.nisar.toFixed(1)} dB.</p>}
+            <p className="hint">L-band waves (24 cm) are about four times longer than C-band (5.6 cm). They slip through leaves and dry sand
+              and bounce off trunks, soil and buried structures, while C-band mostly sees the top layer. The two satellites also differ in
+              polarization (VV vs HH), viewing angle and orbit, so don't pin every difference on wavelength.</p>
           </section>
         )}
 
         {lanes.raw.length > 0 && (
           <section>
-            <button className="link" onClick={() => { setView('split'); setT(monthOf(lanes.raw[0].date)) }}>Why radar? See the monsoon in optical vs radar</button>
+            <button className="link" onClick={() => { setView('split'); setT(monthOf(lanes.raw[0].date)) }}>Why radar? Put a cloudy monsoon photo next to radar</button>
           </section>
         )}
 
         <section className="legend">
           {view !== 'then' && <>
             <div className="ramp" style={{ background: 'linear-gradient(to right, #000, #fff)' }} />
-            <div className="ticks"><span>{CO_POL[0]} dB</span><span>radar backscatter</span><span>{CO_POL[1]} dB</span></div>
+            <div className="ticks"><span>{CO_POL[0]} dB</span><span>radar brightness</span><span>{CO_POL[1]} dB</span></div>
           </>}
-          <p className="hint">Radar uses one stretch for both sensors. Optical is true color with one fixed stretch per site, so years compare fairly.</p>
+          <p className="hint">Both radars share one contrast setting, and each site's photos share one too, so you can compare years fairly.</p>
         </section>
 
         <section>
           <h2>Sources</h2>
-          <p className="hint">Landsat Collection 2 Level-2 and Sentinel-1 RTC from Microsoft Planetary Computer. NISAR L2 GCOV from ASF DAAC.
-            Each radar series stays on one orbit and direction. Sentinel-1 and Landsat are other missions, shown for history and context, not NISAR.</p>
+          <p className="hint">Landsat Collection 2 Level-2 and Sentinel-1 RTC from Microsoft Planetary Computer. NISAR L2 GCOV from the ASF DAAC.
+            Each radar series sticks to one orbit and direction. Sentinel-1 and Landsat are separate missions. We show them for the longer history, and we never pass them off as NISAR.</p>
         </section>
       </aside>
 

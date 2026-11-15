@@ -22,7 +22,7 @@ export function Chart({ dates, series, flagged, current }: { dates: string[]; se
     v.map((val, i) => (Number.isFinite(val) ? `${i && Number.isFinite(v[i - 1]) ? 'L' : 'M'}${x(i)},${y(val)}` : '')).join('')
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="chart" role="img" aria-label="Backscatter time series">
+    <svg viewBox={`0 0 ${W} ${H}`} className="chart" role="img" aria-label="Radar brightness over time">
       {yTicks.map((v) => (
         <g key={v}>
           <line x1={L} x2={W - R} y1={y(v)} y2={y(v)} className="grid" />
