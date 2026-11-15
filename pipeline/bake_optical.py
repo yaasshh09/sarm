@@ -34,11 +34,12 @@ def search(cat, aoi, start, end, cloud=MAX_CLOUD):
 def pick(items, months):
     items = sorted((i for i in items if i.datetime.month in months), key=lambda i: i.properties["eo:cloud_cover"])
     good = [i for i in items if i.properties["platform"] != "landsat-7"]
-    return (good if len(good) >= MIN_GOOD else items)[:MAX_SCENES]
+    # SLC-off stripes and footprint edges shift between Landsat 7 scenes, so more scenes fill more of them
+    return good[:MAX_SCENES] if len(good) >= MIN_GOOD else items[:2 * MAX_SCENES]
 
 
-def read_scene(item, grid, mask_clouds=True):
-    """RGB reflectance on the site grid, NaN where fill (and cloud, if masked)."""
+def read_scene(item, grid):
+    """RGB reflectance on the site grid (NaN where fill) and its cloud/shadow mask."""
     import planetary_computer as pc
     import rasterio
     from rasterio.enums import Resampling
@@ -53,20 +54,30 @@ def read_scene(item, grid, mask_clouds=True):
             return v.read(1)
 
     qa = warp("qa_pixel", Resampling.nearest, "uint16")
-    bad = (qa == 0) | ((qa & (QA_BAD if mask_clouds else 1)) > 0)
     rgb = np.stack([warp(k, Resampling.bilinear, "uint16") for k in ("red", "green", "blue")]).astype(np.float32)
-    bad |= (rgb == 0).any(0)
+    fill = (qa == 0) | ((qa & 1) > 0) | (rgb == 0).any(0)
     rgb = rgb * 2.75e-5 - 0.2  # Collection 2 L2 scale and offset
-    rgb[:, bad] = np.nan
-    return rgb
+    rgb[:, fill] = np.nan
+    return rgb, (qa & QA_BAD) > 0
 
 
 def composite(items, grid, mask_clouds=True):
     with ThreadPoolExecutor(4) as ex:
-        stack = np.stack(list(ex.map(lambda i: read_scene(i, grid, mask_clouds), items)))
+        scenes = list(ex.map(lambda i: read_scene(i, grid), items))
+    raw = np.stack([s[0] for s in scenes])
     with warnings.catch_warnings():
-        warnings.simplefilter("ignore", RuntimeWarning)  # pixels cloudy in every scene
-        return np.nanmedian(stack, 0)
+        warnings.simplefilter("ignore", RuntimeWarning)  # all-NaN pixels
+        med = np.nanmedian(raw, 0)
+        if not mask_clouds:
+            return med
+        masked = raw.copy()
+        for k, (_, cloud) in enumerate(scenes):
+            masked[k][:, cloud] = np.nan
+        clear = np.nanmedian(masked, 0)
+    # TM's shadow flag hits dark mangrove in every scene; where no clear sample is left, use the unmasked median
+    hole = np.isnan(clear).any(0)
+    clear[:, hole] = med[:, hole]
+    return clear
 
 
 def to_jpeg(path, rgb, hi):
