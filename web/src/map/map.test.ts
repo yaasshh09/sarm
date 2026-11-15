@@ -3,6 +3,7 @@ import { coefVariation, logRatio, rectPixels, regionSeries, toDb } from './chang
 import { renderDiverging, renderPolRGB } from './render'
 import { DIVERGING } from './colormaps'
 import { lngLatToPixel, pixelToLngLat, type Manifest } from './decode'
+import { latestAt, monthOf, nearest } from './timeline'
 
 // Inverse of the PLAN.md 4 quantizer, for building fixtures.
 const q = (db: number) => 1 + Math.round(((db + 35) / 40) * 254)
@@ -74,5 +75,23 @@ describe('render', () => {
     expect(out[0]).toBe(255)
     expect(out[1]).toBe(0)
     expect(out[3]).toBe(255)
+  })
+})
+
+describe('rewind time axis', () => {
+  const L = (sensor: 'NISAR' | 'S1' | 'Landsat', date: string) => ({ sensor, date, file: date })
+  it('puts years, months and days on one month scale', () => {
+    expect(monthOf('1990')).toBe(1990 * 12)
+    expect(monthOf('2019-10')).toBe(monthOf('2019-10-28'))
+    expect(monthOf('2019-11') - monthOf('2019-10')).toBe(1)
+  })
+  it('picks the newest layer at or before t, never a future one', () => {
+    const ls = [L('Landsat', '1990'), L('Landsat', '1995'), L('Landsat', '2000')]
+    expect(latestAt(ls, monthOf('1994-06'))?.date).toBe('1990')
+    expect(latestAt(ls, monthOf('1989-12'))).toBeUndefined()
+    expect(latestAt([L('NISAR', '2026-10-05'), L('NISAR', '2026-10-28')], monthOf('2026-10'))?.date).toBe('2026-10-28')
+  })
+  it('finds the nearest date by month', () => {
+    expect(nearest([L('NISAR', '2026-06-18'), L('NISAR', '2026-10-28')], '2026-09')?.date).toBe('2026-10-28')
   })
 })

@@ -15,6 +15,15 @@ export type Layer = {
   incidenceDeg?: number
   validPct?: number
   flag?: string
+  // Sentinel-1 and Landsat (Rewind)
+  orbit?: number
+  nDates?: number
+  product?: string
+  scenes?: string[]
+  platforms?: string[]
+  note?: string
+  raw?: boolean
+  cloudCoverPct?: number
 }
 
 export type Manifest = {
@@ -59,28 +68,37 @@ async function json<T>(url: string): Promise<T> {
 
 export const loadManifest = (site: string) => json<Manifest>(`${BASE}${site}/manifest.json`)
 
-const rasters = new Map<string, Promise<Uint8Array>>()
+const cache = new Map<string, Promise<Uint8Array | Uint8ClampedArray>>()
 
-/** Decode a single-channel PNG to its raw 8-bit values. Cached per file. */
-export function loadRaster(site: string, file: string): Promise<Uint8Array> {
-  const key = `${site}/${file}`
-  let p = rasters.get(key)
+async function decode(key: string) {
+  const r = await fetch(BASE + key)
+  if (!r.ok) throw new Error(`${r.status} ${key}`)
+  // No color management or premultiplication, so the values come back exactly as baked.
+  const bmp = await createImageBitmap(await r.blob(), { colorSpaceConversion: 'none', premultiplyAlpha: 'none' })
+  const c = new OffscreenCanvas(bmp.width, bmp.height)
+  const ctx = c.getContext('2d', { willReadFrequently: true })!
+  ctx.drawImage(bmp, 0, 0)
+  return ctx.getImageData(0, 0, bmp.width, bmp.height).data
+}
+
+function cached<T extends Uint8Array | Uint8ClampedArray>(key: string, make: () => Promise<T>): Promise<T> {
+  let p = cache.get(key) as Promise<T> | undefined
   if (!p) {
-    p = (async () => {
-      const r = await fetch(BASE + key)
-      if (!r.ok) throw new Error(`${r.status} ${key}`)
-      // No color management or premultiplication, so the gray values come back exactly as baked.
-      const bmp = await createImageBitmap(await r.blob(), { colorSpaceConversion: 'none', premultiplyAlpha: 'none' })
-      const c = new OffscreenCanvas(bmp.width, bmp.height)
-      const ctx = c.getContext('2d', { willReadFrequently: true })!
-      ctx.drawImage(bmp, 0, 0)
-      const rgba = ctx.getImageData(0, 0, bmp.width, bmp.height).data
-      const v = new Uint8Array(bmp.width * bmp.height)
-      for (let i = 0; i < v.length; i++) v[i] = rgba[i * 4]
-      return v
-    })()
-    p.catch(() => rasters.delete(key)) // let a failed fetch retry next time
-    rasters.set(key, p)
+    p = make()
+    p.catch(() => cache.delete(key)) // let a failed fetch retry next time
+    cache.set(key, p)
   }
   return p
 }
+
+/** Decode a single-channel PNG to its raw 8-bit values. Cached per file. */
+export const loadRaster = (site: string, file: string) =>
+  cached(`${site}/${file}`, async () => {
+    const rgba = await decode(`${site}/${file}`)
+    const v = new Uint8Array(rgba.length / 4)
+    for (let i = 0; i < v.length; i++) v[i] = rgba[i * 4]
+    return v
+  })
+
+/** Decode an RGB image (Landsat JPEG) to opaque RGBA. Cached per file. */
+export const loadRGBA = (site: string, file: string) => cached(`${site}/${file}`, () => decode(`${site}/${file}`))
