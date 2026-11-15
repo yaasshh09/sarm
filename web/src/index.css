@@ -93,3 +93,54 @@ a { color: #8cc8ff; }
 .scrub { flex: 1; margin: 0; }
 .years .lane-track { border: 0; }
 .years span { position: absolute; transform: translateX(-50%); font-size: 0.7rem; color: var(--muted); }
+
+/* Globe landing page */
+.home { position: fixed; inset: 0; background: radial-gradient(ellipse at 70% 40%, #0d1830 0%, #05070d 60%, #000 100%); }
+.globe { position: absolute; inset: 0; }
+.intro {
+  position: absolute; top: 1rem; left: 1rem; bottom: 1rem; width: min(26rem, calc(100% - 2rem)); overflow-y: auto;
+  padding: 1.4rem 1.5rem; border-radius: 14px; border: 1px solid #ffffff1f;
+  background: #0b0f16cc; backdrop-filter: blur(10px); line-height: 1.5;
+}
+.intro h1 { font-size: 2.4rem; line-height: 1.05; margin: 0.2rem 0 0.6rem; letter-spacing: -0.02em; }
+.intro h1 span { color: var(--accent); }
+.intro h1.site-title { font-size: 1.8rem; }
+.intro h2 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 1.4rem 0 0.4rem; }
+.kicker { margin: 0; color: var(--accent); font-size: 0.8rem; letter-spacing: 0.04em; }
+.lede { font-size: 1.05rem; color: #d5dae0; margin: 0 0 1rem; }
+.picks { display: grid; gap: 0.5rem; }
+.picks button, .btn {
+  display: block; text-align: left; padding: 0.7rem 0.9rem; border-radius: 10px; text-decoration: none;
+  background: var(--accent); color: #111; border: 1px solid var(--accent); font-weight: 600;
+}
+.picks button { background: #ffffff0d; color: var(--text); border-color: #ffffff26; font-weight: 400; }
+.picks button:hover, .picks button:focus-visible { border-color: var(--accent); background: #f2a5411a; }
+.picks b { display: block; }
+.picks small { color: var(--muted); }
+.btn.ghost { background: none; color: var(--accent); }
+.go { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0; }
+.how { padding-left: 1.1rem; margin: 0; }
+.how li { margin: 0.35rem 0; color: #c9cfd6; }
+.how b { color: var(--text); }
+.facts { display: grid; grid-template-columns: auto 1fr; gap: 0.25rem 0.8rem; margin: 0; }
+.facts dt { color: var(--muted); }
+.facts dd { margin: 0; }
+.back { margin-bottom: 0.8rem; }
+.credits { margin-top: 1.5rem; padding-top: 0.8rem; border-top: 1px solid #ffffff1a; font-size: 0.75rem; color: var(--muted); }
+.pin { background: none; border: 0; padding: 0; display: flex; align-items: center; gap: 6px; color: #fff; }
+.pin i { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 #f2a541aa; animation: ping 2s infinite; }
+.pin span { font-size: 0.8rem; text-shadow: 0 1px 3px #000, 0 0 8px #000; white-space: nowrap; }
+.pin:hover span, .pin:focus-visible span { text-decoration: underline; }
+@keyframes ping { 70% { box-shadow: 0 0 0 12px #f2a54100; } 100% { box-shadow: 0 0 0 0 #f2a54100; } }
+@media (prefers-reduced-motion: reduce) { .pin i { animation: none; } }
+
+/* Phones: the side panel moves under the map */
+@media (max-width: 800px) {
+  .intro { top: auto; max-height: 55vh; left: 0.5rem; right: 0.5rem; bottom: 0.5rem; width: auto; padding: 1rem; }
+  .intro h1 { font-size: 1.8rem; }
+  .explore { grid-template: "bar" auto "map" 55vh "time" auto "panel" auto / 1fr; height: auto; min-height: 100vh; }
+  .bar { flex-wrap: wrap; gap: 0.6rem; }
+  .sensor { margin-left: 0; flex-basis: 100%; }
+  .panel { border-left: 0; border-top: 1px solid var(--line); }
+  .lane-name { width: 5.5rem; }
+}

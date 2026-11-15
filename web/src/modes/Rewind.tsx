@@ -8,12 +8,10 @@ import { latestAt, monthLabel, monthOf, nearest } from '../map/timeline'
 import { renderGray, type Stretch } from '../map/render'
 import { toDb } from '../map/change'
 
+import { SITES, rememberSite, siteOr } from '../sites'
+
 maplibregl.setWorkerUrl(workerUrl)
 
-const SITES = [
-  { id: 'abu-dhabi', name: 'Abu Dhabi coast' },
-  { id: 'kosi', name: 'Kosi River floodplain' },
-]
 const BASEMAP = 'https://tiles.openfreemap.org/styles/dark'
 const T0 = monthOf('1985-01')
 const T1 = monthOf('2026-11')
@@ -46,8 +44,8 @@ function medianDb(v: Uint8Array): number {
   return NaN
 }
 
-export default function Rewind() {
-  const [site, setSite] = useState(SITES[0].id)
+export default function Rewind({ initialSite }: { initialSite?: string }) {
+  const [site, setSite] = useState(() => siteOr(initialSite))
   const [m, setM] = useState<Manifest>()
   const [error, setError] = useState<string>()
   const [t, setT] = useState(T0)
@@ -152,9 +150,9 @@ export default function Rewind() {
     <div className="explore">
       <header className="bar">
         <h1>Radar Waltz <span>Rewind</span></h1>
-        <nav><a href="#explore">Explore</a> · <a href="#rewind" aria-current="page">Rewind</a></nav>
+        <nav><a href="#">Globe</a> · <a href={`#explore/${site}`}>Explore</a> · <a href={`#rewind/${site}`} aria-current="page">Rewind</a></nav>
         <label>Site{' '}
-          <select value={site} onChange={(e) => setSite(e.target.value)}>
+          <select value={site} onChange={(e) => { setSite(e.target.value); rememberSite('rewind', e.target.value) }}>
             {SITES.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
           </select>
         </label>

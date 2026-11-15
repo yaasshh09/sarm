@@ -12,12 +12,10 @@ import { DIVERGING, SEQUENTIAL, cssGradient } from '../map/colormaps'
 import { Chart } from '../ui/Chart'
 import { Timeline } from '../ui/Timeline'
 
+import { SITES, rememberSite, siteOr } from '../sites'
+
 maplibregl.setWorkerUrl(workerUrl)
 
-const SITES = [
-  { id: 'abu-dhabi', name: 'Abu Dhabi coast' },
-  { id: 'kosi', name: 'Kosi River floodplain' },
-]
 const BASEMAP = 'https://tiles.openfreemap.org/styles/dark'
 const STRETCH: Record<P, Stretch> = { HH: [-25, 0], HV: [-32, -8] }
 const COLORS: Record<P, string> = { HH: '#f2a541', HV: '#4fc3c8' }
@@ -54,8 +52,8 @@ function scenesOf(m: Manifest): Scene[] {
 
 const asfLink = (g: string) => `https://search.asf.alaska.edu/#/?searchType=List%20Search&searchList=${g}&resultsLoaded=true`
 
-export default function Explore() {
-  const [site, setSite] = useState(SITES[0].id)
+export default function Explore({ initialSite }: { initialSite?: string }) {
+  const [site, setSite] = useState(() => siteOr(initialSite))
   const [m, setM] = useState<Manifest>()
   const [error, setError] = useState<string>()
   const [pol, setPol] = useState<Pol>('HH')
@@ -229,9 +227,9 @@ export default function Explore() {
     <div className="explore">
       <header className="bar">
         <h1>Radar Waltz <span>Explore</span></h1>
-        <nav><a href="#explore" aria-current="page">Explore</a> · <a href="#rewind">Rewind</a></nav>
+        <nav><a href="#">Globe</a> · <a href={`#explore/${site}`} aria-current="page">Explore</a> · <a href={`#rewind/${site}`}>Rewind</a></nav>
         <label>Site{' '}
-          <select value={site} onChange={(e) => setSite(e.target.value)}>
+          <select value={site} onChange={(e) => { setSite(e.target.value); rememberSite('explore', e.target.value) }}>
             {SITES.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
           </select>
         </label>

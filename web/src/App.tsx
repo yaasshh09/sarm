@@ -1,16 +1,20 @@
 import { useEffect, useState } from 'react'
 import Explore from './modes/Explore'
+import Home from './modes/Home'
 import Rewind from './modes/Rewind'
 
-// Hash routing keeps GitHub Pages happy (no server rewrites). Landing page and Lab join in M4.
-const mode = () => (location.hash === '#rewind' ? 'rewind' : 'explore')
+// Hash routing keeps GitHub Pages happy (no server rewrites): #explore/kosi, #rewind/abu-dhabi, anything else is the globe.
+const route = () => location.hash.slice(1)
 
 export default function App() {
-  const [m, setM] = useState(mode)
+  const [r, setR] = useState(route)
   useEffect(() => {
-    const on = () => setM(mode())
+    const on = () => setR(route())
     addEventListener('hashchange', on)
     return () => removeEventListener('hashchange', on)
   }, [])
-  return m === 'rewind' ? <Rewind /> : <Explore />
+  const [mode, site] = r.split('/')
+  if (mode === 'explore') return <Explore key={r} initialSite={site} />
+  if (mode === 'rewind') return <Rewind key={r} initialSite={site} />
+  return <Home />
 }
