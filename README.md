@@ -4,11 +4,11 @@ NASA Space Apps 2026, challenge **Dancing With SARs**. An open-source web app fo
 
 Live: https://yaasshh09.github.io/sarm/
 
-- **Lab**: a SAR physics simulator in the browser. Fly the radar, record echoes, focus them into an image.
+- **Globe**: a spinning NASA Blue Marble Earth. Fly down to a site and see the newest NISAR pass draped over it.
 - **Explore**: real NISAR GCOV backscatter over chosen sites, with change maps and pixel time series.
-- **Rewind**: Sentinel-1 C-band (2014+) and Landsat optical (1984+) for longer context, always labelled as other sensors.
+- **Rewind**: Sentinel-1 C-band (2015+) and Landsat optical (1985+) for longer context, always labelled as other sensors.
 
-Data: NISAR L2 GCOV via ASF DAAC. Full plan in [PLAN.md](PLAN.md). Coverage evidence in [pipeline/coverage_report.md](pipeline/coverage_report.md).
+Data: NISAR L2 GCOV via ASF DAAC, Sentinel-1 RTC and Landsat C2 L2 via Microsoft Planetary Computer. Sites: Abu Dhabi coast and the Kosi River in Bihar. Full plan in [PLAN.md](PLAN.md). Coverage evidence in [pipeline/coverage_report.md](pipeline/coverage_report.md).
 
 ## Develop
 
