@@ -77,7 +77,15 @@ export default function Rewind({ initialSite }: { initialSite?: string }) {
 
   let left: Layer | undefined, right: Layer | undefined
   if (view === 'cvl') { left = s1Last; right = nisarNear }
-  else if (view === 'split') { left = opticalAt(t); right = radarAt(t) }
+  else if (view === 'split') {
+    left = opticalAt(t)
+    // A radar pass in the same month as the photo beats "newest in the month": pair the closest day, NISAR first like everywhere else.
+    const near = (ls: Layer[]) => {
+      const same = left ? ls.filter((l) => monthOf(l.date) === monthOf(left!.date) && monthOf(l.date) <= t) : []
+      return same.length ? nearest(same, left!.date) : undefined
+    }
+    right = near(lanes.NISAR) ?? near(lanes.S1) ?? radarAt(t)
+  }
   else right = radarAt(t) ?? opticalAt(t)
 
   useEffect(() => {

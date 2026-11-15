@@ -14,10 +14,16 @@ export function latestAt(layers: Layer[], t: number): Layer | undefined {
   return best
 }
 
-/** The layer whose month is nearest to `date`. */
+/** Days since 1970. A bare year counts as 1 July and a bare month as the 15th, the middle of what they stand for. */
+export function dayOf(date: string): number {
+  const [y, m, d] = date.split('-')
+  return Date.UTC(+y, m ? +m - 1 : 6, d ? +d : m ? 15 : 1) / 864e5
+}
+
+/** The layer dated nearest to `date`, to the day. */
 export function nearest(layers: Layer[], date: string): Layer | undefined {
-  const t = monthOf(date)
-  return [...layers].sort((a, b) => Math.abs(monthOf(a.date) - t) - Math.abs(monthOf(b.date) - t))[0]
+  const t = dayOf(date)
+  return [...layers].sort((a, b) => Math.abs(dayOf(a.date) - t) - Math.abs(dayOf(b.date) - t))[0]
 }
 
 export const monthLabel = (t: number) =>

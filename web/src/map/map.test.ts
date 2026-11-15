@@ -93,5 +93,8 @@ describe('rewind time axis', () => {
   })
   it('finds the nearest date by month', () => {
     expect(nearest([L('NISAR', '2026-06-18'), L('NISAR', '2026-10-28')], '2026-09')?.date).toBe('2026-10-28')
+    // same month: the closer day wins, not whichever comes first
+    expect(nearest([L('NISAR', '2026-08-31'), L('NISAR', '2026-08-19')], '2026-08-11')?.date).toBe('2026-08-19')
+    expect(nearest([L('NISAR', '2026-08-19'), L('NISAR', '2026-08-31')], '2026-08-28')?.date).toBe('2026-08-31')
   })
 })
