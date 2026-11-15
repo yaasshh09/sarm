@@ -171,7 +171,7 @@ export default function Home() {
             <ul className="how">
               <li><b>Globe.</b> You are here. Fly to a site and see the newest NISAR pass draped over the Earth.</li>
               <li><b>Explore.</b> Scrub through every NISAR pass over a site, compare two dates and map what changed.</li>
-              <li><b>Rewind.</b> Line NISAR up with ten years of Sentinel-1 radar and forty years of Landsat photos.</li>
+              <li><b>Rewind.</b> Line NISAR up with more than ten years of Sentinel-1 radar and forty years of Landsat photos.</li>
             </ul>
           </>
         ) : (
