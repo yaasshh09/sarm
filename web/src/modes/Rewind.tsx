@@ -10,6 +10,7 @@ import { toDb } from '../map/change'
 
 import { SITES, centerOf, rememberSite, siteOr } from '../sites'
 import { BASEMAP, crispLabels, foldCredits, labelsAbove } from '../map/basemap'
+import { useArrowSteps } from '../ui/keys'
 
 maplibregl.setWorkerUrl(workerUrl)
 
@@ -150,6 +151,11 @@ export default function Rewind({ initialSite, initialView }: { initialSite?: str
     Promise.all([loadRaster(m.id, s1Last.file), loadRaster(m.id, nisarNear.file)])
       .then(([a, b]) => setCvl({ s1: medianDb(a), nisar: medianDb(b) })).catch((e) => setError(e.message))
   }, [m, s1Last, nisarNear])
+
+  useArrowSteps((d) => {
+    setPlaying(false)
+    setT((cur) => (d > 0 ? stops.find((x) => x > cur) : stops.findLast((x) => x < cur)) ?? cur)
+  })
 
   // Play steps through every month that has data, oldest to newest.
   useEffect(() => {

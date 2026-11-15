@@ -14,6 +14,7 @@ import { Timeline } from '../ui/Timeline'
 
 import { SITES, centerOf, rememberSite, siteOr } from '../sites'
 import { BASEMAP, crispLabels, foldCredits, labelsAbove } from '../map/basemap'
+import { useArrowSteps } from '../ui/keys'
 
 maplibregl.setWorkerUrl(workerUrl)
 
@@ -224,6 +225,8 @@ export default function Explore({ initialSite }: { initialSite?: string }) {
     )).then(([hh, hv]) => !stale && setSeries({ HH: hh, HV: hv })).catch((e) => setError(e.message))
     return () => { stale = true }
   }, [m, box, sc])
+
+  useArrowSteps((d) => { setPlaying(false); setIdx((i) => Math.min(sc.length - 1, Math.max(0, i + d))) })
 
   // Play through dates.
   useEffect(() => {
