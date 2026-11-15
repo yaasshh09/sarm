@@ -28,8 +28,8 @@ type Box = [number, number, number, number] // r0, c0, r1, c1
 
 const POL_HINT: Record<Pol, string> = {
   HH: 'HH sends and receives horizontally. Buildings and flooded trees light up through double bounce.',
-  HV: 'HV is cross-polarized. It lights up vegetation volume like mangrove canopy and crops.',
-  RGB: 'Red is HH, green is HV, blue is HH minus HV. Buildings read yellow to pink, vegetation green, smooth sand and calm water near black.',
+  HV: 'HV is cross-polarized. It lights up vegetation volume like tree canopies and crops.',
+  RGB: 'Red is HH, green is HV, blue is HH minus HV.',
 }
 const VIEW_HINT: Record<View, string> = {
   single: 'NISAR L-band radar backscatter for one date. Brighter means more energy came back to the satellite.',
@@ -254,7 +254,7 @@ export default function Explore({ initialSite }: { initialSite?: string }) {
               <button key={p} aria-pressed={pol === p} onClick={() => setPol(p)}>{p === 'RGB' ? 'Pol RGB' : p}</button>
             ))}
           </div>
-          <p className="hint">{POL_HINT[pol]}</p>
+          <p className="hint">{POL_HINT[pol]}{pol === 'RGB' && ` ${SITES.find((x) => x.id === site)?.colors ?? ''}`}</p>
           {pol !== 'RGB' && view !== 'change' && (
             <label className="row">Stretch {stretch[p1][0]} to {stretch[p1][1]} dB
               <input type="range" min={-35} max={-5} value={stretch[p1][0]}
@@ -302,7 +302,7 @@ export default function Explore({ initialSite }: { initialSite?: string }) {
           ) : view === 'temporal' ? (
             <p><span className="sw" style={{ background: '#f33' }} /> got darker <span className="sw" style={{ background: '#3ff' }} /> got brighter <span className="sw" style={{ background: '#888' }} /> unchanged</p>
           ) : pol === 'RGB' ? (
-            <p><span className="sw" style={{ background: '#f4a' }} /> urban <span className="sw" style={{ background: '#3c6' }} /> vegetation <span className="sw" style={{ background: '#000', outline: '1px solid #555' }} /> smooth water</p>
+            <p><span className="sw" style={{ background: '#f33' }} /> HH <span className="sw" style={{ background: '#3d3' }} /> HV <span className="sw" style={{ background: '#48f' }} /> HH minus HV</p>
           ) : (
             <>
               <div className="ramp" style={{ background: 'linear-gradient(to right, #000, #fff)' }} />
