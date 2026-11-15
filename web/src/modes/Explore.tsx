@@ -54,7 +54,7 @@ function scenesOf(m: Manifest): Scene[] {
 
 const asfLink = (g: string) => `https://search.asf.alaska.edu/#/?searchType=List%20Search&searchList=${g}&resultsLoaded=true`
 
-export default function Explore({ initialSite }: { initialSite?: string }) {
+export default function Explore({ initialSite, initialView }: { initialSite?: string; initialView?: string }) {
   const [site, setSite] = useState(() => siteOr(initialSite))
   const [m, setM] = useState<Manifest>()
   const [error, setError] = useState<string>()
@@ -92,6 +92,14 @@ export default function Explore({ initialSite }: { initialSite?: string }) {
     if (at(story.before) >= 0) setBefore(at(story.before))
     setPlaying(false)
   }
+
+  // #explore/<site>/story opens straight into the guided view, once the dates are in.
+  const autoStory = useRef(initialView === 'story')
+  useEffect(() => {
+    if (!autoStory.current || !sc.length) return
+    autoStory.current = false
+    showStory()
+  }, [sc]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Map, once.
   useEffect(() => {

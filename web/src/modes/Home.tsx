@@ -208,7 +208,8 @@ export default function Home() {
                   {i.landsat.length > 0 && <><dt>Landsat photos</dt><dd>{i.landsat.length} snapshots, {span(i.landsat)}</dd></>}
                 </dl>
                 <div className="go">
-                  <a className="btn" href={`#explore/${s.id}`}>Explore the NISAR data</a>
+                  <a className="btn" href={s.story.rewind ? `#rewind/${s.id}/then` : `#explore/${s.id}/story`}>Show me what changed</a>
+                  <a className="btn ghost" href={`#explore/${s.id}`}>Explore the NISAR data</a>
                   <a className="btn ghost" href={`#rewind/${s.id}`}>{i.landsat.length ? `Rewind ${THIS_YEAR - +i.landsat[0].slice(0, 4)} years` : "Rewind"}</a>
                 </div>
                 {i.shown && (
