@@ -38,7 +38,7 @@ export const SITES: { id: string; name: string; place: string; center: [number, 
     center: [-114.65, 36.15] as [number, number],
     blurb: 'The biggest reservoir in the United States, drawn down by a drought that has run since 2000, leaving new shoreline and bathtub rings on the canyon walls.',
     colors: 'The lake is the smooth dark shape in the middle: calm water bounces the pulse away, so almost nothing comes back. Bare desert mountains come out purple, and slopes that face the satellite flash yellow. The bright grid in the bottom left corner is Boulder City.',
-    story: { rewind: true, text: 'The big change here takes decades, not months. Open Rewind and step from 2000 to 2015 to watch the lake pull back from its shores.' },
+    story: { rewind: true, text: 'The big change here takes decades, not months. Open Rewind, pick Then vs now and scrub back to 2000 to watch the lake pull back from its shores.' },
   },
   {
     id: 'kilauea',
@@ -47,7 +47,7 @@ export const SITES: { id: string; name: string; place: string; center: [number, 
     center: [-155.05, 19.4] as [number, number],
     blurb: 'One of the most active volcanoes on Earth. Its lava has rebuilt this coast again and again, burying roads, towns and a whole bay in 2018.',
     colors: 'Rainforest and farms come out yellow-green. The purple ground is lava: bare young rock with no plants to scatter the waves around, so the echo is mostly HH. The wide purple apron south of the middle is the flow field of Puʻu ʻŌʻō, which erupted from 1983 to 2018. The grey-green sheet is the ocean, roughened by the wind.',
-    story: { pol: 'RGB', text: 'Turn on polarization color to tell lava from forest. Then open Rewind and compare the 2015 and 2020 photos: the 2018 flow appears on the east tip of the island.' },
+    story: { pol: 'RGB', text: 'Turn on polarization color to tell lava from forest. Then open Rewind, pick Then vs now and scrub back to 2015: the 2018 flow appears on the east tip of the island.' },
   },
 ]
 

@@ -22,7 +22,7 @@ const LANES = [
   { sensor: 'NISAR', label: 'NISAR', band: ' L-band' },
 ] as const
 
-type View = 'auto' | 'split' | 'cvl'
+type View = 'auto' | 'split' | 'then' | 'cvl'
 
 const platform = (p: string) => p.replace('landsat-', 'Landsat ')
 
@@ -77,6 +77,7 @@ export default function Rewind({ initialSite }: { initialSite?: string }) {
 
   let left: Layer | undefined, right: Layer | undefined
   if (view === 'cvl') { left = s1Last; right = nisarNear }
+  else if (view === 'then') { left = opticalAt(t); right = lanes.Landsat.at(-1) }
   else if (view === 'split') {
     left = opticalAt(t)
     // A radar pass in the same month as the photo beats "newest in the month": pair the closest day, NISAR first like everywhere else.
@@ -186,15 +187,16 @@ export default function Rewind({ initialSite }: { initialSite?: string }) {
         <section>
           <h2>View</h2>
           <div className="seg">
-            {(['auto', 'split', 'cvl'] as View[]).map((v) => (
+            {(['auto', 'split', 'then', 'cvl'] as View[]).map((v) => (
               <button key={v} aria-pressed={view === v} onClick={() => setView(v)}>
-                {{ auto: 'Best available', split: 'Optical vs radar', cvl: 'C-band vs L-band' }[v]}
+                {{ auto: 'Best available', split: 'Optical vs radar', then: 'Then vs now', cvl: 'C-band vs L-band' }[v]}
               </button>
             ))}
           </div>
           <p className="hint">{{
             auto: 'Scrub the timeline. Each moment shows the newest layer at or before it, radar first when there is one.',
             split: 'Optical on the left, radar on the right, both the newest at or before the selected time. Drag the split to compare.',
+            then: 'The photo at the selected time on the left, the newest photo on the right. Scrub back and drag the split to see what changed.',
             cvl: 'The newest Sentinel-1 month next to the closest NISAR date. Same place, two radar wavelengths.',
           }[view]}</p>
           {view !== 'auto' && (
@@ -220,8 +222,10 @@ export default function Rewind({ initialSite }: { initialSite?: string }) {
         )}
 
         <section className="legend">
-          <div className="ramp" style={{ background: 'linear-gradient(to right, #000, #fff)' }} />
-          <div className="ticks"><span>{CO_POL[0]} dB</span><span>radar backscatter</span><span>{CO_POL[1]} dB</span></div>
+          {view !== 'then' && <>
+            <div className="ramp" style={{ background: 'linear-gradient(to right, #000, #fff)' }} />
+            <div className="ticks"><span>{CO_POL[0]} dB</span><span>radar backscatter</span><span>{CO_POL[1]} dB</span></div>
+          </>}
           <p className="hint">Radar uses one stretch for both sensors. Optical is true color with one fixed stretch per site, so years compare fairly.</p>
         </section>
 
