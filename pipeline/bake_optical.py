@@ -131,7 +131,7 @@ def bake_site(site):
         fn = f"optical/{y}.jpg"
         to_jpeg(DATA / site["id"] / fn, rgb, hi)
         layers.append(layer(str(y), fn, items, rgb, hi, window=f"{y - 1}/{y + 1}",
-                            note="Landsat 7 SLC-off stripes may remain" if any(
+                            note="Landsat 7's scan-line corrector broke in 2003, so thin stripes may show" if any(
                                 i.properties["platform"] == "landsat-7" and y > 2003 for i in items) else None))
     if "monsoon" in cfg:
         mo = cfg["monsoon"]
@@ -144,7 +144,7 @@ def bake_site(site):
             to_jpeg(DATA / site["id"] / fn, rgb, hi)
             cc = items[0].properties["eo:cloud_cover"]
             layers.append(layer(str(items[0].datetime.date()), fn, items, rgb, hi, raw=True, cloudCoverPct=cc,
-                                note=f"Single raw scene, clouds included ({cc:.0f}% scene cloud cover, least cloudy of the month)"))
+                                note=f"One raw scene with the clouds left in ({cc:.0f}% cloud cover, the clearest that month)"))
             print(f"  monsoon {mo}: {items[0].id} cloud {cc}%")
         else:
             print(f"{site['id']}: no Landsat 8/9 scene in {mo}")

@@ -118,8 +118,8 @@ def apply_flags(site):
     layers = json.loads((DATA / site["id"] / "manifest.json").read_text(encoding="utf-8"))["layers"]
     for l in layers:
         if l["sensor"] == "NISAR" and l["validPct"] < MIN_VALID_PCT and l["date"] not in flags:
-            flags[l["date"]] = (f"Partial coverage: only {l['validPct']}% of the AOI has valid data on this date "
-                                "(swath edge or partially focused samples).")
+            flags[l["date"]] = (f"Only {l['validPct']}% of the area has data on this date, because it sits at the "
+                                "edge of the radar swath or some samples weren't fully focused.")
     for name in ("manifest.json", "stats.json"):
         p = DATA / site["id"] / name
         d = json.loads(p.read_text(encoding="utf-8"))

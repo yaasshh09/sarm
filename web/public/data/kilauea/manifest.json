@@ -574,7 +574,7 @@
    "validPct": 100.0,
    "stretchMax": 0.082,
    "window": "2004/2006",
-   "note": "Landsat 7 SLC-off stripes may remain"
+   "note": "Landsat 7's scan-line corrector broke in 2003, so thin stripes may show"
   },
   {
    "sensor": "Landsat",
@@ -604,7 +604,7 @@
    "validPct": 97.1,
    "stretchMax": 0.082,
    "window": "2009/2011",
-   "note": "Landsat 7 SLC-off stripes may remain"
+   "note": "Landsat 7's scan-line corrector broke in 2003, so thin stripes may show"
   },
   {
    "sensor": "Landsat",

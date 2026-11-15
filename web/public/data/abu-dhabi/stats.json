@@ -3,7 +3,7 @@
   "date": "2026-06-18",
   "HH": -10.95,
   "HV": -14.24,
-  "flag": "Scene-wide HV haze: AOI median HV -14.2 dB vs about -21 dB on all other dates, HV floor -24 vs -26 dB. Likely a noise-floor or calibration artifact, not surface change."
+  "flag": "The whole HV picture is hazy on this date: the median is -14.2 dB against about -21 dB on every other date, and the darkest pixels sit at -24 instead of -26 dB. That points to a calibration or noise problem, not a real change on the ground."
  },
  {
   "date": "2026-06-30",

@@ -576,7 +576,7 @@
    "stretchMax": 0.205,
    "raw": true,
    "cloudCoverPct": 19.71,
-   "note": "Single raw scene, clouds included (20% scene cloud cover, least cloudy of the month)"
+   "note": "One raw scene with the clouds left in (20% cloud cover, the clearest that month)"
   },
   {
    "sensor": "S1",

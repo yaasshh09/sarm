@@ -48,7 +48,7 @@
    "granule": "NISAR_L2_PR_GCOV_023_056_A_014_4005_DHDH_A_20260618T014305_20260618T014336_P05023_N_F_J_001",
    "incidenceDeg": 44.3,
    "validPct": 100.0,
-   "flag": "Scene-wide HV haze: AOI median HV -14.2 dB vs about -21 dB on all other dates, HV floor -24 vs -26 dB. Likely a noise-floor or calibration artifact, not surface change."
+   "flag": "The whole HV picture is hazy on this date: the median is -14.2 dB against about -21 dB on every other date, and the darkest pixels sit at -24 instead of -26 dB. That points to a calibration or noise problem, not a real change on the ground."
   },
   {
    "sensor": "NISAR",
@@ -64,7 +64,7 @@
    "granule": "NISAR_L2_PR_GCOV_023_056_A_014_4005_DHDH_A_20260618T014305_20260618T014336_P05023_N_F_J_001",
    "incidenceDeg": 44.3,
    "validPct": 100.0,
-   "flag": "Scene-wide HV haze: AOI median HV -14.2 dB vs about -21 dB on all other dates, HV floor -24 vs -26 dB. Likely a noise-floor or calibration artifact, not surface change."
+   "flag": "The whole HV picture is hazy on this date: the median is -14.2 dB against about -21 dB on every other date, and the darkest pixels sit at -24 instead of -26 dB. That points to a calibration or noise problem, not a real change on the ground."
   },
   {
    "sensor": "NISAR",
@@ -469,7 +469,7 @@
    "validPct": 94.9,
    "stretchMax": 0.408,
    "window": "2004/2006",
-   "note": "Landsat 7 SLC-off stripes may remain"
+   "note": "Landsat 7's scan-line corrector broke in 2003, so thin stripes may show"
   },
   {
    "sensor": "Landsat",
@@ -496,7 +496,7 @@
    "validPct": 100.0,
    "stretchMax": 0.408,
    "window": "2009/2011",
-   "note": "Landsat 7 SLC-off stripes may remain"
+   "note": "Landsat 7's scan-line corrector broke in 2003, so thin stripes may show"
   },
   {
    "sensor": "Landsat",
