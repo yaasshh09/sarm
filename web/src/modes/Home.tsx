@@ -10,19 +10,30 @@ import { SITES } from '../sites'
 
 maplibregl.setWorkerUrl(workerUrl)
 
-// NASA Blue Marble from GIBS: public domain, open CORS, tiles down to zoom 8.
+// Raster tiles ignore screen density, so on sharp screens I ask for half-size tiles to get the next zoom level's detail.
+const TILE = devicePixelRatio > 1 ? 128 : 256
+
+// NASA Blue Marble (500 m) for the whole Earth, then 10 m Sentinel-2 cloudless fades in as you fly down to a site.
 const EARTH: StyleSpecification = {
   version: 8,
   projection: { type: 'globe' },
   sky: { 'atmosphere-blend': ['interpolate', ['linear'], ['zoom'], 0, 1, 5, 1, 8, 0] },
   sources: {
     earth: {
-      type: 'raster', tileSize: 256, maxzoom: 8,
+      type: 'raster', tileSize: 128, maxzoom: 8,
       tiles: ['https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_NextGeneration/default/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpeg'],
       attribution: 'Globe: NASA Blue Marble via GIBS',
     },
+    s2: {
+      type: 'raster', tileSize: TILE, minzoom: 4, maxzoom: 16,
+      tiles: ['https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2024_3857/default/GoogleMapsCompatible/{z}/{y}/{x}.jpg'],
+      attribution: '<a href="https://s2maps.eu">Sentinel-2 cloudless</a> by EOX (modified Copernicus Sentinel data 2024)',
+    },
   },
-  layers: [{ id: 'earth', type: 'raster', source: 'earth' }],
+  layers: [
+    { id: 'earth', type: 'raster', source: 'earth' },
+    { id: 's2', type: 'raster', source: 's2', minzoom: 4, paint: { 'raster-opacity': ['interpolate', ['linear'], ['zoom'], 4.5, 0, 6.5, 1] } },
+  ],
 }
 
 type Info = { m: Manifest; nisar: string[]; s1: string[]; landsat: string[]; shown?: Layer }
@@ -182,7 +193,7 @@ export default function Home() {
                   <div className="card">
                     <label className="row"><input type="checkbox" checked={radar} onChange={(e) => setRadar(e.target.checked)} /> Show the NISAR picture on the globe</label>
                     <p className="muted">That square is NISAR L-band from {i.shown.date} ({i.shown.tier?.toLowerCase()} data), colored by polarization: red HH, green HV, blue HH minus HV.</p>
-                    <p className="muted">The strongest echoes come out yellow and pink, mostly buildings. Green leans toward plants, and the darkest patches are smooth sand and calm water. Untick the box to compare it with the Blue Marble photo underneath.</p>
+                    <p className="muted">The strongest echoes come out yellow and pink, mostly buildings. Green leans toward plants, and the darkest patches are smooth sand and calm water. Untick the box to compare it with the Sentinel-2 photo underneath.</p>
                   </div>
                 )}
               </>
@@ -191,7 +202,7 @@ export default function Home() {
         )}
         {error && <p className="error">{error}</p>}
         <footer className="credits">
-          Radar data: NISAR (NASA and ISRO) via ASF DAAC, Sentinel-1 (ESA Copernicus) and Landsat (USGS and NASA) via Microsoft Planetary Computer. Globe: NASA Blue Marble via GIBS. Built by me for NASA Space Apps 2026.
+          Radar data: NISAR (NASA and ISRO) via ASF DAAC, Sentinel-1 (ESA Copernicus) and Landsat (USGS and NASA) via Microsoft Planetary Computer. Globe: NASA Blue Marble via GIBS and Sentinel-2 cloudless by EOX. Built by me for NASA Space Apps 2026.
         </footer>
       </main>
     </div>
