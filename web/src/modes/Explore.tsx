@@ -407,7 +407,7 @@ export default function Explore({ initialSite, initialView }: { initialSite?: st
       </aside>
 
       <footer className="time">
-        <button className="play" onClick={() => setPlaying(!playing)} aria-label={playing ? 'Pause' : 'Play'}>{playing ? '❚❚' : '▶'}</button>
+        <button className="play" onClick={() => setPlaying(!playing)} aria-label={playing ? 'Pause' : 'Play'}>{playing ? '❚❚' : '▶︎'}</button>
         {sc.length > 0 && <Timeline dates={sc.map((s) => s.date)} flagged={flagged} idx={idx} before={compare ? before : undefined} onPick={(i) => { setIdx(i); setPlaying(false) }} />}
       </footer>
     </div>

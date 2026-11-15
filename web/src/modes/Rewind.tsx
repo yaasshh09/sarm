@@ -256,7 +256,7 @@ export default function Rewind({ initialSite, initialView }: { initialSite?: str
       </aside>
 
       <footer className="time rewind-time">
-        <button className="play" onClick={() => setPlaying(!playing)} aria-label={playing ? 'Pause' : 'Play'}>{playing ? '❚❚' : '▶'}</button>
+        <button className="play" onClick={() => setPlaying(!playing)} aria-label={playing ? 'Pause' : 'Play'}>{playing ? '❚❚' : '▶︎'}</button>
         <div className="lanes">
           {LANES.map(({ sensor, label, band }) => (
             <div className="lane" key={sensor}>
